@@ -1,0 +1,396 @@
+<!DOCTYPE html><html lang="id"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "surface-white": "#FFFFFF",
+        "text-inverted": "#FFFFFF",
+        "secondary": "#1A54A4",
+        "background": "#FFFFFF",
+        "border-subtle": "#E2E8F0",
+        "on-surface-variant": "#64748B",
+        "surface-container-lowest": "#FFFFFF",
+        "on-primary-container": "#B3CCFF",
+        "on-tertiary": "#FFFFFF",
+        "on-secondary": "#FFFFFF",
+        "text-muted": "#64748B",
+        "badge-tint": "#EBF2FA",
+        "surface": "#FFFFFF",
+        "on-surface": "#0F172A",
+        "text-primary": "#0F172A",
+        "surface-offwhite": "#F8FAFC",
+        "primary": "#1A54A4",
+        "primary-dark": "#103B75",
+        "primary-container": "#1A54A4",
+        "on-primary": "#FFFFFF",
+        "surface-container-low": "#F8FAFC",
+        "surface-container": "#F1F5F9",
+        "surface-container-high": "#E2E8F0",
+        "outline-variant": "#E2E8F0"
+      },
+      borderRadius: {
+        DEFAULT: "0.5rem",
+        lg: "0.5rem",
+        xl: "0.75rem",
+        full: "9999px"
+      },
+      spacing: {
+        "margin-desktop": "4rem",
+        "gutter-desktop": "2rem",
+        "gutter-tablet": "1.5rem",
+        "space-xs": "0.25rem",
+        margin: "1.25rem",
+        "margin-tablet": "2.5rem",
+        "space-sm": "0.5rem",
+        "space-2xl": "4rem",
+        "space-lg": "1.5rem",
+        gutter: "1rem",
+        "space-xl": "2.5rem",
+        "space-md": "1rem"
+      },
+      fontFamily: {
+        "headline-sm": ["Plus Jakarta Sans"],
+        "headline-md": ["Plus Jakarta Sans"],
+        "body-md": ["Inter"],
+        "display-mobile": ["Plus Jakarta Sans"],
+        "label-md": ["Plus Jakarta Sans"],
+        "label-sm": ["Plus Jakarta Sans"],
+        "headline-lg": ["Plus Jakarta Sans"],
+        "headline-lg-mobile": ["Plus Jakarta Sans"],
+        "body-sm": ["Inter"],
+        "title-lg": ["Plus Jakarta Sans"],
+        "body-lg": ["Inter"],
+        "title-md": ["Plus Jakarta Sans"],
+        display: ["Plus Jakarta Sans"]
+      },
+      fontSize: {
+        "headline-sm": ["1.5rem", { lineHeight: "2rem", letterSpacing: "-0.015em", fontWeight: "600" }],
+        "headline-md": ["2rem", { lineHeight: "2.5rem", letterSpacing: "-0.02em", fontWeight: "700" }],
+        "body-md": ["1rem", { lineHeight: "1.625rem", letterSpacing: "-0.005em", fontWeight: "400" }],
+        "display-mobile": ["2.375rem", { lineHeight: "2.875rem", letterSpacing: "-0.025em", fontWeight: "800" }],
+        "label-md": ["0.875rem", { lineHeight: "1.25rem", letterSpacing: "0.01em", fontWeight: "600" }],
+        "label-sm": ["0.75rem", { lineHeight: "1rem", letterSpacing: "0.04em", fontWeight: "600" }],
+        "headline-lg": ["2.75rem", { lineHeight: "3.25rem", letterSpacing: "-0.025em", fontWeight: "700" }],
+        "headline-lg-mobile": ["1.875rem", { lineHeight: "2.375rem", letterSpacing: "-0.02em", fontWeight: "700" }],
+        "body-sm": ["0.875rem", { lineHeight: "1.375rem", fontWeight: "400" }],
+        "title-lg": ["1.25rem", { lineHeight: "1.75rem", letterSpacing: "-0.01em", fontWeight: "600" }],
+        "body-lg": ["1.125rem", { lineHeight: "1.75rem", letterSpacing: "-0.01em", fontWeight: "400" }],
+        "title-md": ["1.125rem", { lineHeight: "1.625rem", letterSpacing: "-0.005em", fontWeight: "600" }],
+        display: ["3.75rem", { lineHeight: "4.25rem", letterSpacing: "-0.03em", fontWeight: "800" }]
+      }
+    }
+  }
+};
+</script></head><body class="bg-[#FFFFFF] font-body-md text-[#0F172A] antialiased selection:bg-[#EBF2FA] selection:text-[#1A54A4]"><header class="fixed top-0 left-0 right-0 w-full z-50 bg-[#FFFFFF] border-b border-[#E2E8F0]"><div class="h-20 max-w-[1440px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop flex items-center justify-between"><a class="flex items-center gap-3 group" data-path="beranda" href="#"><div class="w-9 h-9 rounded-lg bg-[#1A54A4] text-white flex items-center justify-center font-headline-sm text-headline-sm transition-transform duration-200 group-hover:scale-95"><span class="translate-y-[-1px]">Z</span></div><span class="font-title-md text-title-md tracking-tight uppercase text-[#0F172A]">[ZACREATIVE]</span></a><nav class="hidden lg:flex items-center gap-space-lg" data-active-classes="text-[#0F172A] font-title-md border-b-2 border-[#1A54A4] pb-1"><a class="font-body-sm text-body-sm text-[#64748B] hover:text-[#0F172A] transition-colors" data-path="beranda" href="#">Beranda</a><a aria-current="page" class="transition-colors text-[#0F172A] font-title-md border-b-2 border-[#1A54A4] pb-1" data-path="semua-karya" href="#">Semua Karya (20+)</a><a class="font-body-sm text-body-sm text-[#64748B] hover:text-[#0F172A] transition-colors" data-path="layanan-dan-tarif" href="#">Layanan &amp; Tarif</a><a class="font-body-sm text-body-sm text-[#64748B] hover:text-[#0F172A] transition-colors" data-path="cara-kerja" href="#">Cara Kerja</a><a class="font-body-sm text-body-sm text-[#64748B] hover:text-[#0F172A] transition-colors" data-path="faq" href="#">FAQ</a></nav><div class="flex items-center gap-space-md"><a class="inline-flex items-center justify-center bg-[#1A54A4] text-white font-label-md text-label-md uppercase tracking-wider px-6 py-3 rounded-lg hover:bg-[#103B75] transition-colors duration-200 shadow-sm" data-path="diskusikan-proyek" href="#">Diskusikan Proyek</a><div class="w-8 h-8 rounded-full bg-[#1A54A4] flex items-center justify-center"><span class="material-symbols-outlined text-white text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-[#FFFFFF] min-h-[calc(100vh-5rem)]"><div class="flex flex-col w-full">
+<!-- Page Header & Filtering Section -->
+<section class="relative w-full bg-[#FFFFFF] py-16 border-b border-[#E2E8F0] overflow-hidden"><div class="absolute -top-24 left-1/2 -translate-x-1/2 w-[700px] h-[320px] bg-gradient-to-r from-[#1A54A4]/15 via-[#38BDF8]/10 to-[#103B75]/15 blur-3xl rounded-full pointer-events-none -z-0"></div><div class="relative z-10 max-w-[1440px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop"><div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-lg mb-12"><div class="max-w-3xl space-y-4"><div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#EBF2FA] border border-[#B3CCFF]/50 shadow-sm"><span class="w-2 h-2 rounded-full bg-[#1A54A4] animate-pulse"></span><span class="font-label-sm text-[11px] uppercase tracking-wider text-[#1A54A4] font-semibold">KATALOG PORTOFOLIO STUDIO</span><span class="text-[#B3CCFF]">•</span><span class="font-label-sm text-[11px] text-[#64748B] font-medium">EDISI 2024–2025</span></div><h1 class="font-headline-lg text-4xl lg:text-5xl text-[#0F172A] tracking-tight font-semibold leading-tight">Katalog Karya &amp; Produk Desain</h1><p class="font-body-lg text-body-lg text-[#64748B] max-w-2xl leading-relaxed">Koleksi terpilih perancangan tata letak buku editorial, slide presentasi eksekutif, identitas visual, dan poster ilmiah berstandar global.</p></div><div class="flex items-center gap-3 self-start lg:self-end"><div class="relative inline-block text-left"><button class="inline-flex items-center justify-between gap-3 px-4 py-2 bg-[#F8FAFC] hover:bg-[#EBF2FA] text-[#0F172A] rounded-full border border-[#E2E8F0] font-label-md text-label-md transition-colors shadow-sm" id="sortDropdownBtn" type="button"><span class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-[#1A54A4]">swap_vert</span><span class="">Urutkan: <strong class="font-semibold text-[#1A54A4]">Karya Terbaru</strong></span></span><span class="material-symbols-outlined text-[16px] text-[#64748B]">expand_more</span></button></div></div></div><div class="flex items-center gap-2 overflow-x-auto pb-2 no-scrollbar" id="catalogFilters"><button class="filter-tab px-5 py-2 rounded-full bg-[#1A54A4] text-white font-label-md text-label-md uppercase tracking-wider transition-all duration-150 shadow-sm whitespace-nowrap" data-filter="all">Semua (11)</button><button class="filter-tab px-5 py-2 rounded-full bg-[#F8FAFC] hover:bg-[#EBF2FA] text-[#1A54A4] font-label-md text-label-md uppercase tracking-wider transition-all duration-150 whitespace-nowrap border border-[#E2E8F0]" data-filter="book-layout">Book Layout (5)</button><button class="filter-tab px-5 py-2 rounded-full bg-[#F8FAFC] hover:bg-[#EBF2FA] text-[#1A54A4] font-label-md text-label-md uppercase tracking-wider transition-all duration-150 whitespace-nowrap border border-[#E2E8F0]" data-filter="presentation">Presentation Design (3)</button><button class="filter-tab px-5 py-2 rounded-full bg-[#F8FAFC] hover:bg-[#EBF2FA] text-[#1A54A4] font-label-md text-label-md uppercase tracking-wider transition-all duration-150 whitespace-nowrap border border-[#E2E8F0]" data-filter="infographic">Infographic &amp; Scientific Poster (3)</button></div></div></section>
+<!-- Modular Portfolio Catalog Grid -->
+<section class="w-full bg-[#FFFFFF] py-14"><div class="max-w-[1440px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop"><div class="flex flex-wrap items-center justify-between gap-4 mb-8 pb-4 border-b border-[#E2E8F0]/70 text-[#64748B]"><div class="flex items-center gap-2 font-label-md text-label-md uppercase tracking-wider text-[#0F172A]"><span class="w-2 h-2 rounded-full bg-[#1A54A4]"></span><span class="font-semibold">3 Pilar Layanan Utama &amp; Kurasi Proyek Nyata</span></div><div class="flex items-center gap-3 font-body-sm text-body-sm text-[#64748B]"><span class="px-2.5 py-1 rounded-full bg-[#F8FAFC] border border-[#E2E8F0] text-[12px]">Kementerian • Korporasi TBK • Universitas Riset • Lembaga Global</span></div></div><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Card 1 (Book Layout) -->
+<article class="group relative flex flex-col bg-white rounded-xl border border-[#E2E8F0] shadow-sm hover:shadow-md hover:border-[#1A54A4]/50 transition-all duration-300 overflow-hidden" data-category="book-layout">
+<div class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#1A54A4] via-[#38BDF8] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"></div>
+<div class="relative w-full aspect-[16/10] bg-[#F1F5F9] overflow-hidden flex items-center justify-center">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Buku Memori Akhir Tugas Kementerian PUPR editorial book mockup" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCntWSl5AIYJ5FJ1GMxYfsCoGnR35YTewW8k08YlYLXoyJI521Mx7IQhOx9S-1ryiphGKsmxRJIkpqbx1W9E9XCtCW53LZRjpDM15Ja46pRRYqXghlqQt_2vwQC37NEqPzLNdQaxKrbTxy7UnqNBKOYQEqK7uHYgRLNMuZCdRJg8vwuNg01V9gs3EBnKdz3ZKO-nSSUAwpPB3NzfJM3tX51ySp6WLkygcv2iSLw47Syu-nZTNxd8Js">
+<div class="absolute inset-0 bg-gradient-to-t from-[#103B75]/70 via-transparent to-transparent opacity-50"></div>
+<div class="absolute top-3 left-3 flex items-center gap-2"><span class="px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-sm text-[#0F172A] font-label-sm text-[11px] tracking-wider font-semibold uppercase border border-[#E2E8F0] shadow-sm">KEMENTERIAN RI</span></div>
+<div class="absolute bottom-3 right-3"><span class="px-2.5 py-1 rounded-full bg-[#1A54A4] text-white font-label-sm text-[11px] tracking-wider font-semibold shadow-sm">2 Buku • 343 Hal</span></div>
+</div>
+<div class="p-6 flex flex-col flex-1 justify-between gap-5">
+<div class="space-y-3">
+<div class="flex items-center justify-between"><span class="inline-block px-3 py-1 rounded-full bg-[#EBF2FA] text-[#1A54A4] font-label-sm text-[11px] uppercase tracking-wider font-semibold border border-[#B3CCFF]/60">BOOK LAYOUT</span><span class="font-label-sm text-[12px] text-[#64748B] font-medium bg-[#F8FAFC] px-2 py-0.5 rounded border border-[#E2E8F0]">Editorial Resmi</span></div>
+<h2 class="font-headline-sm text-xl text-[#0F172A] font-semibold group-hover:text-[#1A54A4] transition-colors leading-snug">Kementerian PUPR — Memori Akhir Tugas &amp; Profil Setjen</h2>
+<p class="font-body-sm text-body-sm text-[#64748B] line-clamp-2 leading-relaxed">Dokumentasi capaian 10 tahun infrastruktur nasional dengan tata letak editorial presisi tinggi, infografis data spasial, dan tipografi buku arsip negara.</p>
+</div>
+<div class="pt-4 border-t border-[#E2E8F0] flex items-center justify-between"><span class="font-label-sm text-[12px] text-[#64748B]">Offset Ready (PDF/X-1a)</span><a class="inline-flex items-center gap-1 font-label-md text-label-md text-[#1A54A4] hover:text-[#103B75] font-semibold group/link" href="#"><span class="">Detail Studi Kasus</span><span class="material-symbols-outlined text-base text-[#1A54A4] group-hover/link:translate-x-1 transition-transform">arrow_forward</span></a></div>
+</div>
+</article>
+<!-- Card 2 (Book Layout) -->
+<article class="group relative flex flex-col bg-white rounded-xl border border-[#E2E8F0] shadow-sm hover:shadow-md hover:border-[#1A54A4]/50 transition-all duration-300 overflow-hidden" data-category="book-layout">
+<div class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#1A54A4] via-[#38BDF8] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"></div>
+<div class="relative w-full aspect-[16/10] bg-[#103B75]/10 overflow-hidden flex items-center justify-center p-6 border-b border-[#E2E8F0]">
+<div class="w-full h-full rounded-lg bg-gradient-to-br from-[#103B75] to-[#1A54A4] text-white p-5 flex flex-col justify-between shadow-inner group-hover:scale-105 transition-transform duration-500">
+<div class="flex items-center justify-between"><span class="text-[10px] tracking-widest uppercase font-mono px-2 py-0.5 rounded bg-white/20">UGM PSE × ANTAM</span><span class="material-symbols-outlined text-white/70 text-lg">menu_book</span></div>
+<div><p class="text-[11px] text-[#B3CCFF] font-semibold uppercase tracking-wider">BUKU PUTIH STRATEGIS</p><p class="text-sm font-bold text-white leading-tight">CGA Tayan &amp; Feronikel Haltim</p></div>
+<div class="flex items-center justify-between text-[10px] text-white/80 border-t border-white/20 pt-2"><span class="">Sprint 7 Hari</span><span class="">487 Halaman</span></div>
+</div>
+<div class="absolute top-3 left-3 flex items-center gap-2"><span class="px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-sm text-[#0F172A] font-label-sm text-[11px] tracking-wider font-semibold uppercase border border-[#E2E8F0] shadow-sm">KORPORASI TBK</span></div>
+<div class="absolute bottom-3 right-3"><span class="px-2.5 py-1 rounded-full bg-[#1A54A4] text-white font-label-sm text-[11px] tracking-wider font-semibold shadow-sm">2 Buku • 487 Hal</span></div>
+</div>
+<div class="p-6 flex flex-col flex-1 justify-between gap-5">
+<div class="space-y-3">
+<div class="flex items-center justify-between"><span class="inline-block px-3 py-1 rounded-full bg-[#EBF2FA] text-[#1A54A4] font-label-sm text-[11px] uppercase tracking-wider font-semibold border border-[#B3CCFF]/60">BOOK LAYOUT</span><span class="font-label-sm text-[12px] text-[#64748B] font-medium bg-[#F8FAFC] px-2 py-0.5 rounded border border-[#E2E8F0]">White Paper</span></div>
+<h2 class="font-headline-sm text-xl text-[#0F172A] font-semibold group-hover:text-[#1A54A4] transition-colors leading-snug">PT ANTAM Tbk x UGM PSE — Buku Putih CGA Tayan &amp; Feronikel Haltim</h2>
+<p class="font-body-sm text-body-sm text-[#64748B] line-clamp-2 leading-relaxed">Penyusunan laporan strategis komprehensif dalam tenggat waktu ketat 7 hari kerja dengan infografis alur smelter dan diagram neraca mineral.</p>
+</div>
+<div class="pt-4 border-t border-[#E2E8F0] flex items-center justify-between"><span class="font-label-sm text-[12px] text-[#64748B]">INDD + Print-Ready PDF</span><a class="inline-flex items-center gap-1 font-label-md text-label-md text-[#1A54A4] hover:text-[#103B75] font-semibold group/link" href="#"><span class="">Detail Studi Kasus</span><span class="material-symbols-outlined text-base text-[#1A54A4] group-hover/link:translate-x-1 transition-transform">arrow_forward</span></a></div>
+</div>
+</article>
+<!-- Card 3 (Book Layout) -->
+<article class="group relative flex flex-col bg-white rounded-xl border border-[#E2E8F0] shadow-sm hover:shadow-md hover:border-[#1A54A4]/50 transition-all duration-300 overflow-hidden" data-category="book-layout">
+<div class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#1A54A4] via-[#38BDF8] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"></div>
+<div class="relative w-full aspect-[16/10] bg-[#0E2A47] overflow-hidden flex items-center justify-center p-6 border-b border-[#E2E8F0]">
+<div class="w-full h-full rounded-lg border border-[#38BDF8]/40 bg-[#0B1C30] p-5 flex flex-col justify-between text-white group-hover:scale-105 transition-transform duration-500 shadow-md">
+<div class="flex items-center justify-between"><span class="text-[10px] text-[#38BDF8] uppercase font-mono tracking-wider">KBRI DAMASKUS</span><span class="material-symbols-outlined text-[#38BDF8] text-lg">public</span></div>
+<div class="space-y-1"><p class="text-xs uppercase tracking-widest text-[#B3CCFF]">BILATERAL REPORT</p><p class="text-sm font-bold text-white">Indonesia Economic Updates</p><p class="text-[11px] text-slate-400">Trilingual Layout (ID • EN • AR)</p></div>
+<div class="flex items-center justify-between text-[10px] text-slate-400 border-t border-slate-700/60 pt-2"><span class="">Diplomatic Issue</span><span class="">90 Hal</span></div>
+</div>
+<div class="absolute top-3 left-3 flex items-center gap-2"><span class="px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-sm text-[#0F172A] font-label-sm text-[11px] tracking-wider font-semibold uppercase border border-[#E2E8F0] shadow-sm">DIPLOMATIK</span></div>
+<div class="absolute bottom-3 right-3"><span class="px-2.5 py-1 rounded-full bg-[#1A54A4] text-white font-label-sm text-[11px] tracking-wider font-semibold shadow-sm">Bilingual • 90 Hal</span></div>
+</div>
+<div class="p-6 flex flex-col flex-1 justify-between gap-5">
+<div class="space-y-3">
+<div class="flex items-center justify-between"><span class="inline-block px-3 py-1 rounded-full bg-[#EBF2FA] text-[#1A54A4] font-label-sm text-[11px] uppercase tracking-wider font-semibold border border-[#B3CCFF]/60">BOOK LAYOUT</span><span class="font-label-sm text-[12px] text-[#64748B] font-medium bg-[#F8FAFC] px-2 py-0.5 rounded border border-[#E2E8F0]">Diplomatic / Gov</span></div>
+<h2 class="font-headline-sm text-xl text-[#0F172A] font-semibold group-hover:text-[#1A54A4] transition-colors leading-snug">KBRI Damaskus — Indonesia Economic Updates</h2>
+<p class="font-body-sm text-body-sm text-[#64748B] line-clamp-2 leading-relaxed">Tinjauan ekonomi, investasi, dan hubungan bilateral dengan grid tipografi multibahasa serta integrasi infografis neraca perdagangan.</p>
+</div>
+<div class="pt-4 border-t border-[#E2E8F0] flex items-center justify-between"><span class="font-label-sm text-[12px] text-[#64748B]">Interactive PDF &amp; Print</span><a class="inline-flex items-center gap-1 font-label-md text-label-md text-[#1A54A4] hover:text-[#103B75] font-semibold group/link" href="#"><span class="">Detail Studi Kasus</span><span class="material-symbols-outlined text-base text-[#1A54A4] group-hover/link:translate-x-1 transition-transform">arrow_forward</span></a></div>
+</div>
+</article>
+<!-- Card 4 (Book Layout) -->
+<article class="group relative flex flex-col bg-white rounded-xl border border-[#E2E8F0] shadow-sm hover:shadow-md hover:border-[#1A54A4]/50 transition-all duration-300 overflow-hidden" data-category="book-layout">
+<div class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#1A54A4] via-[#38BDF8] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"></div>
+<div class="relative w-full aspect-[16/10] bg-[#1E293B] overflow-hidden flex items-center justify-center p-6 border-b border-[#E2E8F0]">
+<div class="w-full h-full rounded-lg bg-gradient-to-tr from-[#0F172A] to-[#1E3A8A] text-white p-5 flex flex-col justify-between shadow-inner group-hover:scale-105 transition-transform duration-500">
+<div class="flex items-center justify-between"><span class="text-[10px] tracking-widest font-mono text-[#38BDF8]">JAKPRO BUMD</span><span class="material-symbols-outlined text-slate-300 text-lg">account_tree</span></div>
+<div><p class="text-[10px] text-[#B3CCFF] font-semibold uppercase tracking-wider">ANALISIS STAKEHOLDER</p><p class="text-sm font-bold text-white leading-tight">Pemetaan Pemangku Kepentingan Korporasi</p></div>
+<div class="flex items-center justify-between text-[10px] text-slate-300 border-t border-slate-700/80 pt-2"><span class="">Sprint 7 Hari</span><span class="">287 Halaman</span></div>
+</div>
+<div class="absolute top-3 left-3 flex items-center gap-2"><span class="px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-sm text-[#0F172A] font-label-sm text-[11px] tracking-wider font-semibold uppercase border border-[#E2E8F0] shadow-sm">BUMD DKI</span></div>
+<div class="absolute bottom-3 right-3"><span class="px-2.5 py-1 rounded-full bg-[#1A54A4] text-white font-label-sm text-[11px] tracking-wider font-semibold shadow-sm">Korporat • 287 Hal</span></div>
+</div>
+<div class="p-6 flex flex-col flex-1 justify-between gap-5">
+<div class="space-y-3">
+<div class="flex items-center justify-between"><span class="inline-block px-3 py-1 rounded-full bg-[#EBF2FA] text-[#1A54A4] font-label-sm text-[11px] uppercase tracking-wider font-semibold border border-[#B3CCFF]/60">BOOK LAYOUT</span><span class="font-label-sm text-[12px] text-[#64748B] font-medium bg-[#F8FAFC] px-2 py-0.5 rounded border border-[#E2E8F0]">Strategic Report</span></div>
+<h2 class="font-headline-sm text-xl text-[#0F172A] font-semibold group-hover:text-[#1A54A4] transition-colors leading-snug">PT Jakarta Propertindo (JAKPRO) — Analisis Stakeholder</h2>
+<p class="font-body-sm text-body-sm text-[#64748B] line-clamp-2 leading-relaxed">Buku analisis komprehensif pemangku kepentingan korporasi selesai dalam sprint 7 hari dengan bagan matriks pengaruh dan dependensi.</p>
+</div>
+<div class="pt-4 border-t border-[#E2E8F0] flex items-center justify-between"><span class="font-label-sm text-[12px] text-[#64748B]">InDesign Package + PDF</span><a class="inline-flex items-center gap-1 font-label-md text-label-md text-[#1A54A4] hover:text-[#103B75] font-semibold group/link" href="#"><span class="">Detail Studi Kasus</span><span class="material-symbols-outlined text-base text-[#1A54A4] group-hover/link:translate-x-1 transition-transform">arrow_forward</span></a></div>
+</div>
+</article>
+<!-- Card 5 (Book Layout) -->
+<article class="group relative flex flex-col bg-white rounded-xl border border-[#E2E8F0] shadow-sm hover:shadow-md hover:border-[#1A54A4]/50 transition-all duration-300 overflow-hidden" data-category="book-layout">
+<div class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#1A54A4] via-[#38BDF8] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"></div>
+<div class="relative w-full aspect-[16/10] bg-[#0284C7]/10 overflow-hidden flex items-center justify-center p-6 border-b border-[#E2E8F0]">
+<div class="w-full h-full rounded-lg bg-gradient-to-br from-[#0369A1] to-[#0284C7] text-white p-5 flex flex-col justify-between group-hover:scale-105 transition-transform duration-500 shadow-md">
+<div class="flex items-center justify-between"><span class="text-[10px] tracking-widest uppercase font-mono px-2 py-0.5 rounded bg-white/20">DITJEN VOKASI</span><span class="material-symbols-outlined text-white/80 text-lg">school</span></div>
+<div><p class="text-[10px] text-sky-200 font-semibold uppercase tracking-wider">KAJIAN KEMITRAAN DUDI</p><p class="text-sm font-bold text-white leading-tight">Panduan SROI &amp; Ekosistem Vokasi</p></div>
+<div class="flex items-center justify-between text-[10px] text-sky-100 border-t border-sky-400/40 pt-2"><span class="">3 Seri Buku</span><span class="">184 Hal</span></div>
+</div>
+<div class="absolute top-3 left-3 flex items-center gap-2"><span class="px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-sm text-[#0F172A] font-label-sm text-[11px] tracking-wider font-semibold uppercase border border-[#E2E8F0] shadow-sm">KEMENTERIAN RI</span></div>
+<div class="absolute bottom-3 right-3"><span class="px-2.5 py-1 rounded-full bg-[#1A54A4] text-white font-label-sm text-[11px] tracking-wider font-semibold shadow-sm">3 Buku • 184 Hal</span></div>
+</div>
+<div class="p-6 flex flex-col flex-1 justify-between gap-5">
+<div class="space-y-3">
+<div class="flex items-center justify-between"><span class="inline-block px-3 py-1 rounded-full bg-[#EBF2FA] text-[#1A54A4] font-label-sm text-[11px] uppercase tracking-wider font-semibold border border-[#B3CCFF]/60">BOOK LAYOUT</span><span class="font-label-sm text-[12px] text-[#64748B] font-medium bg-[#F8FAFC] px-2 py-0.5 rounded border border-[#E2E8F0]">Buku Panduan</span></div>
+<h2 class="font-headline-sm text-xl text-[#0F172A] font-semibold group-hover:text-[#1A54A4] transition-colors leading-snug">Kemendikbudristek RI — Panduan &amp; Kajian Kemitraan Vokasi DUDI</h2>
+<p class="font-body-sm text-body-sm text-[#64748B] line-clamp-2 leading-relaxed">Dokumentasi evaluasi SROI dan kemitraan strategis pendidikan vokasi dengan industri dalam rancangan editorial ramah baca dan modular.</p>
+</div>
+<div class="pt-4 border-t border-[#E2E8F0] flex items-center justify-between"><span class="font-label-sm text-[12px] text-[#64748B]">Print &amp; Digital Layout</span><a class="inline-flex items-center gap-1 font-label-md text-label-md text-[#1A54A4] hover:text-[#103B75] font-semibold group/link" href="#"><span class="">Detail Studi Kasus</span><span class="material-symbols-outlined text-base text-[#1A54A4] group-hover/link:translate-x-1 transition-transform">arrow_forward</span></a></div>
+</div>
+</article>
+<!-- Card 6 (Presentation Design) -->
+<article class="group relative flex flex-col bg-white rounded-xl border border-[#E2E8F0] shadow-sm hover:shadow-md hover:border-[#1A54A4]/50 transition-all duration-300 overflow-hidden" data-category="presentation">
+<div class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#1A54A4] via-[#38BDF8] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"></div>
+<div class="relative w-full aspect-[16/10] bg-[#0F172A] overflow-hidden flex items-center justify-center p-6 border-b border-[#E2E8F0]">
+<div class="w-full h-full rounded-lg bg-gradient-to-r from-[#042f2e] to-[#0f766e] text-white p-5 flex flex-col justify-between group-hover:scale-105 transition-transform duration-500 shadow-md">
+<div class="flex items-center justify-between"><span class="text-[10px] tracking-widest uppercase font-mono px-2 py-0.5 rounded bg-white/20">ENTALPHY CONSULTING</span><span class="material-symbols-outlined text-teal-200 text-lg">co2</span></div>
+<div><p class="text-[10px] text-teal-200 font-semibold uppercase tracking-wider">MODUL EFISIENSI ENERGI</p><p class="text-sm font-bold text-white leading-tight">Master Template &amp; Technical Deck</p></div>
+<div class="flex items-center justify-between text-[10px] text-teal-100 border-t border-teal-500/40 pt-2"><span class="">Format 16:9</span><span class="">74 Slide Slideset</span></div>
+</div>
+<div class="absolute top-3 left-3 flex items-center gap-2"><span class="px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-sm text-[#0F172A] font-label-sm text-[11px] tracking-wider font-semibold uppercase border border-[#E2E8F0] shadow-sm">KONSULTAN</span></div>
+<div class="absolute bottom-3 right-3"><span class="px-2.5 py-1 rounded-full bg-[#1A54A4] text-white font-label-sm text-[11px] tracking-wider font-semibold shadow-sm">74 Slides • 16:9</span></div>
+</div>
+<div class="p-6 flex flex-col flex-1 justify-between gap-5">
+<div class="space-y-3">
+<div class="flex items-center justify-between"><span class="inline-block px-3 py-1 rounded-full bg-[#EBF2FA] text-[#1A54A4] font-label-sm text-[11px] uppercase tracking-wider font-semibold border border-[#B3CCFF]/60">PRESENTATION DESIGN</span><span class="font-label-sm text-[12px] text-[#64748B] font-medium bg-[#F8FAFC] px-2 py-0.5 rounded border border-[#E2E8F0]">Executive Deck</span></div>
+<h2 class="font-headline-sm text-xl text-[#0F172A] font-semibold group-hover:text-[#1A54A4] transition-colors leading-snug">Entalphy Consulting — Modul Efisiensi Energi</h2>
+<p class="font-body-sm text-body-sm text-[#64748B] line-clamp-2 leading-relaxed">Visual system eko-energi dengan diagram teknis, grafik konsumsi daya, dan master template siap pakai untuk pelatihan korporat.</p>
+</div>
+<div class="pt-4 border-t border-[#E2E8F0] flex items-center justify-between"><span class="font-label-sm text-[12px] text-[#64748B]">PPTX Editable &amp; Keynote</span><a class="inline-flex items-center gap-1 font-label-md text-label-md text-[#1A54A4] hover:text-[#103B75] font-semibold group/link" href="#"><span class="">Detail Studi Kasus</span><span class="material-symbols-outlined text-base text-[#1A54A4] group-hover/link:translate-x-1 transition-transform">arrow_forward</span></a></div>
+</div>
+</article>
+<!-- Card 7 (Presentation Design) -->
+<article class="group relative flex flex-col bg-white rounded-xl border border-[#E2E8F0] shadow-sm hover:shadow-md hover:border-[#1A54A4]/50 transition-all duration-300 overflow-hidden" data-category="presentation">
+<div class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#1A54A4] via-[#38BDF8] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"></div>
+<div class="relative w-full aspect-[16/10] bg-[#FFF7ED] overflow-hidden flex items-center justify-center p-6 border-b border-[#E2E8F0]">
+<div class="w-full h-full rounded-lg bg-gradient-to-tr from-[#EA580C] to-[#F59E0B] text-white p-5 flex flex-col justify-between group-hover:scale-105 transition-transform duration-500 shadow-md">
+<div class="flex items-center justify-between"><span class="text-[10px] tracking-widest uppercase font-mono px-2 py-0.5 rounded bg-white/20">AYO TUMBUH</span><span class="material-symbols-outlined text-amber-100 text-lg">child_care</span></div>
+<div><p class="text-[10px] text-amber-100 font-semibold uppercase tracking-wider">EDUPRENEUR &amp; DAYCARE</p><p class="text-sm font-bold text-white leading-tight">Partnership Pitch Deck</p></div>
+<div class="flex items-center justify-between text-[10px] text-amber-100 border-t border-amber-300/40 pt-2"><span class="">Vibrant &amp; Dynamic</span><span class="">14 Slides</span></div>
+</div>
+<div class="absolute top-3 left-3 flex items-center gap-2"><span class="px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-sm text-[#0F172A] font-label-sm text-[11px] tracking-wider font-semibold uppercase border border-[#E2E8F0] shadow-sm">STARTUP PENDIDIKAN</span></div>
+<div class="absolute bottom-3 right-3"><span class="px-2.5 py-1 rounded-full bg-[#1A54A4] text-white font-label-sm text-[11px] tracking-wider font-semibold shadow-sm">14 Slides • Vibrant</span></div>
+</div>
+<div class="p-6 flex flex-col flex-1 justify-between gap-5">
+<div class="space-y-3">
+<div class="flex items-center justify-between"><span class="inline-block px-3 py-1 rounded-full bg-[#EBF2FA] text-[#1A54A4] font-label-sm text-[11px] uppercase tracking-wider font-semibold border border-[#B3CCFF]/60">PRESENTATION DESIGN</span><span class="font-label-sm text-[12px] text-[#64748B] font-medium bg-[#F8FAFC] px-2 py-0.5 rounded border border-[#E2E8F0]">Pitch Deck</span></div>
+<h2 class="font-headline-sm text-xl text-[#0F172A] font-semibold group-hover:text-[#1A54A4] transition-colors leading-snug">Ayo Tumbuh — Edupreneur &amp; Daycare Consultancy</h2>
+<p class="font-body-sm text-body-sm text-[#64748B] line-clamp-2 leading-relaxed">Desain presentasi dinamis, ramah anak, dan profesional untuk kemitraan pendidikan usia dini dan investor waralaba daycare.</p>
+</div>
+<div class="pt-4 border-t border-[#E2E8F0] flex items-center justify-between"><span class="font-label-sm text-[12px] text-[#64748B]">Pitch Deck PPTX</span><a class="inline-flex items-center gap-1 font-label-md text-label-md text-[#1A54A4] hover:text-[#103B75] font-semibold group/link" href="#"><span class="">Detail Studi Kasus</span><span class="material-symbols-outlined text-base text-[#1A54A4] group-hover/link:translate-x-1 transition-transform">arrow_forward</span></a></div>
+</div>
+</article>
+<!-- Card 8 (Presentation Design) -->
+<article class="group relative flex flex-col bg-white rounded-xl border border-[#E2E8F0] shadow-sm hover:shadow-md hover:border-[#1A54A4]/50 transition-all duration-300 overflow-hidden" data-category="presentation">
+<div class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#1A54A4] via-[#38BDF8] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"></div>
+<div class="relative w-full aspect-[16/10] bg-[#1E1B4B] overflow-hidden flex items-center justify-center p-6 border-b border-[#E2E8F0]">
+<div class="w-full h-full rounded-lg bg-gradient-to-br from-[#312E81] via-[#4338CA] to-[#6366F1] text-white p-5 flex flex-col justify-between group-hover:scale-105 transition-transform duration-500 shadow-md">
+<div class="flex items-center justify-between"><span class="text-[10px] tracking-widest uppercase font-mono px-2 py-0.5 rounded bg-white/20">AI-RECHT</span><span class="material-symbols-outlined text-indigo-200 text-lg">smart_toy</span></div>
+<div><p class="text-[10px] text-indigo-200 font-semibold uppercase tracking-wider">AI &amp; GENDER EQUALITY</p><p class="text-sm font-bold text-white leading-tight">Algorithm Ethics in Recruitment</p></div>
+<div class="flex items-center justify-between text-[10px] text-indigo-200 border-t border-indigo-400/40 pt-2"><span class="">Tech Academic Deck</span><span class="">24 Slides</span></div>
+</div>
+<div class="absolute top-3 left-3 flex items-center gap-2"><span class="px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-sm text-[#0F172A] font-label-sm text-[11px] tracking-wider font-semibold uppercase border border-[#E2E8F0] shadow-sm">AI &amp; RISET HUKUM</span></div>
+<div class="absolute bottom-3 right-3"><span class="px-2.5 py-1 rounded-full bg-[#1A54A4] text-white font-label-sm text-[11px] tracking-wider font-semibold shadow-sm">24 Slides • Modern Tech</span></div>
+</div>
+<div class="p-6 flex flex-col flex-1 justify-between gap-5">
+<div class="space-y-3">
+<div class="flex items-center justify-between"><span class="inline-block px-3 py-1 rounded-full bg-[#EBF2FA] text-[#1A54A4] font-label-sm text-[11px] uppercase tracking-wider font-semibold border border-[#B3CCFF]/60">PRESENTATION DESIGN</span><span class="font-label-sm text-[12px] text-[#64748B] font-medium bg-[#F8FAFC] px-2 py-0.5 rounded border border-[#E2E8F0]">Research Presentation</span></div>
+<h2 class="font-headline-sm text-xl text-[#0F172A] font-semibold group-hover:text-[#1A54A4] transition-colors leading-snug">AI-RECHT — AI &amp; Gender Equality in Recruitment</h2>
+<p class="font-body-sm text-body-sm text-[#64748B] line-clamp-2 leading-relaxed">Presentasi akademik dan riset teknologi tinggi dengan infografis algoritma serta data etika rekrutmen kecerdasan buatan.</p>
+</div>
+<div class="pt-4 border-t border-[#E2E8F0] flex items-center justify-between"><span class="font-label-sm text-[12px] text-[#64748B]">Pitch Deck &amp; PDF</span><a class="inline-flex items-center gap-1 font-label-md text-label-md text-[#1A54A4] hover:text-[#103B75] font-semibold group/link" href="#"><span class="">Detail Studi Kasus</span><span class="material-symbols-outlined text-base text-[#1A54A4] group-hover/link:translate-x-1 transition-transform">arrow_forward</span></a></div>
+</div>
+</article>
+<!-- Card 9 (Infographic & Scientific Poster) -->
+<article class="group relative flex flex-col bg-white rounded-xl border border-[#E2E8F0] shadow-sm hover:shadow-md hover:border-[#1A54A4]/50 transition-all duration-300 overflow-hidden" data-category="infographic">
+<div class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#1A54A4] via-[#38BDF8] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"></div>
+<div class="relative w-full aspect-[16/10] bg-[#0F172A] overflow-hidden flex items-center justify-center p-6 border-b border-[#E2E8F0]">
+<div class="w-full h-full rounded-lg bg-gradient-to-br from-[#065F46] to-[#047857] text-white p-5 flex flex-col justify-between group-hover:scale-105 transition-transform duration-500 shadow-md">
+<div class="flex items-center justify-between"><span class="text-[10px] tracking-widest uppercase font-mono px-2 py-0.5 rounded bg-white/20">LPDP × KEMENDIKBUD</span><span class="material-symbols-outlined text-emerald-200 text-lg">map</span></div>
+<div><p class="text-[10px] text-emerald-200 font-semibold uppercase tracking-wider">POLICY PAPERS</p><p class="text-sm font-bold text-white leading-tight">Peta Potensi Wilayah 5 Provinsi</p></div>
+<div class="flex items-center justify-between text-[10px] text-emerald-100 border-t border-emerald-400/40 pt-2"><span class="">Bengkulu, Sulsel, DIY, Jabar, Kaltara</span><span class="">5 Seri</span></div>
+</div>
+<div class="absolute top-3 left-3 flex items-center gap-2"><span class="px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-sm text-[#0F172A] font-label-sm text-[11px] tracking-wider font-semibold uppercase border border-[#E2E8F0] shadow-sm">RISET KEBIJAKAN</span></div>
+<div class="absolute bottom-3 right-3"><span class="px-2.5 py-1 rounded-full bg-[#1A54A4] text-white font-label-sm text-[11px] tracking-wider font-semibold shadow-sm">5 Seri • Cetak &amp; Digital</span></div>
+</div>
+<div class="p-6 flex flex-col flex-1 justify-between gap-5">
+<div class="space-y-3">
+<div class="flex items-center justify-between"><span class="inline-block px-3 py-1 rounded-full bg-[#EBF2FA] text-[#1A54A4] font-label-sm text-[11px] uppercase tracking-wider font-semibold border border-[#B3CCFF]/60">INFOGRAPHIC &amp; SCIENTIFIC POSTER</span><span class="font-label-sm text-[12px] text-[#64748B] font-medium bg-[#F8FAFC] px-2 py-0.5 rounded border border-[#E2E8F0]">Policy Infographics</span></div>
+<h2 class="font-headline-sm text-xl text-[#0F172A] font-semibold group-hover:text-[#1A54A4] transition-colors leading-snug">Kemendikbudristek &amp; LPDP — Regional Potential Policy Papers</h2>
+<p class="font-body-sm text-body-sm text-[#64748B] line-clamp-2 leading-relaxed">Visualisasi peta potensi wilayah (Bengkulu, Sulsel, DIY, Jabar, Kaltara) berbasis data spasial dan matriks rekomendasi kebijakan.</p>
+</div>
+<div class="pt-4 border-t border-[#E2E8F0] flex items-center justify-between"><span class="font-label-sm text-[12px] text-[#64748B]">High-Res Infographics</span><a class="inline-flex items-center gap-1 font-label-md text-label-md text-[#1A54A4] hover:text-[#103B75] font-semibold group/link" href="#"><span class="">Detail Studi Kasus</span><span class="material-symbols-outlined text-base text-[#1A54A4] group-hover/link:translate-x-1 transition-transform">arrow_forward</span></a></div>
+</div>
+</article>
+<!-- Card 10 (Infographic & Scientific Poster) -->
+<article class="group relative flex flex-col bg-white rounded-xl border border-[#E2E8F0] shadow-sm hover:shadow-md hover:border-[#1A54A4]/50 transition-all duration-300 overflow-hidden hidden" data-category="infographic">
+<div class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#1A54A4] via-[#38BDF8] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"></div>
+<div class="relative w-full aspect-[16/10] bg-[#1E293B] overflow-hidden flex items-center justify-center p-6 border-b border-[#E2E8F0]">
+<div class="w-full h-full rounded-lg bg-gradient-to-br from-[#1E293B] via-[#0F766E] to-[#14B8A6] text-white p-5 flex flex-col justify-between group-hover:scale-105 transition-transform duration-500 shadow-md">
+<div class="flex items-center justify-between"><span class="text-[10px] tracking-widest uppercase font-mono px-2 py-0.5 rounded bg-white/20">UNIVERSITAS GADJAH MADA</span><span class="material-symbols-outlined text-teal-200 text-lg">science</span></div>
+<div><p class="text-[10px] text-teal-200 font-semibold uppercase tracking-wider">PIMNAS KEMDIKBUD</p><p class="text-sm font-bold text-white leading-tight">PsyBot, Rejang Ethnobotany, Vetiver Grass</p></div>
+<div class="flex items-center justify-between text-[10px] text-teal-100 border-t border-teal-500/40 pt-2"><span class="">Standar Dikti A0/B1</span><span class="">3 Poster Juara</span></div>
+</div>
+<div class="absolute top-3 left-3 flex items-center gap-2"><span class="px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-sm text-[#0F172A] font-label-sm text-[11px] tracking-wider font-semibold uppercase border border-[#E2E8F0] shadow-sm">RISET UNIVERSITAS</span></div>
+<div class="absolute bottom-3 right-3"><span class="px-2.5 py-1 rounded-full bg-[#1A54A4] text-white font-label-sm text-[11px] tracking-wider font-semibold shadow-sm">3 Poster • Standar Dikti</span></div>
+</div>
+<div class="p-6 flex flex-col flex-1 justify-between gap-5">
+<div class="space-y-3">
+<div class="flex items-center justify-between"><span class="inline-block px-3 py-1 rounded-full bg-[#EBF2FA] text-[#1A54A4] font-label-sm text-[11px] uppercase tracking-wider font-semibold border border-[#B3CCFF]/60">INFOGRAPHIC &amp; SCIENTIFIC POSTER</span><span class="font-label-sm text-[12px] text-[#64748B] font-medium bg-[#F8FAFC] px-2 py-0.5 rounded border border-[#E2E8F0]">Scientific Poster</span></div>
+<h2 class="font-headline-sm text-xl text-[#0F172A] font-semibold group-hover:text-[#1A54A4] transition-colors leading-snug">UGM PIMNAS Delegations</h2>
+<p class="font-body-sm text-body-sm text-[#64748B] line-clamp-2 leading-relaxed">Seri poster ilmiah PIMNAS (PsyBot, Indeks Etnobotani Rejang, Vetiver Grass Bioengineering) dengan visualisasi bagan uji lab akurat.</p>
+</div>
+<div class="pt-4 border-t border-[#E2E8F0] flex items-center justify-between"><span class="font-label-sm text-[12px] text-[#64748B]">Format Cetak A0 / B1</span><a class="inline-flex items-center gap-1 font-label-md text-label-md text-[#1A54A4] hover:text-[#103B75] font-semibold group/link" href="#"><span class="">Detail Studi Kasus</span><span class="material-symbols-outlined text-base text-[#1A54A4] group-hover/link:translate-x-1 transition-transform">arrow_forward</span></a></div>
+</div>
+</article>
+<!-- Card 11 (Infographic & Scientific Poster) -->
+<article class="group relative flex flex-col bg-white rounded-xl border border-[#E2E8F0] shadow-sm hover:shadow-md hover:border-[#1A54A4]/50 transition-all duration-300 overflow-hidden hidden" data-category="infographic">
+<div class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#1A54A4] via-[#38BDF8] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"></div>
+<div class="relative w-full aspect-[16/10] bg-[#1E1B4B] overflow-hidden flex items-center justify-center p-6 border-b border-[#E2E8F0]">
+<div class="w-full h-full rounded-lg bg-gradient-to-br from-[#1E293B] via-[#0284C7] to-[#38BDF8] text-white p-5 flex flex-col justify-between group-hover:scale-105 transition-transform duration-500 shadow-md">
+<div class="flex items-center justify-between"><span class="text-[10px] tracking-widest uppercase font-mono px-2 py-0.5 rounded bg-white/20">KAMPANYE PUBLIK</span><span class="material-symbols-outlined text-sky-200 text-lg">campaign</span></div>
+<div><p class="text-[10px] text-sky-200 font-semibold uppercase tracking-wider">PUBLIC COMMUNICATIONS</p><p class="text-sm font-bold text-white leading-tight">New Normal, Fisipol Ramadhan, Sulamadaha</p></div>
+<div class="flex items-center justify-between text-[10px] text-sky-100 border-t border-sky-400/40 pt-2"><span class="">Multi-channel Display</span><span class="">3 Seri Kampanye</span></div>
+</div>
+<div class="absolute top-3 left-3 flex items-center gap-2"><span class="px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-sm text-[#0F172A] font-label-sm text-[11px] tracking-wider font-semibold uppercase border border-[#E2E8F0] shadow-sm">KOMUNIKASI PUBLIK</span></div>
+<div class="absolute bottom-3 right-3"><span class="px-2.5 py-1 rounded-full bg-[#1A54A4] text-white font-label-sm text-[11px] tracking-wider font-semibold shadow-sm">3 Seri • OOH &amp; Digital</span></div>
+</div>
+<div class="p-6 flex flex-col flex-1 justify-between gap-5">
+<div class="space-y-3">
+<div class="flex items-center justify-between"><span class="inline-block px-3 py-1 rounded-full bg-[#EBF2FA] text-[#1A54A4] font-label-sm text-[11px] uppercase tracking-wider font-semibold border border-[#B3CCFF]/60">INFOGRAPHIC &amp; SCIENTIFIC POSTER</span><span class="font-label-sm text-[12px] text-[#64748B] font-medium bg-[#F8FAFC] px-2 py-0.5 rounded border border-[#E2E8F0]">Campaign Series</span></div>
+<h2 class="font-headline-sm text-xl text-[#0F172A] font-semibold group-hover:text-[#1A54A4] transition-colors leading-snug">Public Campaign Posters</h2>
+<p class="font-body-sm text-body-sm text-[#64748B] line-clamp-2 leading-relaxed">Desain komunikasi publik: New Normal, Ramadhan di Fisipol, dan Pariwisata Sulamadaha dengan daya tarik visual kuat dan tipografi persuasif.</p>
+</div>
+<div class="pt-4 border-t border-[#E2E8F0] flex items-center justify-between"><span class="font-label-sm text-[12px] text-[#64748B]">Vector &amp; Poster Ready</span><a class="inline-flex items-center gap-1 font-label-md text-label-md text-[#1A54A4] hover:text-[#103B75] font-semibold group/link" href="#"><span class="">Detail Studi Kasus</span><span class="material-symbols-outlined text-base text-[#1A54A4] group-hover/link:translate-x-1 transition-transform">arrow_forward</span></a></div>
+</div>
+</article>
+</div><div class="mt-14 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-[#E2E8F0]"><p class="font-body-sm text-body-sm text-[#64748B]" id="paginationCounter">Menampilkan <strong class="text-[#0F172A] font-semibold">1–9</strong> dari <strong class="text-[#0F172A] font-semibold">11</strong> karya terpilih dalam arsip studio</p><div class="flex items-center gap-2" id="paginationControls"><button id="prevPageBtn" class="px-4 py-2 rounded-full bg-[#F8FAFC] border border-[#E2E8F0] text-[#64748B] hover:text-[#0F172A] hover:bg-[#EBF2FA] font-label-md text-label-md transition-colors disabled:opacity-40 disabled:pointer-events-none" disabled="">← Sebelumnya</button><button class="page-num-btn px-3.5 py-1.5 font-label-md text-label-md text-white bg-[#1A54A4] rounded-full shadow-sm transition-colors" data-page="1">1</button><button class="page-num-btn px-3.5 py-1.5 font-label-md text-label-md text-[#1A54A4] bg-[#F8FAFC] border border-[#E2E8F0] hover:bg-[#EBF2FA] rounded-full transition-colors" data-page="2">2</button><button id="nextPageBtn" class="px-4 py-2 rounded-full bg-[#F8FAFC] border border-[#E2E8F0] text-[#1A54A4] hover:bg-[#EBF2FA] hover:text-[#103B75] font-label-md text-label-md transition-colors disabled:opacity-40 disabled:pointer-events-none">Selanjutnya →</button></div></div></div></section>
+<!-- Technical Spec Summary Ribbon (Corporate Editorial Feature) -->
+<section class="w-full bg-[#FFFFFF] py-space-xl border-t border-[#E2E8F0]">
+<div class="max-w-[1440px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="p-space-md bg-[#F8FAFC] rounded-lg border border-[#E2E8F0] shadow-sm">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-[#1A54A4]">grid_goldenratio</span>
+<span class="font-title-md text-title-md text-[#0F172A]">Grid &amp; Geometri</span>
+</div>
+<p class="font-body-sm text-body-sm text-[#64748B]">
+            Konstruksi hierarki berbasis grid editorial kaku untuk keterbacaan dokumen tebal.
+          </p>
+</div>
+<div class="p-space-md bg-[#F8FAFC] rounded-lg border border-[#E2E8F0] shadow-sm">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-[#1A54A4]">verified</span>
+<span class="font-title-md text-title-md text-[#0F172A]">Siap Produksi</span>
+</div>
+<p class="font-body-sm text-body-sm text-[#64748B]">
+            File print siap kirim ke percetakan offset (PDF/X-1a, bleed terukur, CMYK separation).
+          </p>
+</div>
+<div class="p-space-md bg-[#F8FAFC] rounded-lg border border-[#E2E8F0] shadow-sm">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-[#1A54A4]">swipe_vertical</span>
+<span class="font-title-md text-title-md text-[#0F172A]">Presentasi Dinamis</span>
+</div>
+<p class="font-body-sm text-body-sm text-[#64748B]">
+            Slide deck dirancang dengan master template rapi sehingga mudah diedit tim internal Anda.
+          </p>
+</div>
+<div class="p-space-md bg-[#F8FAFC] rounded-lg border border-[#E2E8F0] shadow-sm">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-[#1A54A4]">timer</span>
+<span class="font-title-md text-title-md text-[#0F172A]">Ketepatan Waktu</span>
+</div>
+<p class="font-body-sm text-body-sm text-[#64748B]">
+            Alur pengerjaan sprint terstruktur dengan milestone revisi yang disepakati di muka.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- High-Contrast Collaboration & CTA Banner (Deep Obsidian Navy) -->
+<section class="relative w-full bg-[#0A1120] text-white py-20 overflow-hidden border-t border-slate-800"><div class="absolute -bottom-28 -right-10 w-[550px] h-[350px] bg-gradient-to-r from-[#1A54A4]/25 via-[#38BDF8]/20 to-transparent blur-3xl rounded-full pointer-events-none -z-0"></div><div class="absolute -top-24 -left-12 w-[450px] h-[300px] bg-gradient-to-br from-[#103B75]/35 to-[#1A54A4]/10 blur-3xl rounded-full pointer-events-none -z-0"></div><div class="relative z-10 max-w-[1440px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop"><div class="max-w-4xl space-y-6"><div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-sm text-[#B3CCFF] border border-white/15"><span class="w-2 h-2 rounded-full bg-[#38BDF8] animate-pulse"></span><span class="font-label-sm text-[11px] uppercase tracking-wider text-[#B3CCFF] font-semibold">KONSULTASI DESAIN &amp; KERJASAMA</span></div><h2 class="font-headline-lg text-4xl lg:text-5xl text-white tracking-tight font-semibold leading-tight">Tertarik dengan Salah Satu Format di Katalog?</h2><p class="font-body-lg text-body-lg text-slate-300 max-w-2xl leading-relaxed">Kirimkan draf naskah atau outline materi Anda untuk estimasi durasi dan rekomendasi format terbaik dari tim Zacreative.</p><div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2"><a class="inline-flex items-center justify-center gap-2 bg-[#1A54A4] hover:bg-[#154689] text-white px-8 py-3.5 rounded-lg font-label-md text-label-md uppercase tracking-wider transition-all duration-200 shadow-md font-semibold" data-path="pemesanan-whatsapp" href="#"><span class="">Chat via WhatsApp</span><span class="material-symbols-outlined text-[18px]">arrow_forward</span></a><a class="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/15 text-white border border-white/20 px-8 py-3.5 rounded-lg font-label-md text-label-md uppercase tracking-wider transition-all duration-200 font-semibold" data-path="layanan-dan-tarif" href="#"><span class="">Lihat Skema Tarif</span></a></div><div class="pt-4 flex flex-wrap items-center gap-6 text-slate-300 font-body-sm text-body-sm"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-base text-[#38BDF8]">check_circle</span><span class="">Respon Cepat via Tim Editorial</span></div><div class="flex items-center gap-2"><span class="material-symbols-outlined text-base text-[#38BDF8]">check_circle</span><span class="">Konsultasi Penataan Grid Gratis</span></div><div class="flex items-center gap-2"><span class="material-symbols-outlined text-base text-[#38BDF8]">check_circle</span><span class="">Perjanjian Kerahasiaan (NDA) Tersedia</span></div></div></div></div></section>
+</div>
+<script>
+  // Simple client-side category filter switcher
+  document.addEventListener('DOMContentLoaded', function() {
+    const filterTabs = document.querySelectorAll('#catalogFilters .filter-tab');
+    const articles = document.querySelectorAll('article[data-category]');
+
+    filterTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Toggle Active Styles
+        filterTabs.forEach(t => {
+          t.classList.remove('bg-[#1A54A4]', 'text-white', 'shadow-sm');
+          t.classList.add('bg-[#F8FAFC]', 'text-[#1A54A4]', 'border', 'border-[#E2E8F0]');
+        });
+        tab.classList.add('bg-[#1A54A4]', 'text-white', 'shadow-sm');
+        tab.classList.remove('bg-[#F8FAFC]', 'text-[#1A54A4]', 'border', 'border-[#E2E8F0]');
+
+        const filterValue = tab.getAttribute('data-filter');
+
+        articles.forEach(article => {
+          if (filterValue === 'all' || article.getAttribute('data-category') === filterValue) {
+            article.classList.remove('hidden');
+          } else {
+            article.classList.add('hidden');
+          }
+        });
+      });
+    });
+  });
+</script></main><footer class="w-full bg-[#F8FAFC] border-t border-[#E2E8F0]"><div class="max-w-[1440px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop pt-space-2xl pb-space-xl"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-gutter-desktop"><div class="lg:col-span-5 space-y-space-md"><div class="flex items-center gap-3"><div class="w-9 h-9 rounded-lg bg-[#1A54A4] text-white flex items-center justify-center font-headline-sm text-headline-sm"><span class="translate-y-[-1px]">Z</span></div><span class="font-title-md text-title-md tracking-tight uppercase text-[#0F172A]">[ZACREATIVE]</span></div><p class="font-body-sm text-body-sm text-[#64748B] max-w-md leading-relaxed">Studio desain visual spesialis layout buku, presentasi strategis, dan materi visual kampanye dengan standar editorial profesional.</p><div class="pt-space-xs"><span class="inline-block px-3 py-1 rounded-lg bg-[#EBF2FA] text-[#1A54A4] font-label-sm text-label-sm uppercase tracking-wider font-semibold border border-[#E2E8F0]">Editorial &amp; Strategic Design</span></div></div><div class="lg:col-span-3 space-y-space-md"><p class="font-title-md text-title-md text-[#0F172A] uppercase tracking-wide">Navigasi</p><ul class="space-y-space-sm font-body-sm text-body-sm text-[#64748B]"><li class=""><a class="hover:text-[#1A54A4] transition-colors" data-path="beranda" href="#">Beranda</a></li><li class=""><a class="hover:text-[#1A54A4] transition-colors" data-path="layanan-dan-tarif" href="#">Layanan &amp; Paket</a></li><li class=""><a class="hover:text-[#1A54A4] transition-colors" data-path="semua-karya" href="#">Portofolio &amp; Feed IG</a></li><li class=""><a class="hover:text-[#1A54A4] transition-colors" data-path="cara-kerja" href="#">Alur Kerja Sama</a></li><li class=""><a class="hover:text-[#1A54A4] transition-colors" data-path="pemesanan-whatsapp" href="#">Pemesanan WhatsApp</a></li><li class=""><a class="hover:text-[#1A54A4] transition-colors" data-path="faq" href="#">Tanya Jawab (FAQ)</a></li></ul></div><div class="lg:col-span-4 space-y-space-md"><p class="font-title-md text-title-md text-[#0F172A] uppercase tracking-wide">Kontak &amp; Konsultasi</p><p class="font-body-sm text-body-sm text-[#64748B] leading-relaxed">Siap mewujudkan visual berbobot untuk brand Anda? Diskusikan brief proyek kapan saja.</p><div class="space-y-space-xs font-body-sm text-body-sm text-[#64748B]"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-[#1A54A4] text-base">mail</span><a class="hover:text-[#1A54A4] transition-colors" href="mailto:zacreative.id@gmail.com">zacreative.id@gmail.com</a></div><div class="flex items-center gap-2"><span class="material-symbols-outlined text-[#1A54A4] text-base">call</span><a class="hover:text-[#1A54A4] transition-colors" href="tel:+6281234567890">+62 812-3456-7890</a></div><div class="flex items-center gap-2"><span class="material-symbols-outlined text-[#1A54A4] text-base">alternate_email</span><a class="hover:text-[#1A54A4] transition-colors" href="#">@zacreative</a></div></div></div></div><div class="mt-space-2xl pt-space-md border-t border-[#E2E8F0] flex flex-col md:flex-row items-center justify-between gap-space-sm"><p class="font-body-sm text-body-sm text-[#64748B]">© 2025 Zacreative. All rights reserved.</p><div class="flex items-center gap-space-md font-body-sm text-body-sm text-[#64748B]"><a class="hover:text-[#1A54A4] transition-colors" data-path="privacy-policy" href="#">Privacy</a><span class="text-[#E2E8F0]">•</span><a class="hover:text-[#1A54A4] transition-colors" data-path="terms-of-service" href="#">Terms</a><span class="text-[#E2E8F0]">•</span><a class="hover:text-[#1A54A4] transition-colors font-title-md text-[#0F172A]" data-path="order-via-whatsapp" href="#">Order via WhatsApp</a></div></div></div></footer>
+
+
+</body></html>
