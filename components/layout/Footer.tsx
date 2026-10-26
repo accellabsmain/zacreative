@@ -25,10 +25,6 @@ export default function Footer() {
             <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 max-w-sm leading-relaxed">
               Studio desain visual spesialis perancangan editorial buku komersial, pitch deck eksekutif investor, dan sistem komunikasi visual berstandar presisi tinggi.
             </p>
-            <div className="pt-2 flex items-center gap-3 text-xs font-mono text-zinc-500 dark:text-zinc-400">
-              <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span>Menerima Proyek Baru Q4 2025 / Q1 2026</span>
-            </div>
           </div>
 
           {/* Navigation Links */}
@@ -127,12 +123,6 @@ export default function Footer() {
               href="#faq"
             >
               [Terms of Service]
-            </a>
-            <a
-              className="hover:text-zinc-900 dark:hover:text-white transition-colors"
-              href="#kontak"
-            >
-              [Inquiry]
             </a>
           </div>
         </div>

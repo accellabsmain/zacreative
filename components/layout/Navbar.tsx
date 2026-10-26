@@ -10,9 +10,8 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { label: "Produk", href: "/products" },
     { label: "Layanan", href: "/#layanan" },
-    { label: "Portofolio", href: "/#portofolio" },
+    { label: "Portofolio", href: "/products" },
     { label: "Cara Kerja", href: "/#cara-kerja" },
     { label: "FAQ", href: "/#faq" },
   ];
@@ -46,7 +45,7 @@ export default function Navbar() {
         >
           {navLinks.map((link) => (
             <Link
-              key={link.href}
+              key={link.label}
               href={link.href}
               className="hover:text-zinc-950 dark:hover:text-white transition-colors relative py-1 focus:outline-none focus:ring-1 focus:ring-zinc-400 rounded"
             >
@@ -95,7 +94,7 @@ export default function Navbar() {
           <nav className="flex flex-col space-y-2 text-base font-medium text-zinc-600 dark:text-zinc-400">
             {navLinks.map((link) => (
               <Link
-                key={link.href}
+                key={link.label}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
                 className="py-3 px-3 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-900 hover:text-zinc-950 dark:hover:text-white transition-colors"
