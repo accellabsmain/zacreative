@@ -1,3 +1,22 @@
+/**
+ * Single source of truth for contact channels.
+ * WhatsApp number can be overridden via NEXT_PUBLIC_WHATSAPP_NUMBER (format: 628xxxxxxxxx).
+ */
+export const CONTACT = {
+  whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "6282128919491",
+  instagramHandle: "zacreative.id",
+  instagramUrl: "https://www.instagram.com/zacreative.id",
+  email: "hello@zacreative.com",
+} as const;
+
+export const DEFAULT_WA_MESSAGE =
+  "Halo ZaCreative, saya ingin konsultasi dan pemesanan layanan desain. Boleh dibantu?";
+
+/** Builds a wa.me deep link with a prefilled message. */
+export function buildWhatsAppLink(message: string = DEFAULT_WA_MESSAGE): string {
+  return `https://wa.me/${CONTACT.whatsappNumber}?text=${encodeURIComponent(message)}`;
+}
+
 export interface ServiceItem {
   id: string;
   number: string;

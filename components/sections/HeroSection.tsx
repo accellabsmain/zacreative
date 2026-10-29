@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowDown, ArrowUpRight, LayoutGrid } from "lucide-react";
+import { WhatsAppIcon } from "@/components/ui/BrandIcons";
+import { buildWhatsAppLink } from "@/lib/constants";
 
 const stats = [
   { value: "50+", label: "Publikasi" },
@@ -158,17 +160,9 @@ export default function HeroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-12 items-center">
           {/* ───── Left column ───── */}
           <div className="lg:col-span-6 text-left">
-            <span className="inline-flex items-center gap-2.5 rounded-full border border-tint-border bg-tint px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-brand dark:bg-brand/15 dark:border-white/10 dark:text-sky-soft">
-              <span className="relative flex h-2 w-2" aria-hidden="true">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sky opacity-70" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-sky" />
-              </span>
-              Editorial &amp; Strategic Design
-            </span>
-
             <h1
               id="hero-heading"
-              className="mt-7 text-4xl sm:text-6xl font-bold tracking-tight leading-tight text-navy dark:text-white"
+              className="text-4xl sm:text-6xl font-bold tracking-tight leading-tight text-navy dark:text-white"
             >
               Publikasi dan presentasi yang dirancang untuk dibaca, dipahami, dan dipercaya.
             </h1>
@@ -178,23 +172,45 @@ export default function HeroSection() {
               aset strategis berstandar dunia.
             </p>
 
-            <div className="mt-10 flex flex-col sm:flex-row gap-3">
+            <div className="mt-10 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
               <a
-                href="/#kontak"
-                className="group inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl bg-brand px-7 text-sm font-semibold text-white shadow-[0_12px_28px_-10px_rgba(26,84,164,0.65)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-hover focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-sky/40 cursor-pointer"
+                id="hero-cta-whatsapp"
+                href={buildWhatsAppLink()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group col-span-2 inline-flex min-h-[52px] items-center justify-center gap-2.5 rounded-xl bg-[#4fc97a] px-7 text-sm font-semibold text-white shadow-[0_12px_28px_-10px_rgba(79,201,122,0.6)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#43b36c] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#4fc97a]/40 cursor-pointer"
               >
-                Konsultasi Proyek
+                <WhatsAppIcon className="h-5 w-5" />
+                Konsultasi &amp; Pemesanan
                 <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
               <Link
-                href="/#portofolio"
-                className="inline-flex min-h-[52px] items-center justify-center rounded-xl border border-tint-border bg-white/60 px-7 text-sm font-semibold text-navy transition-colors duration-200 hover:border-brand hover:text-brand dark:bg-transparent dark:border-white/15 dark:text-white dark:hover:border-sky-soft dark:hover:text-sky-soft focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-sky/40 cursor-pointer"
+                id="hero-cta-paket"
+                href="/#paket"
+                className="group inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl border border-navy/15 bg-white px-5 sm:px-6 text-sm font-semibold text-navy transition-colors duration-200 hover:border-brand hover:text-brand dark:bg-white/5 dark:border-white/15 dark:text-white dark:hover:border-sky-soft dark:hover:text-sky-soft focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-sky/40 cursor-pointer"
               >
-                Lihat Portofolio Terpilih
+                <LayoutGrid className="h-4 w-4" aria-hidden="true" />
+                Lihat Paket
+              </Link>
+              <Link
+                id="hero-cta-portofolio"
+                href="/#portofolio"
+                className="group inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl border border-tint-border bg-white/60 px-5 sm:px-6 text-sm font-semibold text-navy transition-colors duration-200 hover:border-brand hover:text-brand dark:bg-transparent dark:border-white/15 dark:text-white dark:hover:border-sky-soft dark:hover:text-sky-soft focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-sky/40 cursor-pointer"
+              >
+                Lihat Portofolio
+                <ArrowDown className="h-4 w-4 transition-transform duration-200 group-hover:translate-y-0.5" aria-hidden="true" />
               </Link>
             </div>
 
-            <dl className="mt-14 grid max-w-md grid-cols-3 divide-x divide-tint-border dark:divide-white/10">
+            <p className="mt-4 flex items-center gap-2 text-xs text-navy-soft/80 dark:text-zinc-400">
+              <span className="relative flex h-2 w-2" aria-hidden="true">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-leaf opacity-70" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-leaf" />
+              </span>
+              Online via WhatsApp — konsultasi gratis, respon cepat di jam kerja
+            </p>
+
+            <dl className="mt-12 grid max-w-md grid-cols-3 divide-x divide-tint-border dark:divide-white/10">
               {stats.map((s, i) => (
                 <div key={s.label} className={i === 0 ? "pr-5" : "px-5"}>
                   <dd className="text-2xl sm:text-3xl font-bold tracking-tight text-navy dark:text-white">

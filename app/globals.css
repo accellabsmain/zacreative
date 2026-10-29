@@ -18,6 +18,14 @@
   --color-tint-strong: #dbeaff;
   --color-tint-border: #c7dcf7;
   --color-wash: #f5f9ff;         /* near-white blue section bg */
+
+  /* Leaf green (from logo gradient): WhatsApp & conversion CTAs */
+  --color-leaf: #4fc97a;         /* logo green: accents, dots, glows */
+  --color-leaf-strong: #1f8f50;  /* button bg (AA contrast with white text) */
+  --color-leaf-hover: #187a43;
+  --color-leaf-deep: #0f5c33;    /* deep end of gradients */
+  --color-leaf-tint: #ecfaf1;    /* light green surfaces */
+  --color-leaf-border: #bfe9cf;
 }
 
 :root {
@@ -160,4 +168,50 @@ h1, h2, h3, h4, .font-heading {
 
 html {
   scroll-behavior: smooth;
+}
+
+/* Offset in-page anchors so the sticky 80px navbar doesn't cover headings */
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
+/* Hide scrollbar on horizontal swipe rails while keeping them scrollable */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Package tab switch */
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-panel-in {
+  animation: panel-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Floating WhatsApp attention ring */
+@keyframes wa-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  80%,
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+.animate-wa-ring {
+  animation: wa-ring 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
 }

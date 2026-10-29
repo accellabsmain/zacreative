@@ -15,7 +15,7 @@ const SectionSkeleton = () => (
 );
 
 const TrustIndicators = dynamic(() => import("./TrustIndicators"), { loading: SectionSkeleton });
-const ServicesSection = dynamic(() => import("./ServicesSection"), { loading: SectionSkeleton });
+const PackagesSection = dynamic(() => import("./PackagesSection"), { loading: SectionSkeleton });
 const PortfolioSection = dynamic(() => import("./PortfolioSection"), { loading: SectionSkeleton });
 const ProcessSection = dynamic(() => import("./ProcessSection"), { loading: SectionSkeleton });
 const FaqSection = dynamic(() => import("./FaqSection"), { loading: SectionSkeleton });
@@ -28,7 +28,7 @@ export default function LazyHomeSections() {
         <TrustIndicators />
       </Reveal>
       <Reveal>
-        <ServicesSection />
+        <PackagesSection />
       </Reveal>
       <Reveal>
         <PortfolioSection />
