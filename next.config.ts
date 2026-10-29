@@ -18,9 +18,32 @@ const cspHeader = `
 const nextConfig: NextConfig = {
   // 1. Remove Fingerprinting
   poweredByHeader: false,
-  
 
-  // 2. Security Headers & CSP
+  // 2. Remote images for Instagram Graph API / CDN thumbnails
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**.cdninstagram.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "**.fbcdn.net",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "**.behold.pictures",
+        port: "",
+        pathname: "/**",
+      },
+    ],
+  },
+
+  // 3. Security Headers & CSP
   async headers() {
     return [
       {

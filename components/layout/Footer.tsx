@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight, Mail } from "lucide-react";
+import { InstagramIcon, WhatsAppIcon } from "@/components/ui/BrandIcons";
+import { CONTACT, buildWhatsAppLink } from "@/lib/constants";
 
 export default function Footer() {
   return (
@@ -35,44 +37,44 @@ export default function Footer() {
             </span>
             <ul className="space-y-2.5 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">
               <li>
-                <a
+                <Link
                   className="hover:text-zinc-900 dark:hover:text-white transition-colors"
-                  href="#layanan"
+                  href="/#paket"
                 >
-                  Layanan Utama
-                </a>
+                  Paket &amp; Harga
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   className="hover:text-zinc-900 dark:hover:text-white transition-colors"
-                  href="#portofolio"
+                  href="/#portofolio"
                 >
-                  Portofolio &amp; Karya
-                </a>
+                  Portofolio Instagram
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   className="hover:text-zinc-900 dark:hover:text-white transition-colors"
-                  href="#cara-kerja"
+                  href="/#cara-kerja"
                 >
                   Alur Kerja Sama
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   className="hover:text-zinc-900 dark:hover:text-white transition-colors"
-                  href="#faq"
+                  href="/#faq"
                 >
                   Tanya Jawab (FAQ)
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   className="hover:text-zinc-900 dark:hover:text-white transition-colors"
-                  href="#kontak"
+                  href="/#kontak"
                 >
-                  Formulir Konsultasi
-                </a>
+                  Kontak &amp; WhatsApp
+                </Link>
               </li>
             </ul>
           </div>
@@ -85,23 +87,37 @@ export default function Footer() {
             <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
               Siap mewujudkan narasi visual yang berbobot untuk brand Anda? Diskusikan brief proyek kapan saja bersama tim kami.
             </p>
-            <div className="pt-1 space-y-2">
-              <a
-                href="mailto:hello@zacreative.com"
-                className="inline-flex items-center gap-2 font-mono text-xs text-zinc-900 dark:text-zinc-100 font-medium hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors"
-              >
-                <Mail className="w-3.5 h-3.5" />
-                <span>hello@zacreative.com</span>
-              </a>
+            <div className="pt-1 space-y-2.5">
               <div>
                 <a
-                  href="https://wa.me/"
+                  href={buildWhatsAppLink()}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs text-emerald-600 dark:text-emerald-400 hover:underline font-medium"
+                  className="inline-flex items-center gap-2 text-xs sm:text-sm text-leaf-strong dark:text-leaf hover:underline font-semibold"
                 >
+                  <WhatsAppIcon className="w-4 h-4 shrink-0" />
                   <span>Chat Konsultasi Cepat via WhatsApp</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
+              <div>
+                <a
+                  href={CONTACT.instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 font-mono text-xs text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white transition-colors"
+                >
+                  <InstagramIcon className="w-3.5 h-3.5 shrink-0" />
+                  <span>@{CONTACT.instagramHandle}</span>
+                </a>
+              </div>
+              <div>
+                <a
+                  href={`mailto:${CONTACT.email}`}
+                  className="inline-flex items-center gap-2 font-mono text-xs text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white transition-colors"
+                >
+                  <Mail className="w-3.5 h-3.5 shrink-0" />
+                  <span>{CONTACT.email}</span>
                 </a>
               </div>
             </div>

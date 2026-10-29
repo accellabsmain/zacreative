@@ -20,7 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.95,
     },
     {
-      url: `${baseUrl}/#layanan`,
+      url: `${baseUrl}/#paket`,
       lastModified: now,
       changeFrequency: "weekly" as const,
       priority: 0.9,

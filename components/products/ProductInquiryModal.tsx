@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import { ProductItem, PricingTier } from "@/lib/data/products";
-import { X, Send, CheckCircle2, MessageSquare, ArrowRight } from "lucide-react";
+import { X, Send, CheckCircle2, ArrowRight } from "lucide-react";
+import { WhatsAppIcon } from "@/components/ui/BrandIcons";
+import { buildWhatsAppLink } from "@/lib/constants";
 
 interface ProductInquiryModalProps {
   product: ProductItem | null;
@@ -36,10 +38,9 @@ export default function ProductInquiryModal({
   };
 
   const getWhatsAppDirectLink = () => {
-    const text = encodeURIComponent(
+    return buildWhatsAppLink(
       `Halo Zacreative, saya ${clientName} (${clientEmail}).\n\nSaya ingin memesan / konsultasi produk: *${product.title}*\nPaket: *${currentTier.name} (${currentTier.price})*\n\nCatatan Tambahan:\n${notes || "Mohon info jadwal dan ketersediaan slot pengerjaan."}`
     );
-    return `https://wa.me/?text=${text}`;
   };
 
   return (
@@ -90,9 +91,9 @@ export default function ProductInquiryModal({
                 href={getWhatsAppDirectLink()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-xs sm:text-sm transition-colors shadow-xs"
+                className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-lg bg-leaf-strong hover:bg-leaf-hover text-white font-semibold text-xs sm:text-sm transition-colors shadow-xs"
               >
-                <MessageSquare className="w-4 h-4" />
+                <WhatsAppIcon className="w-4 h-4 shrink-0" />
                 <span>Lanjutkan ke WhatsApp Instan</span>
                 <ArrowRight className="w-4 h-4" />
               </a>

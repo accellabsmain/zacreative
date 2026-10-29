@@ -5,15 +5,18 @@ import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import ThemeToggle from "@/components/ui/ThemeToggle";
+import { WhatsAppIcon } from "@/components/ui/BrandIcons";
+import { buildWhatsAppLink } from "@/lib/constants";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { label: "Layanan", href: "/#layanan" },
-    { label: "Portofolio", href: "/products" },
+    { label: "Paket", href: "/#paket" },
+    { label: "Portofolio", href: "/#portofolio" },
     { label: "Cara Kerja", href: "/#cara-kerja" },
     { label: "FAQ", href: "/#faq" },
+    { label: "Kontak", href: "/#kontak" },
   ];
 
   return (
@@ -58,13 +61,16 @@ export default function Navbar() {
         {/* Primary Action CTA & Theme Toggle (Desktop) */}
         <div className="hidden md:flex items-center gap-3" data-purpose="header-cta">
           <ThemeToggle />
-          <Link
-            href="/#kontak"
-            className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-zinc-200 text-white dark:text-zinc-900 text-sm font-medium transition-colors border border-zinc-900 dark:border-zinc-100 shadow-sm"
+          <a
+            href={buildWhatsAppLink()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-leaf-strong hover:bg-leaf-hover text-white text-sm font-semibold transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-leaf"
           >
-            <span>Diskusikan Proyek</span>
+            <WhatsAppIcon className="w-4 h-4 shrink-0" />
+            <span>Chat WhatsApp</span>
             <ArrowUpRight className="w-4 h-4" />
-          </Link>
+          </a>
         </div>
 
         {/* Mobile Action Buttons */}
@@ -105,14 +111,17 @@ export default function Navbar() {
             ))}
           </nav>
           <div className="pt-4 border-t border-zinc-200 dark:border-zinc-800">
-            <Link
-              href="/#kontak"
+            <a
+              href={buildWhatsAppLink()}
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full flex items-center justify-center gap-2 px-5 py-3.5 rounded-lg bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-sm font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors border border-zinc-900 dark:border-zinc-100 shadow-sm"
+              className="w-full flex items-center justify-center gap-2 px-5 py-3.5 rounded-lg bg-leaf-strong hover:bg-leaf-hover text-white text-sm font-semibold transition-colors shadow-sm"
             >
-              <span>Diskusikan Proyek</span>
+              <WhatsAppIcon className="w-4 h-4 shrink-0" />
+              <span>Chat WhatsApp</span>
               <ArrowUpRight className="w-4 h-4" />
-            </Link>
+            </a>
           </div>
         </div>
       )}

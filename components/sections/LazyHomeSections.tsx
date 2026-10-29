@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import Reveal from "@/components/motion/Reveal";
+import type { InstagramPost } from "@/lib/data/instagram-fallback";
 
 /**
  * Below-the-fold home sections. Lazy-loaded from a Client Component so
@@ -19,9 +20,15 @@ const PackagesSection = dynamic(() => import("./PackagesSection"), { loading: Se
 const PortfolioSection = dynamic(() => import("./PortfolioSection"), { loading: SectionSkeleton });
 const ProcessSection = dynamic(() => import("./ProcessSection"), { loading: SectionSkeleton });
 const FaqSection = dynamic(() => import("./FaqSection"), { loading: SectionSkeleton });
-const ContactSection = dynamic(() => import("./ContactSection"), { loading: SectionSkeleton });
+const WhatsAppCtaSection = dynamic(() => import("./WhatsAppCtaSection"), {
+  loading: SectionSkeleton,
+});
 
-export default function LazyHomeSections() {
+interface LazyHomeSectionsProps {
+  instagramPosts: InstagramPost[];
+}
+
+export default function LazyHomeSections({ instagramPosts }: LazyHomeSectionsProps) {
   return (
     <>
       <Reveal>
@@ -31,7 +38,7 @@ export default function LazyHomeSections() {
         <PackagesSection />
       </Reveal>
       <Reveal>
-        <PortfolioSection />
+        <PortfolioSection posts={instagramPosts} />
       </Reveal>
       <Reveal>
         <ProcessSection />
@@ -39,9 +46,9 @@ export default function LazyHomeSections() {
       <Reveal>
         <FaqSection />
       </Reveal>
-      {/* <Reveal>
-        <ContactSection />
-      </Reveal> */}
+      <Reveal>
+        <WhatsAppCtaSection />
+      </Reveal>
     </>
   );
 }

@@ -14,15 +14,12 @@ const ProductInquiryModal = dynamic(
 import {
   ChevronRight,
   ArrowRight,
-  MessageSquare,
-  Sparkles,
   Layers,
   FileCheck,
   CheckCircle2,
-  Calendar,
-  Layers3,
-  BookOpen,
 } from "lucide-react";
+import { WhatsAppIcon } from "@/components/ui/BrandIcons";
+import { buildWhatsAppLink } from "@/lib/constants";
 
 interface ProductDetailViewProps {
   product: ProductItem;
@@ -126,7 +123,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
 
             <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 text-white space-y-1 z-10">
               <span className="font-mono text-xs text-[#38BDF8] block">
-                {currentSlide.step} // ARSIP TATA LETAK
+                {`${currentSlide.step} // ARSIP TATA LETAK`}
               </span>
               <h3 className="text-lg sm:text-2xl font-bold">{currentSlide.title}</h3>
               <p className="text-xs sm:text-sm text-zinc-300 font-mono">{currentSlide.subtitle}</p>
@@ -384,14 +381,14 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                 </button>
 
                 <a
-                  href={`https://wa.me/?text=${encodeURIComponent(
-                    `Halo Zacreative, saya tertarik dengan format publikasi buku putih seperti *${product.title}*. Mohon informasi konsultasi awal dan estimasi pengerjaan.`
-                  )}`}
+                  href={buildWhatsAppLink(
+                    `Halo ZaCreative, saya tertarik dengan format publikasi seperti *${product.title}*. Mohon informasi konsultasi awal dan estimasi pengerjaan.`
+                  )}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-2 py-3 px-5 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 text-xs font-semibold hover:bg-zinc-50 dark:hover:bg-zinc-700 transition-colors"
+                  className="w-full inline-flex items-center justify-center gap-2 py-3 px-5 rounded-xl bg-leaf-strong hover:bg-leaf-hover text-white text-xs sm:text-sm font-semibold transition-colors shadow-xs"
                 >
-                  <MessageSquare className="w-4 h-4 text-emerald-500" />
+                  <WhatsAppIcon className="w-4 h-4 shrink-0" />
                   <span>Konsultasi WhatsApp Langsung</span>
                 </a>
               </div>

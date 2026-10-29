@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ProductItem } from "@/lib/data/products";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 interface ProductCardProps {
   product: ProductItem;

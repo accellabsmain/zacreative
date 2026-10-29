@@ -1,153 +1,156 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, BookOpen, Presentation, FileText, Sparkles } from "lucide-react";
+import { ArrowUpRight, Images, Play } from "lucide-react";
+import { InstagramIcon } from "@/components/ui/BrandIcons";
+import { CONTACT } from "@/lib/constants";
+import {
+  INSTAGRAM_FALLBACK_POSTS,
+  type InstagramMediaType,
+  type InstagramPost,
+} from "@/lib/data/instagram-fallback";
 
-export default function PortfolioSection() {
-  const featuredCases = [
-    {
-      id: "antologi-arsitektur",
-      category: "Book Layout",
-      client: "Penerbit Balairung Aksara",
-      scope: "280 Halaman • Hardcover",
-      title: "Antologi Arsitektur Vernakular Nusantara",
-      description:
-        "Penataan tata letak dual-bahasa (ID/EN) dengan sistem kisi asimetris 12-kolom, kurasi 180 foto dokumenter monokrom, serta indeks tipografi teknis.",
-      deliverable: "PDF Cetak Offset & Epub",
-      image: "/images/assets/asset_2.webp",
-      link: "/products/pt-antam-tbk-x-ugm-pse-buku-putih-cga-tayan-feronikel-haltim",
-    },
-    {
-      id: "series-a-deck",
-      category: "Pitch Deck",
-      client: "Fintech Valura International",
-      scope: "28 Slides • Widescreen 16:9",
-      title: "Series A Capital Presentation & Financial Model",
-      description:
-        "Restrukturisasi narasi penggalangan dana modal ventura $14M dengan visualisasi unit economics kompleks dan hierarki data bernilai tinggi.",
-      deliverable: "Editable PPTX & Keynote",
-      image: "/images/assets/asset_3.webp",
-      link: "/products/entalphy-consulting-modul-efisiensi-energi",
-    },
-    {
-      id: "standar-identitas",
-      category: "Identity Guidelines",
-      client: "Yayasan Cipta Daya",
-      scope: "140 Halaman • Softcover",
-      title: "Buku Standar Identitas & Komunikasi Institusional",
-      description:
-        "Manual pedoman identitas merek lengkap yang mencakup aturan kisi logo, palet warna korporasi, standarisasi seragam, dan komunikasi publik.",
-      deliverable: "Buku Pedoman Cetak & Vector Kit",
-      image: "/images/assets/asset_4.webp",
-      link: "/products/ai-recht-ai-gender-equality-in-recruitment",
-    },
-    {
-      id: "esg-governance",
-      category: "Sustainability Report",
-      client: "PT Mineral Sentosa Lestari",
-      scope: "216 Halaman • GRI Compliant",
-      title: "Sustainability & ESG Governance Report 2024",
-      description:
-        "Laporan keberlanjutan tahunan terintegrasi dengan 45 diagram matriks materialitas, bagan tata kelola dewan, dan tabel emisi berstandar OJK.",
-      deliverable: "Interactive Web PDF & Print",
-      image: "/images/assets/asset_5.webp",
-      link: "/products/kementerian-pupr-memori-akhir-tugas-profil-setjen",
-    },
-  ];
+interface PortfolioSectionProps {
+  posts?: InstagramPost[];
+}
+
+function MediaTypeBadge({ type }: { type: InstagramMediaType }) {
+  if (type === "CAROUSEL_ALBUM") {
+    return (
+      <span
+        className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-black/60 text-white backdrop-blur-xs shadow-xs"
+        title="Carousel"
+      >
+        <Images className="h-3.5 w-3.5" aria-hidden="true" />
+        <span className="sr-only">Postingan Carousel</span>
+      </span>
+    );
+  }
+
+  if (type === "VIDEO") {
+    return (
+      <span
+        className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-black/60 text-white backdrop-blur-xs shadow-xs"
+        title="Reels / Video"
+      >
+        <Play className="h-3.5 w-3.5 fill-current" aria-hidden="true" />
+        <span className="sr-only">Video Reels</span>
+      </span>
+    );
+  }
+
+  return null;
+}
+
+function summarizeCaption(caption: string): string {
+  const cleaned = caption.replace(/\s+/g, " ").trim();
+  if (!cleaned) return `Lihat detail karya di @${CONTACT.instagramHandle}`;
+  return cleaned;
+}
+
+export default function PortfolioSection({ posts }: PortfolioSectionProps) {
+  const feed = (posts && posts.length > 0 ? posts : INSTAGRAM_FALLBACK_POSTS).slice(0, 8);
 
   return (
     <section
-      className="w-full bg-[#F8FAFC] dark:bg-[#070D18] py-16 sm:py-24 border-y border-[#E2E8F0] dark:border-zinc-800 transition-colors text-left"
       id="portofolio"
-      data-purpose="karya-terpilih-section"
+      data-purpose="instagram-portfolio-section"
+      aria-labelledby="portofolio-heading"
+      className="w-full bg-[#F8FAFC] dark:bg-[#070D18] py-16 sm:py-24 border-b border-[#E2E8F0] dark:border-zinc-800 transition-colors text-left"
     >
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 space-y-10 sm:space-y-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-          <div className="space-y-2 max-w-xl">
-            <span className="font-mono text-xs uppercase tracking-wider text-[#1A54A4] dark:text-[#38BDF8] font-semibold">
-              [PORTOFOLIO KURASI]
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div className="space-y-2 max-w-2xl">
+            <span className="font-mono text-xs uppercase tracking-wider text-brand dark:text-sky-soft font-semibold block">
+              [PORTOFOLIO]
             </span>
-            <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-[#0F172A] dark:text-white">
-              Karya Terpilih &amp; Studi Kasus
+            <h2
+              id="portofolio-heading"
+              className="text-2xl sm:text-4xl font-bold tracking-tight text-navy dark:text-white leading-tight"
+            >
+              Karya Terbaru dari Instagram
             </h2>
-            <p className="text-xs sm:text-sm text-[#64748B] dark:text-zinc-400 leading-relaxed">
-              Tinjauan visual dari beberapa proyek terpenting yang diproduksi untuk klien korporasi, institusi riset, dan penerbit independen.
+            <p className="text-xs sm:text-sm md:text-base text-navy-soft dark:text-zinc-400 leading-relaxed">
+              Cuplikan publikasi buku, pitch deck, dan kampanye visual terbaru yang kami bagikan
+              langsung di Instagram resmi ZaCreative.
             </p>
           </div>
-          <div className="font-mono text-xs text-[#64748B] dark:text-zinc-400">
-            MENAMPILKAN 4 DARI 24 PROYEK UNGGULAN
-          </div>
+
+          <a
+            id="portofolio-follow-ig"
+            href={CONTACT.instagramUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex min-h-[44px] self-start sm:self-auto items-center justify-center gap-2 rounded-xl border border-navy/15 dark:border-white/15 bg-white dark:bg-zinc-900 px-4 sm:px-5 py-2.5 text-xs sm:text-sm font-semibold text-navy dark:text-white hover:border-brand hover:text-brand dark:hover:border-sky-soft dark:hover:text-sky-soft shadow-xs transition-colors shrink-0"
+          >
+            <InstagramIcon className="h-4 w-4 text-brand dark:text-sky-soft shrink-0" />
+            <span>Follow @{CONTACT.instagramHandle}</span>
+            <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </a>
         </div>
 
-        {/* 4 Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-          {featuredCases.map((item) => (
-            <div
-              key={item.id}
-              className="group bg-white dark:bg-zinc-900 rounded-xl overflow-hidden border border-[#E2E8F0] dark:border-zinc-800 shadow-sm hover:shadow-md hover:border-[#1A54A4]/50 transition-all flex flex-col justify-between"
-            >
-              <div>
-                {/* Visual Thumbnail */}
-                <div className="relative aspect-[16/10] overflow-hidden bg-[#F1F5F9] dark:bg-zinc-800">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                  <div className="absolute top-4 left-4 z-10">
-                    <span className="inline-block px-3 py-1 rounded-full bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xs text-[#1A54A4] dark:text-[#38BDF8] border border-[#E2E8F0] dark:border-zinc-700 font-mono text-[11px] font-semibold uppercase tracking-wider shadow-sm">
-                      {item.category}
+        {/* 8-Post Square Thumbnail Grid (Mobile 2 cols, Tablet 3 cols, Desktop 4 cols) */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
+          {feed.map((post, index) => {
+            const summary = summarizeCaption(post.caption);
+            return (
+              <a
+                key={post.id}
+                href={post.permalink}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Buka karya di Instagram: ${summary.slice(0, 90)}`}
+                className="group relative aspect-square overflow-hidden rounded-xl sm:rounded-2xl border border-[#E2E8F0] dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 shadow-xs hover:shadow-md hover:border-brand/50 dark:hover:border-sky-soft/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand transition-all"
+              >
+                <Image
+                  src={post.imageUrl}
+                  alt={summary.slice(0, 120)}
+                  fill
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                  priority={index < 2}
+                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                />
+
+                {/* Top-left optional category chip (shown when fallback metadata has one) */}
+                {post.categoryTag && (
+                  <div className="absolute top-2.5 left-2.5 z-10 sm:top-3 sm:left-3">
+                    <span className="inline-block rounded-full bg-white/90 dark:bg-zinc-950/85 backdrop-blur-xs px-2.5 py-0.5 text-[10px] font-mono font-semibold text-navy dark:text-sky-soft border border-black/5 dark:border-white/10 shadow-2xs">
+                      {post.categoryTag}
                     </span>
                   </div>
+                )}
+
+                {/* Top-right media type indicator (Carousel / Reels) */}
+                <div className="absolute top-2.5 right-2.5 z-10 sm:top-3 sm:right-3">
+                  <MediaTypeBadge type={post.mediaType} />
                 </div>
 
-                {/* Content */}
-                <div className="p-6 space-y-3">
-                  <div className="flex items-center justify-between text-[#64748B] dark:text-zinc-400 font-mono text-xs">
-                    <span>{item.client}</span>
-                    <span>{item.scope}</span>
-                  </div>
-                  <Link href={item.link} className="block group/title">
-                    <h3 className="text-xl font-bold text-[#0F172A] dark:text-white group-hover/title:text-[#1A54A4] dark:group-hover/title:text-[#38BDF8] transition-colors line-clamp-1">
-                      {item.title}
-                    </h3>
-                  </Link>
-                  <p className="text-xs sm:text-sm text-[#64748B] dark:text-zinc-400 leading-relaxed line-clamp-2">
-                    {item.description}
+                {/* Desktop Hover / Focus Overlay with Caption Snippet + IG Icon */}
+                <div className="absolute inset-0 z-10 flex flex-col justify-end bg-gradient-to-t from-[#0b1c30]/90 via-[#0b1c30]/45 to-transparent p-3.5 sm:p-4 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-250">
+                  <p className="text-xs sm:text-[13px] font-medium text-white leading-snug line-clamp-3">
+                    {summary}
                   </p>
+                  <div className="mt-2.5 flex items-center justify-between pt-2 border-t border-white/20 text-[11px] font-semibold text-sky-soft">
+                    <span className="inline-flex items-center gap-1.5">
+                      <InstagramIcon className="h-3.5 w-3.5" />
+                      <span>Lihat di Instagram</span>
+                    </span>
+                    <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+                  </div>
                 </div>
-              </div>
 
-              {/* Bottom Action */}
-              <div className="px-6 py-4 flex items-center justify-between text-xs font-mono text-[#0F172A] dark:text-zinc-100 border-t border-[#E2E8F0] dark:border-zinc-800 bg-[#F8FAFC]/50 dark:bg-zinc-950/40">
-                <span className="text-[#64748B] dark:text-zinc-400">
-                  Deliverable: {item.deliverable}
-                </span>
-                <Link
-                  href={item.link}
-                  className="inline-flex items-center gap-1 font-semibold text-[#1A54A4] dark:text-[#38BDF8] hover:text-[#103B75] transition-colors group/link"
+                {/* Subtle mobile bottom gradient + IG indicator so touch devices know it opens IG */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-black/65 via-black/25 to-transparent px-3 py-2 text-[11px] text-white sm:hidden"
                 >
-                  <span>Detail Studi Kasus</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Section Bottom CTA */}
-        <div className="text-center pt-4">
-          <Link
-            href="/products"
-            className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full border-2 border-[#1A54A4] text-[#1A54A4] dark:text-[#38BDF8] dark:border-[#38BDF8] hover:bg-[#1A54A4] hover:text-white dark:hover:bg-[#38BDF8] dark:hover:text-[#0F172A] font-semibold text-xs sm:text-sm transition-all"
-          >
-            <span>Buka Seluruh Arsip Katalog Karya (11 Proyek)</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+                  <span className="truncate font-medium pr-2">{summary}</span>
+                  <InstagramIcon className="h-3.5 w-3.5 shrink-0 opacity-90" />
+                </div>
+              </a>
+            );
+          })}
         </div>
       </div>
     </section>

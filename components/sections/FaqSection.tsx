@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { MessageCircle, Plus, Minus, ArrowUpRight } from "lucide-react";
+import { Plus, Minus, ArrowUpRight } from "lucide-react";
+import { WhatsAppIcon } from "@/components/ui/BrandIcons";
+import { buildWhatsAppLink } from "@/lib/constants";
 
 export default function FaqSection() {
   const faqs = [
@@ -52,10 +54,10 @@ export default function FaqSection() {
             </div>
 
             {/* Fast WhatsApp Box */}
-            <div className="p-6 rounded-2xl border-2 border-[#1A54A4] dark:border-[#38BDF8] bg-white dark:bg-zinc-900 shadow-sm space-y-4">
+            <div className="p-6 rounded-2xl border-2 border-leaf-border dark:border-leaf/40 bg-leaf-tint/60 dark:bg-emerald-950/20 shadow-sm space-y-4">
               <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span className="font-mono text-xs uppercase tracking-wider text-[#0F172A] dark:text-white font-bold">
+                <span className="w-2.5 h-2.5 rounded-full bg-leaf animate-pulse"></span>
+                <span className="font-mono text-xs uppercase tracking-wider text-leaf-deep dark:text-leaf font-bold">
                   Fast Response (WhatsApp)
                 </span>
               </div>
@@ -66,12 +68,14 @@ export default function FaqSection() {
                 Tim lead desainer kami siap berdiskusi secara instan dan memberikan estimasi awal dalam hitungan jam.
               </p>
               <a
-                className="w-full inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-[#1A54A4] hover:bg-[#103B75] text-white text-xs sm:text-sm font-semibold transition-colors shadow-xs"
-                href="https://wa.me/"
+                className="w-full inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-leaf-strong hover:bg-leaf-hover text-white text-xs sm:text-sm font-semibold transition-colors shadow-xs"
+                href={buildWhatsAppLink(
+                  "Halo ZaCreative, saya ingin menanyakan detail pengerjaan untuk proyek/naskah saya. Boleh dibantu?"
+                )}
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                <MessageCircle className="w-4 h-4 text-[#38BDF8]" />
+                <WhatsAppIcon className="w-4 h-4 shrink-0" />
                 <span>Konsultasi Instan via WhatsApp</span>
                 <ArrowUpRight className="w-4 h-4" />
               </a>
