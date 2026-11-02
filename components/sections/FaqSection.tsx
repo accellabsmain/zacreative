@@ -4,31 +4,9 @@ import { useState } from "react";
 import { Plus, Minus, ArrowUpRight } from "lucide-react";
 import { WhatsAppIcon } from "@/components/ui/BrandIcons";
 import { buildWhatsAppLink } from "@/lib/constants";
+import { FAQ_COPY } from "@/lib/copywriting";
 
 export default function FaqSection() {
-  const faqs = [
-    {
-      q: "Berapa lama waktu pengerjaan standar untuk satu buku?",
-      a: "Waktu pengerjaan standar berkisar antara 2 hingga 4 minggu untuk buku tebal (200-400 halaman). Namun untuk naskah mendesak (seperti buku putih kebijakan kementerian atau laporan tahunan RUPS), kami menyediakan alur Sprint Turnaround 7-10 hari kerja dengan penugasan 2 lead desainer khusus.",
-    },
-    {
-      q: "Apakah Zacreative bersedia menandatangani NDA kerahasiaan sebelum proyek dimulai?",
-      a: "Ya, tentu saja. Sebagian besar klien kami adalah instansi kementerian, BUMN, dan firma modal ventura yang menangani data rahasia pra-rilis. Kami siap menandatangani Non-Disclosure Agreement (NDA) sebelum dokumen atau draft naskah dibagikan.",
-    },
-    {
-      q: "Bagaimana jika ada revisi data atau naskah di tengah jalan?",
-      a: "Setiap paket mencakup putaran revisi terstruktur (2-3 putaran evaluasi). Kami juga memahami bahwa naskah laporan seringkali mengalami perubahan angka audit di menit-menit akhir, sehingga penyesuaian minor tabel dan angka tetap kami layani tanpa biaya tambahan selama periode draft review.",
-    },
-    {
-      q: "Apakah saya mendapatkan file master InDesign dan font?",
-      a: "Ya. Setelah pelunasan, seluruh paket berkas master Adobe InDesign (.INDD), format pertukaran (.IDML), font terpaket rapi, dan aset vektor diagram diserahkan penuh menjadi hak milik instansi Anda.",
-    },
-    {
-      q: "Bagaimana jika proyek kami membutuhkan koordinasi langsung dengan pihak percetakan?",
-      a: "Tim kami siap berkoordinasi secara teknis langsung dengan vendor percetakan offset pilihan Anda. Kami melakukan proofing pra-cetak (pre-flight FOGRA39, bleed, crop mark, dan overprint) guna memastikan hasil cetak fisik presisi tanpa kendala.",
-    },
-  ];
-
   const [openIndex, setOpenIndex] = useState<number>(0);
 
   return (
@@ -39,52 +17,68 @@ export default function FaqSection() {
     >
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14">
-          {/* Left Column: FAQ Context & Fast WhatsApp Box */}
+          {/* Left Column: FAQ Context & Green Gradient WhatsApp Box */}
           <div className="lg:col-span-5 space-y-6">
             <div className="space-y-2">
               <span className="font-mono text-xs uppercase tracking-wider text-[#1A54A4] dark:text-[#38BDF8] font-semibold">
-                [TANYA JAWAB UMUM]
+                {FAQ_COPY.badge}
               </span>
               <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-[#0F172A] dark:text-white">
-                Pertanyaan yang Sering Diajukan
+                {FAQ_COPY.heading}
               </h2>
               <p className="text-xs sm:text-sm text-[#64748B] dark:text-zinc-400 leading-relaxed">
-                Informasi transparan mengenai standar pengerjaan, perjanjian kerahasiaan, berkas master, dan alur teknis percetakan kami.
+                {FAQ_COPY.description}
               </p>
             </div>
 
-            {/* Fast WhatsApp Box */}
-            <div className="p-6 rounded-2xl border-2 border-leaf-border dark:border-leaf/40 bg-leaf-tint/60 dark:bg-emerald-950/20 shadow-sm space-y-4">
-              <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-leaf animate-pulse"></span>
-                <span className="font-mono text-xs uppercase tracking-wider text-leaf-deep dark:text-leaf font-bold">
-                  Fast Response (WhatsApp)
+            {/* Fast WhatsApp Box (Green Gradient matching WhatsApp CTA palette) */}
+            <div
+              id="kontak"
+              className="relative overflow-hidden p-6 sm:p-7 rounded-2xl bg-gradient-to-br from-leaf-deep via-leaf-strong to-[#239c57] text-white border border-leaf/30 shadow-[0_20px_45px_-15px_rgba(15,92,51,0.45)] space-y-4 scroll-mt-28"
+            >
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute -top-20 -right-12 h-48 w-48 rounded-full bg-leaf/35 blur-3xl"
+              />
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute -bottom-24 -left-12 h-44 w-44 rounded-full bg-black/20 blur-3xl"
+              />
+
+              <div className="relative inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3 py-1 backdrop-blur-xs">
+                <span className="relative flex h-2 w-2" aria-hidden="true">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-leaf opacity-80" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-[#7ef0a6]" />
+                </span>
+                <span className="font-mono text-[11px] uppercase tracking-wider text-white font-bold">
+                  {FAQ_COPY.whatsappBox.badge}
                 </span>
               </div>
-              <h3 className="font-bold text-base text-[#0F172A] dark:text-white">
-                Punya pertanyaan spesifik terkait naskah Anda?
+
+              <h3 className="relative font-bold text-base sm:text-lg text-white leading-snug">
+                {FAQ_COPY.whatsappBox.heading}
               </h3>
-              <p className="text-xs text-[#64748B] dark:text-zinc-400 leading-relaxed">
-                Tim lead desainer kami siap berdiskusi secara instan dan memberikan estimasi awal dalam hitungan jam.
+
+              <p className="relative text-xs sm:text-sm text-white/90 leading-relaxed">
+                {FAQ_COPY.whatsappBox.description}
               </p>
+
               <a
-                className="w-full inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-leaf-strong hover:bg-leaf-hover text-white text-xs sm:text-sm font-semibold transition-colors shadow-xs"
-                href={buildWhatsAppLink(
-                  "Halo ZaCreative, saya ingin menanyakan detail pengerjaan untuk proyek/naskah saya. Boleh dibantu?"
-                )}
+                className="relative group w-full inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-white hover:bg-leaf-tint text-leaf-deep text-xs sm:text-sm font-bold transition-all duration-200 shadow-md hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/50"
+                href={buildWhatsAppLink(FAQ_COPY.whatsappBox.whatsappMessage)}
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                <WhatsAppIcon className="w-4 h-4 shrink-0" />
-                <span>Konsultasi Instan via WhatsApp</span>
-                <ArrowUpRight className="w-4 h-4" />
+                <WhatsAppIcon className="w-4 h-4 text-leaf-strong shrink-0" />
+                <span>{FAQ_COPY.whatsappBox.ctaLabel}</span>
+                <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
             </div>
           </div>
 
           {/* Right Column: Accordion Q&A list */}
           <div className="lg:col-span-7 space-y-3">
-            {faqs.map((faq, idx) => {
+            {FAQ_COPY.items.map((faq, idx) => {
               const isOpen = openIndex === idx;
               return (
                 <div

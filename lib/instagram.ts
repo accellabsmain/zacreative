@@ -1,7 +1,9 @@
+import { prisma } from "@/lib/db";
 import {
   INSTAGRAM_FALLBACK_POSTS,
   type InstagramMediaType,
   type InstagramPost,
+  type InstagramSlide,
 } from "@/lib/data/instagram-fallback";
 
 const IG_REVALIDATE_SECONDS = 3600; // 1 hour ISR
@@ -35,7 +37,7 @@ interface BeholdPostItem {
 
 export interface InstagramFeedResult {
   posts: InstagramPost[];
-  source: "instagram" | "behold" | "fallback";
+  source: "database" | "instagram" | "behold" | "fallback";
 }
 
 function normalizeMediaType(raw?: string): InstagramMediaType {
@@ -95,6 +97,63 @@ export async function saveInstagramTokenToKv(token: string): Promise<boolean> {
   return res.ok;
 }
 
+/**
+ * Loads Instagram posts synced to the database with permanent Vercel Blob URLs.
+ */
+export async function getSyncedDatabasePosts(limit: number): Promise<InstagramPost[] | null> {
+  if (!process.env.DATABASE_URL) {
+    return null;
+  }
+
+  try {
+    const records = await prisma.instagramPost.findMany({
+      orderBy: { publishedAt: "desc" },
+      take: limit,
+    });
+
+    if (!records || records.length === 0) {
+      return null;
+    }
+
+    const posts: InstagramPost[] = [];
+
+    for (const record of records) {
+      const rawSlides = Array.isArray(record.slides)
+        ? (record.slides as unknown as InstagramSlide[])
+        : [];
+
+      const slides: InstagramSlide[] = rawSlides.filter(
+        (s) => s && typeof s.url === "string" && s.url.length > 0
+      );
+
+      const mainUrl = slides[0]?.url;
+      if (!mainUrl) continue;
+
+      const mediaType: InstagramMediaType =
+        slides.length > 1
+          ? "CAROUSEL_ALBUM"
+          : slides[0]?.type === "VIDEO"
+            ? "VIDEO"
+            : "IMAGE";
+
+      posts.push({
+        id: record.igPostId || record.id,
+        caption: (record.caption ?? "").trim(),
+        mediaType,
+        imageUrl: mainUrl,
+        permalink: record.permalink,
+        timestamp: record.publishedAt.toISOString(),
+        slides,
+      });
+    }
+
+    return posts.length > 0 ? posts : null;
+  } catch (dbErr) {
+    console.error("[Instagram] Failed to read synced posts from DB:", dbErr);
+    return null;
+  }
+}
+
 async function fetchFromBehold(feedUrl: string, limit: number): Promise<InstagramPost[] | null> {
   const res = await fetch(feedUrl, {
     next: { revalidate: IG_REVALIDATE_SECONDS, tags: [INSTAGRAM_CACHE_TAG] },
@@ -122,6 +181,7 @@ async function fetchFromBehold(feedUrl: string, limit: number): Promise<Instagra
       imageUrl,
       permalink: item.permalink,
       timestamp: item.timestamp ?? new Date().toISOString(),
+      slides: [{ id: `${item.id}-0`, type: mediaType, url: imageUrl }],
     });
 
     if (posts.length >= limit) break;
@@ -165,6 +225,7 @@ async function fetchFromGraphApi(token: string, limit: number): Promise<Instagra
       imageUrl,
       permalink: item.permalink,
       timestamp: item.timestamp ?? new Date().toISOString(),
+      slides: [{ id: `${item.id}-0`, type: mediaType, url: imageUrl }],
     });
 
     if (posts.length >= limit) break;
@@ -174,11 +235,20 @@ async function fetchFromGraphApi(token: string, limit: number): Promise<Instagra
 }
 
 /**
- * Fetches latest Instagram posts on the server with 1-hour ISR revalidation.
- * Falls back cleanly to curated local posts when credentials are absent or API fails.
+ * Fetches latest Instagram posts on the server:
+ * 1. Database synced posts with Vercel Blob URLs (preferred).
+ * 2. Behold / Graph API (direct fallback).
+ * 3. Local curated fallback posts (guarantees the landing page is never broken).
  */
-export async function getInstagramFeed(limit = 8): Promise<InstagramFeedResult> {
+export async function getInstagramFeed(limit = 6): Promise<InstagramFeedResult> {
   try {
+    // 1. Try DB first (synced via daily Cron + Vercel Blob)
+    const dbPosts = await getSyncedDatabasePosts(limit);
+    if (dbPosts && dbPosts.length > 0) {
+      return { posts: dbPosts, source: "database" };
+    }
+
+    // 2. Behold external feed
     const beholdUrl = process.env.INSTAGRAM_FEED_URL?.trim();
     if (beholdUrl) {
       const beholdPosts = await fetchFromBehold(beholdUrl, limit);
@@ -187,6 +257,7 @@ export async function getInstagramFeed(limit = 8): Promise<InstagramFeedResult> 
       }
     }
 
+    // 3. Instagram Graph API directly
     const token = await resolveInstagramToken();
     if (token) {
       const graphPosts = await fetchFromGraphApi(token, limit);
@@ -194,8 +265,8 @@ export async function getInstagramFeed(limit = 8): Promise<InstagramFeedResult> 
         return { posts: graphPosts, source: "instagram" };
       }
     }
-  } catch {
-    // Gracefully fall back so the landing page never breaks
+  } catch (err) {
+    console.error("[Instagram] Error resolving feed:", err);
   }
 
   return {
@@ -203,4 +274,3 @@ export async function getInstagramFeed(limit = 8): Promise<InstagramFeedResult> 
     source: "fallback",
   };
 }
-

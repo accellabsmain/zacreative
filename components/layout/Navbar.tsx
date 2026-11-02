@@ -7,17 +7,10 @@ import { Menu, X, ArrowUpRight } from "lucide-react";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 import { WhatsAppIcon } from "@/components/ui/BrandIcons";
 import { buildWhatsAppLink } from "@/lib/constants";
+import { NAVBAR_COPY } from "@/lib/copywriting";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const navLinks = [
-    { label: "Paket", href: "/#paket" },
-    { label: "Portofolio", href: "/#portofolio" },
-    { label: "Cara Kerja", href: "/#cara-kerja" },
-    { label: "FAQ", href: "/#faq" },
-    { label: "Kontak", href: "/#kontak" },
-  ];
 
   return (
     <header
@@ -33,7 +26,7 @@ export default function Navbar() {
         >
           <Image
             src="/images/logocolor.webp"
-            alt="Zacreative"
+            alt={NAVBAR_COPY.logoAlt}
             width={160}
             height={40}
             priority
@@ -47,7 +40,7 @@ export default function Navbar() {
           className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-600 dark:text-zinc-400"
           data-purpose="desktop-nav"
         >
-          {navLinks.map((link) => (
+          {NAVBAR_COPY.links.map((link) => (
             <Link
               key={link.label}
               href={link.href}
@@ -68,7 +61,7 @@ export default function Navbar() {
             className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-leaf-strong hover:bg-leaf-hover text-white text-sm font-semibold transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-leaf"
           >
             <WhatsAppIcon className="w-4 h-4 shrink-0" />
-            <span>Chat WhatsApp</span>
+            <span>{NAVBAR_COPY.ctaLabel}</span>
             <ArrowUpRight className="w-4 h-4" />
           </a>
         </div>
@@ -79,7 +72,9 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label={mobileMenuOpen ? "Tutup Menu" : "Buka Menu"}
+            aria-label={
+              mobileMenuOpen ? NAVBAR_COPY.mobileMenuCloseAria : NAVBAR_COPY.mobileMenuOpenAria
+            }
             aria-expanded={mobileMenuOpen}
             className="w-12 h-12 flex items-center justify-center rounded-lg border border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors focus:outline-none focus:ring-2 focus:ring-zinc-400"
           >
@@ -99,7 +94,7 @@ export default function Navbar() {
           className="md:hidden border-t border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 px-4 py-6 space-y-4 animate-in slide-in-from-top-2 duration-200"
         >
           <nav className="flex flex-col space-y-2 text-base font-medium text-zinc-600 dark:text-zinc-400">
-            {navLinks.map((link) => (
+            {NAVBAR_COPY.links.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
@@ -119,7 +114,7 @@ export default function Navbar() {
               className="w-full flex items-center justify-center gap-2 px-5 py-3.5 rounded-lg bg-leaf-strong hover:bg-leaf-hover text-white text-sm font-semibold transition-colors shadow-sm"
             >
               <WhatsAppIcon className="w-4 h-4 shrink-0" />
-              <span>Chat WhatsApp</span>
+              <span>{NAVBAR_COPY.ctaLabel}</span>
               <ArrowUpRight className="w-4 h-4" />
             </a>
           </div>

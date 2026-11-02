@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { WhatsAppIcon } from "@/components/ui/BrandIcons";
 import { buildWhatsAppLink } from "@/lib/constants";
+import { SITE_COPY } from "@/lib/copywriting";
 
 const SHOW_AFTER_PX = 420;
 
@@ -32,7 +33,7 @@ export default function FloatingWhatsApp() {
         href={buildWhatsAppLink()}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Chat konsultasi via WhatsApp"
+        aria-label={SITE_COPY.floatingWhatsApp.ariaLabel}
         tabIndex={visible ? 0 : -1}
         className="group relative inline-flex items-center gap-2.5 rounded-full bg-leaf-strong hover:bg-leaf-hover text-white p-3.5 sm:px-5 sm:py-3.5 shadow-[0_14px_32px_-6px_rgba(31,143,80,0.55)] ring-1 ring-white/25 transition-all duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-leaf/50 cursor-pointer"
       >
@@ -43,10 +44,9 @@ export default function FloatingWhatsApp() {
         />
         <WhatsAppIcon className="relative h-6 w-6 sm:h-5 sm:w-5 shrink-0" />
         <span className="relative hidden sm:inline text-sm font-semibold tracking-tight pr-0.5">
-          Chat WhatsApp
+          {SITE_COPY.floatingWhatsApp.label}
         </span>
       </a>
     </div>
   );
 }
-

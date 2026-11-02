@@ -4,18 +4,14 @@ import Link from "next/link";
 import { ArrowDown, ArrowUpRight, LayoutGrid } from "lucide-react";
 import { WhatsAppIcon } from "@/components/ui/BrandIcons";
 import { buildWhatsAppLink } from "@/lib/constants";
-
-const stats = [
-  { value: "50+", label: "Publikasi" },
-  { value: "100%", label: "Tepat Waktu" },
-  { value: "4.9/5", label: "Kepuasan Klien" },
-];
+import { HERO_COPY } from "@/lib/copywriting";
 
 const cardBase =
   "absolute rounded-2xl border border-tint-border bg-white shadow-[0_20px_40px_-15px_rgba(11,28,48,0.08),0_2px_6px_-2px_rgba(11,28,48,0.04)] dark:bg-zinc-900 dark:border-white/10";
 
 /* ───────────── Mockup A: Typography poster ───────────── */
 function PosterCard() {
+  const { posterCard } = HERO_COPY.showcase;
   return (
     <div
       className={`${cardBase} right-0 top-0 w-[44%] aspect-[3/4] rotate-[4deg] p-4 sm:p-5 overflow-hidden transition-transform duration-500 ease-out group-hover/stack:rotate-[6deg] group-hover/stack:translate-x-1`}
@@ -23,15 +19,19 @@ function PosterCard() {
     >
       <div className="flex h-full flex-col justify-between text-navy dark:text-white">
         <div className="flex items-center justify-between text-[7px] sm:text-[8px] font-bold uppercase tracking-[0.2em]">
-          <span>ZA/26</span>
-          <span className="text-brand dark:text-sky-soft">Poster</span>
+          <span>{posterCard.code}</span>
+          <span className="text-brand dark:text-sky-soft">{posterCard.category}</span>
         </div>
         <div className="leading-[0.82]">
-          <p className="text-[2.1rem] sm:text-[3.4rem] font-extrabold tracking-tighter">Type</p>
-          <p className="text-[2.1rem] sm:text-[3.4rem] font-extrabold tracking-tighter text-brand dark:text-sky-soft">
-            Sets
+          <p className="text-[2.1rem] sm:text-[3.4rem] font-extrabold tracking-tighter">
+            {posterCard.line1}
           </p>
-          <p className="text-[2.1rem] sm:text-[3.4rem] font-extrabold tracking-tighter">Tone.</p>
+          <p className="text-[2.1rem] sm:text-[3.4rem] font-extrabold tracking-tighter text-brand dark:text-sky-soft">
+            {posterCard.line2}
+          </p>
+          <p className="text-[2.1rem] sm:text-[3.4rem] font-extrabold tracking-tighter">
+            {posterCard.line3}
+          </p>
         </div>
         <div className="grid grid-cols-4 gap-1">
           {Array.from({ length: 4 }).map((_, i) => (
@@ -48,6 +48,7 @@ function PosterCard() {
 
 /* ───────────── Mockup B: Pitch deck slide ───────────── */
 function PitchDeckCard() {
+  const { pitchDeckCard } = HERO_COPY.showcase;
   const bars = [32, 44, 40, 58, 72, 92];
   return (
     <div
@@ -57,17 +58,19 @@ function PitchDeckCard() {
       <div className="flex h-full flex-col text-navy dark:text-white">
         <div className="flex items-center justify-between">
           <p className="text-[8px] sm:text-[10px] font-bold uppercase tracking-[0.18em] text-navy-soft dark:text-zinc-400">
-            Series A · Traction
+            {pitchDeckCard.eyebrow}
           </p>
           <span className="rounded-full bg-tint px-2 py-0.5 text-[7px] sm:text-[9px] font-semibold text-brand dark:bg-brand/20 dark:text-sky-soft">
-            +184% YoY
+            {pitchDeckCard.growthBadge}
           </span>
         </div>
         <div className="mt-2 flex items-end gap-4">
           <div>
-            <p className="text-lg sm:text-3xl font-extrabold tracking-tight leading-none">$48.2M</p>
+            <p className="text-lg sm:text-3xl font-extrabold tracking-tight leading-none">
+              {pitchDeckCard.valuation}
+            </p>
             <p className="mt-1 text-[7px] sm:text-[9px] text-navy-soft dark:text-zinc-400">
-              Valuasi pra-pendanaan
+              {pitchDeckCard.valuationLabel}
             </p>
           </div>
         </div>
@@ -83,7 +86,7 @@ function PitchDeckCard() {
           ))}
         </div>
         <div className="mt-1.5 flex justify-between text-[6px] sm:text-[8px] font-medium text-navy-soft/70 dark:text-zinc-500">
-          {["Q1", "Q2", "Q3", "Q4", "Q1", "Q2"].map((q, i) => (
+          {pitchDeckCard.quarters.map((q, i) => (
             <span key={i} className="flex-1 text-center">
               {q}
             </span>
@@ -96,6 +99,7 @@ function PitchDeckCard() {
 
 /* ───────────── Mockup C: Editorial book spread ───────────── */
 function BookSpreadCard() {
+  const { bookSpreadCard } = HERO_COPY.showcase;
   const lines = (n: number) =>
     Array.from({ length: n }).map((_, i) => (
       <span
@@ -114,15 +118,15 @@ function BookSpreadCard() {
         {/* Left page */}
         <div className="relative flex flex-col gap-2 p-3 sm:p-5">
           <p className="text-[6px] sm:text-[8px] font-semibold uppercase tracking-[0.2em] text-brand dark:text-sky-soft">
-            Bab 03
+            {bookSpreadCard.chapter}
           </p>
           <h3 className="font-serif text-[0.8rem] sm:text-xl font-bold leading-[1.1] tracking-tight text-navy dark:text-white">
-            Hilirisasi dan Masa Depan Industri Nikel
+            {bookSpreadCard.title}
           </h3>
           <div className="mt-1 space-y-1 sm:space-y-1.5">{lines(5)}</div>
           <div className="space-y-1 sm:space-y-1.5">{lines(4)}</div>
           <span className="mt-auto text-[6px] sm:text-[8px] text-navy-soft/60 dark:text-zinc-500">
-            42
+            {bookSpreadCard.leftPageNumber}
           </span>
           <span className="pointer-events-none absolute inset-y-0 right-0 w-6 bg-gradient-to-l from-navy/10 to-transparent dark:from-black/40" />
         </div>
@@ -130,12 +134,12 @@ function BookSpreadCard() {
         <div className="relative flex flex-col gap-2 p-3 sm:p-5 border-l border-navy/5 dark:border-white/5">
           <span className="pointer-events-none absolute inset-y-0 left-0 w-6 bg-gradient-to-r from-navy/10 to-transparent dark:from-black/40" />
           <blockquote className="border-l-2 border-sky pl-2 sm:pl-3 font-serif text-[0.62rem] sm:text-sm italic leading-snug text-navy dark:text-white">
-            “Data yang rapi adalah cara terbaik untuk membangun kepercayaan.”
+            {bookSpreadCard.quote}
           </blockquote>
           <div className="mt-1 space-y-1 sm:space-y-1.5">{lines(6)}</div>
           <div className="space-y-1 sm:space-y-1.5">{lines(3)}</div>
           <span className="mt-auto self-end text-[6px] sm:text-[8px] text-navy-soft/60 dark:text-zinc-500">
-            43
+            {bookSpreadCard.rightPageNumber}
           </span>
         </div>
       </div>
@@ -156,7 +160,7 @@ export default function HeroSection() {
         aria-hidden="true"
       />
 
-      <div className="relative max-w-7xl mx-auto px-6 py-20 lg:py-28">
+      <div className="relative max-w-7xl mx-auto px-6 py-16 sm:py-20 lg:py-28">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-12 items-center">
           {/* ───── Left column ───── */}
           <div className="lg:col-span-6 text-left">
@@ -164,12 +168,11 @@ export default function HeroSection() {
               id="hero-heading"
               className="text-4xl sm:text-6xl font-bold tracking-tight leading-tight text-navy dark:text-white"
             >
-              Publikasi dan presentasi yang dirancang untuk dibaca, dipahami, dan dipercaya.
+              {HERO_COPY.heading}
             </h1>
 
             <p className="mt-6 max-w-xl text-base sm:text-lg leading-relaxed text-navy-soft dark:text-zinc-300">
-              Kami mentransformasi laporan korporat, pitch deck investor, dan visual poster menjadi
-              aset strategis berstandar dunia.
+              {HERO_COPY.description}
             </p>
 
             <div className="mt-10 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
@@ -181,7 +184,7 @@ export default function HeroSection() {
                 className="group col-span-2 inline-flex min-h-[52px] items-center justify-center gap-2.5 rounded-xl bg-[#4fc97a] px-7 text-sm font-semibold text-white shadow-[0_12px_28px_-10px_rgba(79,201,122,0.6)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#43b36c] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#4fc97a]/40 cursor-pointer"
               >
                 <WhatsAppIcon className="h-5 w-5" />
-                Konsultasi &amp; Pemesanan
+                {HERO_COPY.primaryCtaLabel}
                 <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
               <Link
@@ -190,14 +193,14 @@ export default function HeroSection() {
                 className="group inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl border border-navy/15 bg-white px-5 sm:px-6 text-sm font-semibold text-navy transition-colors duration-200 hover:border-brand hover:text-brand dark:bg-white/5 dark:border-white/15 dark:text-white dark:hover:border-sky-soft dark:hover:text-sky-soft focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-sky/40 cursor-pointer"
               >
                 <LayoutGrid className="h-4 w-4" aria-hidden="true" />
-                Lihat Paket
+                {HERO_COPY.secondaryPaketLabel}
               </Link>
               <Link
                 id="hero-cta-portofolio"
                 href="/#portofolio"
                 className="group inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl border border-tint-border bg-white/60 px-5 sm:px-6 text-sm font-semibold text-navy transition-colors duration-200 hover:border-brand hover:text-brand dark:bg-transparent dark:border-white/15 dark:text-white dark:hover:border-sky-soft dark:hover:text-sky-soft focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-sky/40 cursor-pointer"
               >
-                Lihat Portofolio
+                {HERO_COPY.secondaryPortfolioLabel}
                 <ArrowDown className="h-4 w-4 transition-transform duration-200 group-hover:translate-y-0.5" aria-hidden="true" />
               </Link>
             </div>
@@ -207,11 +210,11 @@ export default function HeroSection() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-leaf opacity-70" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-leaf" />
               </span>
-              Online via WhatsApp — konsultasi gratis, respon cepat di jam kerja
+              {HERO_COPY.onlineStatus}
             </p>
 
             <dl className="mt-12 grid max-w-md grid-cols-3 divide-x divide-tint-border dark:divide-white/10">
-              {stats.map((s, i) => (
+              {HERO_COPY.stats.map((s, i) => (
                 <div key={s.label} className={i === 0 ? "pr-5" : "px-5"}>
                   <dd className="text-2xl sm:text-3xl font-bold tracking-tight text-navy dark:text-white">
                     {s.value}
@@ -222,8 +225,8 @@ export default function HeroSection() {
             </dl>
           </div>
 
-          {/* ───── Right column: layered triple-pillar stack ───── */}
-          <div className="lg:col-span-6">
+          {/* ───── Right column: layered triple-pillar stack (hidden on mobile) ───── */}
+          <div className="hidden lg:block lg:col-span-6">
             <div className="group/stack relative mx-auto aspect-[1/1] w-full max-w-[560px] sm:aspect-[6/5]">
               <PosterCard />
               <PitchDeckCard />
@@ -232,7 +235,7 @@ export default function HeroSection() {
               {/* Floating status chip */}
               <div className="absolute -bottom-3 right-0 z-10 flex max-w-[92%] items-center gap-2 rounded-full border border-tint-border bg-white/95 px-3.5 py-2 text-[10px] sm:text-xs font-semibold text-navy shadow-[0_20px_40px_-15px_rgba(11,28,48,0.18)] backdrop-blur dark:bg-zinc-900/95 dark:border-white/10 dark:text-white">
                 <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-sky" aria-hidden="true" />
-                <span className="truncate">PT ANTAM Tbk • 487 Halaman • Selesai 7 Hari</span>
+                <span className="truncate">{HERO_COPY.showcase.floatingBadge}</span>
               </div>
             </div>
           </div>

@@ -9,6 +9,7 @@ const montserrat = Montserrat({
   display: "swap",
 });
 import JsonLd from "@/components/seo/JsonLd";
+import { SITE_COPY } from "@/lib/copywriting";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
@@ -25,25 +26,15 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Zacreative — Editorial & Technical Design Studio",
-    template: "%s | Zacreative Studio",
+    default: SITE_COPY.titleDefault,
+    template: SITE_COPY.titleTemplate,
   },
-  description:
-    "Visual solutions for high-impact publications, corporate whitepapers, investor pitch decks, and data-dense annual reports with architectural precision.",
-  applicationName: "Zacreative Studio",
-  authors: [{ name: "Zacreative Studio", url: siteUrl }],
-  creator: "Zacreative Studio",
-  publisher: "Zacreative Studio",
-  keywords: [
-    "Zacreative",
-    "Studio Desain Editorial",
-    "Layout Buku",
-    "Pitch Deck Eksekutif",
-    "Desain Laporan Tahunan",
-    "Buku Putih Kebijakan",
-    "Modern Editorial Tech",
-    "Annual Report Design Jakarta",
-  ],
+  description: SITE_COPY.description,
+  applicationName: SITE_COPY.name,
+  authors: [{ name: SITE_COPY.name, url: siteUrl }],
+  creator: SITE_COPY.name,
+  publisher: SITE_COPY.name,
+  keywords: [...SITE_COPY.keywords],
   alternates: {
     canonical: "/",
   },
@@ -51,10 +42,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "id_ID",
     url: siteUrl,
-    siteName: "Zacreative Studio",
-    title: "Zacreative — Editorial & Technical Design Studio",
-    description:
-      "Visual solutions for high-impact publications, corporate whitepapers, investor pitch decks, and data-dense annual reports with architectural precision.",
+    siteName: SITE_COPY.name,
+    title: SITE_COPY.titleDefault,
+    description: SITE_COPY.description,
     images: [
       {
         url: "/images/stitch/home.png",
@@ -66,9 +56,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Zacreative — Editorial & Technical Design Studio",
-    description:
-      "Visual solutions for high-impact publications, corporate whitepapers, investor pitch decks, and data-dense annual reports.",
+    title: SITE_COPY.titleDefault,
+    description: SITE_COPY.twitterDescription,
     creator: "@zacreative",
     images: ["/images/stitch/home.png"],
   },

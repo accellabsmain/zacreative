@@ -1,3 +1,5 @@
+import { SITE_COPY } from "@/lib/copywriting";
+
 export default function JsonLd() {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
@@ -5,14 +7,13 @@ export default function JsonLd() {
     "@context": "https://schema.org",
     "@type": ["ProfessionalService", "Organization"],
     "@id": `${baseUrl}#organization`,
-    name: "ZaCreative Studio",
+    name: SITE_COPY.name,
     alternateName: "Zacreative Editorial & Presentation Design",
     url: baseUrl,
     logo: `${baseUrl}/favicon.ico`,
     image: `${baseUrl}/og-image.jpg`,
-    description:
-      "Studio desain visual spesialis layout buku, presentasi strategis pitch deck, dan materi visual kampanye dengan standar editorial profesional.",
-    email: "hello@zacreative.com",
+    description: SITE_COPY.schemaDescription,
+    email: SITE_COPY.contact.email,
     priceRange: "$$",
     address: {
       "@type": "PostalAddress",
@@ -33,10 +34,7 @@ export default function JsonLd() {
         closes: "18:00",
       },
     ],
-    sameAs: [
-      "https://www.instagram.com/zacreative.id",
-      "https://www.linkedin.com/company/zacreative",
-    ],
+    sameAs: [SITE_COPY.contact.instagramUrl, SITE_COPY.contact.linkedinUrl],
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Layanan Desain Visual Zacreative",

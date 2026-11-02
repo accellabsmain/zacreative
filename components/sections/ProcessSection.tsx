@@ -2,52 +2,10 @@
 
 import { useState } from "react";
 import { CheckCircle2, ChevronDown } from "lucide-react";
+import { PROCESS_COPY } from "@/lib/copywriting";
 
 export default function ProcessSection() {
   const [openStep, setOpenStep] = useState<number>(0);
-
-  const steps = [
-    {
-      num: "01",
-      title: "Konsultasi & Pemilihan Paket",
-      summary: "Eksplorasi kebutuhan naskah, volume halaman, dan penetapan format output.",
-      details:
-        "Menelaah tujuan proyek, jenis naskah mentah, estimasi ketebalan halaman, dan jadwal rilis yang Anda targetkan. Kami memberikan rekomendasi paket paling efisien.",
-      deliverable: "Rekomendasi Paket & Estimasi Biaya",
-    },
-    {
-      num: "02",
-      title: "Pengisian Formulir Brief Naskah",
-      summary: "Pengiriman materi konten, dokumen teks final, dan panduan identitas.",
-      details:
-        "Pengiriman manuskrip final, materi grafis pendukung, pedoman merek (brand guidelines), dan referensi visual yang diinginkan melalui formulir brief terstruktur.",
-      deliverable: "Brief Dokumen Terkonfirmasi",
-    },
-    {
-      num: "03",
-      title: "Pembayaran DP & Penjadwalan Milestone",
-      summary: "Aktivasi proyek dan penguncian jadwal sprint tim desainer.",
-      details:
-        "Pembayaran uang muka komitmen kerja (50%) dan penerbitan jadwal kerja resmi (work breakdown schedule) dengan tanggal review dan tenggat serah terima pasti.",
-      deliverable: "Project Roadmap & Timeline Lock",
-    },
-    {
-      num: "04",
-      title: "Proses Desain & Putaran Revisi",
-      summary: "Penyusunan tata letak dalam kisi modular dan evaluasi berkala.",
-      details:
-        "Penataan layout dalam master grid, penyerahan preview draft parsial (bab kunci / sampel slide), dan pelaksanaan revisi terstruktur sesuai batas paket yang disepakati.",
-      deliverable: "Draft Review & Feedback Iteration",
-    },
-    {
-      num: "05",
-      title: "Finalisasi & Serah Terima Master File",
-      summary: "Pemeriksaan pre-flight percetakan dan pengiriman berkas lengkap.",
-      details:
-        "Pelunasan pembayaran sisa, pengecekan akhir pre-flight percetakan (overprint, bleed, color profile), dan pengiriman berkas master (.INDD, PDF cetak offset, arsip aset).",
-      deliverable: "Production-Ready Package + InDesign Master",
-    },
-  ];
 
   return (
     <section
@@ -59,19 +17,19 @@ export default function ProcessSection() {
         {/* Header */}
         <div className="space-y-2 lg:col-span-5 lg:sticky lg:top-28">
           <span className="font-mono text-xs uppercase tracking-wider text-[#1A54A4] dark:text-[#38BDF8] font-semibold">
-            [ALUR KERJA STUDIO]
+            {PROCESS_COPY.badge}
           </span>
           <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-[#0F172A] dark:text-white">
-            Proses Kolaborasi Terstruktur Tanpa Friksi
+            {PROCESS_COPY.heading}
           </h2>
           <p className="text-xs sm:text-sm text-[#64748B] dark:text-zinc-400 leading-relaxed">
-            Dari naskah mentah hingga dokumen siap cetak dan rilis digital, setiap fase dikelola dengan milestone transparan dan kepatuhan tenggat waktu ketat.
+            {PROCESS_COPY.description}
           </p>
         </div>
 
         {/* 5-Step Accordion List */}
         <div className="space-y-3 lg:col-span-7 w-full">
-          {steps.map((st, idx) => {
+          {PROCESS_COPY.steps.map((st, idx) => {
             const isOpen = openStep === idx;
             return (
               <div
@@ -123,7 +81,7 @@ export default function ProcessSection() {
                     <div className="pl-14 sm:pl-16 flex items-center gap-2">
                       <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
                       <span className="font-mono text-xs text-[#0F172A] dark:text-zinc-200 font-semibold">
-                        Output Milestone: {st.deliverable}
+                        {PROCESS_COPY.deliverablePrefix} {st.deliverable}
                       </span>
                     </div>
                   </div>

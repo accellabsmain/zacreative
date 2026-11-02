@@ -1,20 +1,8 @@
 import { Building2 } from "lucide-react";
+import { TRUST_COPY } from "@/lib/copywriting";
 
 export default function TrustIndicators() {
-  const clients = [
-    { name: "Kementerian PUPR", desc: "Instansi Pemerintah RI" },
-    { name: "PT ANTAM Tbk", desc: "BUMN Pertambangan" },
-    { name: "KBRI Damaskus", desc: "Korps Diplomatik RI" },
-    { name: "PT JAKPRO", desc: "BUMD DKI Jakarta" },
-    { name: "Kemendikbudristek RI", desc: "Ditjen Vokasi" },
-    { name: "LPDP Kemenkeu", desc: "Lembaga Riset Beasiswa" },
-    { name: "UGM PSE", desc: "Pusat Studi Energi" },
-    { name: "Entalphy Consulting", desc: "Konsultan Energi" },
-    { name: "Ayo Tumbuh", desc: "Edupreneur Consultancy" },
-    { name: "AI-RECHT", desc: "Riset Teknologi AI" },
-  ];
-
-  const duplicated = [...clients, ...clients];
+  const duplicated = [...TRUST_COPY.clients, ...TRUST_COPY.clients];
 
   return (
     <section
@@ -25,7 +13,7 @@ export default function TrustIndicators() {
         <div className="flex items-center justify-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full bg-[#00D2FF] animate-pulse"></span>
           <h2 className="font-mono text-xs uppercase tracking-widest text-[#94A3B8] font-semibold">
-            DIPERCAYA OLEH KEMENTERIAN, BUMN, DAN INSTITUSI RISET STRATEGIS
+            {TRUST_COPY.heading}
           </h2>
         </div>
 

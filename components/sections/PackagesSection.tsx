@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, type KeyboardEvent } from "react";
+import { Fragment, useCallback, useEffect, useRef, useState, type KeyboardEvent } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -19,19 +19,35 @@ import {
   type TierId,
 } from "@/lib/data/packages";
 import { buildWhatsAppLink } from "@/lib/constants";
+import { PACKAGES_COPY } from "@/lib/copywriting";
 
-const tierMessage = (pkg: ServicePackage, tier: PackageTier) =>
-  `Halo ZaCreative, saya tertarik dengan paket *${pkg.title} – ${tier.name}* (mulai ${tier.priceRange}${pkg.unit}). Boleh info lebih lanjut untuk proyek saya?`;
-
-const serviceMessage = (pkg: ServicePackage) =>
-  `Halo ZaCreative, saya ingin memesan layanan *${pkg.title}*. Boleh dibantu rekomendasi paket yang sesuai?`;
-
-// Short category labels for mobile grid (no trailing, 100% visible)
-const MOBILE_CATEGORY_NAMES: Record<string, string> = {
-  "layout-buku": "Desain Buku",
-  presentasi: "Pitch Deck",
-  poster: "Poster Visual",
-};
+function renderDescriptionWithTierHighlights(text: string) {
+  const parts = text.split(/(Bronze|Silver|Gold)/g);
+  return parts.map((part, idx) => {
+    if (part === "Bronze") {
+      return (
+        <span key={idx} className="font-bold text-[#B45309] dark:text-amber-400">
+          {part}
+        </span>
+      );
+    }
+    if (part === "Silver") {
+      return (
+        <span key={idx} className="font-bold text-[#334155] dark:text-slate-300">
+          {part}
+        </span>
+      );
+    }
+    if (part === "Gold") {
+      return (
+        <span key={idx} className="font-bold text-[#D97706] dark:text-amber-400">
+          {part}
+        </span>
+      );
+    }
+    return <Fragment key={idx}>{part}</Fragment>;
+  });
+}
 
 interface TierStyleConfig {
   shortTitle: string;
@@ -294,7 +310,7 @@ export default function PackagesSection() {
           <div>
             <div className="flex items-center justify-between mb-2">
               <span className="inline-flex items-center gap-1.5 rounded-md border border-slate-200 bg-slate-100 px-2.5 py-1 text-[11px] font-mono font-bold tracking-wider text-slate-700 uppercase dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">
-                [KATALOG &amp; PAKET LAYANAN]
+                {PACKAGES_COPY.badge}
               </span>
 
               {/* Mobile Counter and Nav controls */}
@@ -305,7 +321,7 @@ export default function PackagesSection() {
                 <button
                   type="button"
                   onClick={() => goTo(active - 1)}
-                  aria-label="Layanan sebelumnya"
+                  aria-label={PACKAGES_COPY.labels.prevServiceAria}
                   className="inline-flex h-7 w-7 items-center justify-center rounded-md border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-slate-800 dark:text-white hover:bg-slate-100 dark:hover:bg-zinc-800 cursor-pointer"
                 >
                   <ChevronLeft className="h-3.5 w-3.5" />
@@ -313,7 +329,7 @@ export default function PackagesSection() {
                 <button
                   type="button"
                   onClick={() => goTo(active + 1)}
-                  aria-label="Layanan berikutnya"
+                  aria-label={PACKAGES_COPY.labels.nextServiceAria}
                   className="inline-flex h-7 w-7 items-center justify-center rounded-md border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-slate-800 dark:text-white hover:bg-slate-100 dark:hover:bg-zinc-800 cursor-pointer"
                 >
                   <ChevronRight className="h-3.5 w-3.5" />
@@ -325,14 +341,10 @@ export default function PackagesSection() {
               id="paket-heading"
               className="text-2xl sm:text-3xl lg:text-[2.6rem] font-bold tracking-tight text-navy dark:text-white leading-tight"
             >
-              Layanan &amp; Tingkatan Paket
+              {PACKAGES_COPY.heading}
             </h2>
             <p className="mt-2 text-xs sm:text-sm md:text-base text-slate-600 dark:text-zinc-300 max-w-2xl leading-relaxed">
-              Pilih layanan, lalu bandingkan opsi tier{" "}
-              <span className="font-bold text-[#B45309] dark:text-amber-400">Bronze</span>,{" "}
-              <span className="font-bold text-[#334155] dark:text-slate-300">Silver</span>, dan{" "}
-              <span className="font-bold text-[#D97706] dark:text-amber-400">Gold</span> sesuai
-              kebutuhan proyek Anda.
+              {renderDescriptionWithTierHighlights(PACKAGES_COPY.description)}
             </p>
           </div>
 
@@ -345,7 +357,7 @@ export default function PackagesSection() {
               type="button"
               id="paket-prev"
               onClick={() => goTo(active - 1)}
-              aria-label="Layanan sebelumnya"
+              aria-label={PACKAGES_COPY.labels.prevServiceAria}
               className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-slate-800 dark:text-white hover:border-slate-400 hover:bg-slate-50 dark:hover:border-zinc-600 dark:hover:bg-zinc-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0284C7] cursor-pointer"
             >
               <ChevronLeft className="h-4 w-4" />
@@ -354,7 +366,7 @@ export default function PackagesSection() {
               type="button"
               id="paket-next"
               onClick={() => goTo(active + 1)}
-              aria-label="Layanan berikutnya"
+              aria-label={PACKAGES_COPY.labels.nextServiceAria}
               className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-slate-800 dark:text-white hover:border-slate-400 hover:bg-slate-50 dark:hover:border-zinc-600 dark:hover:bg-zinc-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0284C7] cursor-pointer"
             >
               <ChevronRight className="h-4 w-4" />
@@ -371,7 +383,7 @@ export default function PackagesSection() {
         >
           {SERVICE_PACKAGES.map((p, i) => {
             const selected = i === active;
-            const mobileShortName = MOBILE_CATEGORY_NAMES[p.id] ?? p.title;
+            const mobileShortName = PACKAGES_COPY.mobileCategoryNames[p.id] ?? p.title;
 
             return (
               <button
@@ -421,7 +433,7 @@ export default function PackagesSection() {
           className="animate-panel-in rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 sm:p-7 lg:p-9 transition-all"
         >
           {/* Container Header */}
-          <div className="flex flex-col gap-3 sm:gap-4 pb-5 sm:pb-6 border-b border-slate-200 dark:border-zinc-800">
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-4 pb-5 sm:pb-6 border-b border-slate-200 dark:border-zinc-800">
             <div className="flex items-start gap-3 sm:gap-4">
               <span className="inline-flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-xl border border-slate-300 bg-white text-[#0284C7] dark:border-zinc-700 dark:bg-zinc-800 dark:text-[#38BDF8] text-sm sm:text-base font-bold font-mono">
                 {pkg.number}
@@ -436,20 +448,10 @@ export default function PackagesSection() {
               </div>
             </div>
 
-            <div className="flex items-center justify-between flex-wrap gap-2 pt-1 sm:pt-0">
+            <div className="flex items-center flex-wrap gap-2 pt-1 sm:pt-0 shrink-0">
               <span className="rounded-lg border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-2.5 py-1 text-[11px] sm:text-xs font-mono font-medium text-slate-600 dark:text-zinc-300">
-                Format: {pkg.formatChip}
+                {PACKAGES_COPY.labels.formatPrefix} {pkg.formatChip}
               </span>
-              <a
-                id={`paket-order-${pkg.id}`}
-                href={buildWhatsAppLink(serviceMessage(pkg))}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 px-3 py-1.5 text-xs sm:text-sm font-semibold text-slate-800 dark:border-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700 transition-colors"
-              >
-                <span>Pesan Layanan</span>
-                <ArrowUpRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
             </div>
           </div>
 
@@ -546,16 +548,14 @@ export default function PackagesSection() {
 
         {/* Footnote */}
         <div className="mt-5 sm:mt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs sm:text-sm text-slate-500 dark:text-zinc-400">
-          <p>* Harga final menyesuaikan jumlah halaman/slide, kompleksitas, dan tenggat waktu.</p>
+          <p>{PACKAGES_COPY.footnote}</p>
           <a
-            href={buildWhatsAppLink(
-              "Halo ZaCreative, saya butuh paket custom di luar pilihan yang tersedia. Boleh diskusi?"
-            )}
+            href={buildWhatsAppLink(PACKAGES_COPY.customPackageCta.whatsappMessage)}
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-1 font-semibold text-[#0284C7] hover:underline dark:text-[#38BDF8]"
           >
-            <span>Butuh paket custom? Diskusikan via WhatsApp</span>
+            <span>{PACKAGES_COPY.customPackageCta.label}</span>
             <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </a>
         </div>
@@ -597,12 +597,12 @@ function TierCard({
         <span
           className={`absolute -top-3 left-1/2 -translate-x-1/2 inline-flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-0.5 text-[10px] font-extrabold uppercase tracking-wider z-10 ${theme.selectedFloatingPill}`}
         >
-          {popular ? "★ Paling Populer" : "Paket Terpilih"}
+          {popular ? PACKAGES_COPY.labels.popularBadge : PACKAGES_COPY.labels.selectedBadge}
         </span>
       ) : (
         popular && (
           <span className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border border-slate-300 bg-slate-100 px-3 py-0.5 text-[10px] font-bold uppercase tracking-wider text-slate-700 z-10 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">
-            ★ Paling Populer
+            {PACKAGES_COPY.labels.popularBadge}
           </span>
         )
       )}
@@ -632,7 +632,7 @@ function TierCard({
         {/* Tier Name */}
         <div className="mt-3 flex items-baseline justify-between gap-2">
           <h4 className="text-lg sm:text-xl font-bold tracking-tight text-navy dark:text-white">
-            Tier {theme.shortTitle}
+            {tier.name}
           </h4>
         </div>
 
@@ -647,7 +647,7 @@ function TierCard({
               selected ? theme.selectedPriceLabel : theme.unselectedPriceLabel
             }`}
           >
-            Mulai dari
+            {PACKAGES_COPY.labels.priceStartFrom}
           </span>
           <div className="mt-1.5 flex items-baseline flex-wrap gap-1.5">
             <span
@@ -695,7 +695,7 @@ function TierCard({
       {/* Action Button: Solid tier color when selected, solid neutral button otherwise */}
       <a
         id={`paket-cta-${pkg.id}-${tier.id}`}
-        href={buildWhatsAppLink(tierMessage(pkg, tier))}
+        href={buildWhatsAppLink(PACKAGES_COPY.buildTierWhatsAppMessage(pkg, tier))}
         target="_blank"
         rel="noopener noreferrer"
         onClick={(e) => e.stopPropagation()}
@@ -703,7 +703,9 @@ function TierCard({
           selected ? theme.selectedCta : theme.unselectedCta
         }`}
       >
-        <span>Pilih {theme.shortTitle}</span>
+        <span>
+          {PACKAGES_COPY.labels.chooseTierPrefix} {theme.shortTitle}
+        </span>
         <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/cta:translate-x-0.5" />
       </a>
     </article>

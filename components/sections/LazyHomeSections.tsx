@@ -20,9 +20,6 @@ const PackagesSection = dynamic(() => import("./PackagesSection"), { loading: Se
 const PortfolioSection = dynamic(() => import("./PortfolioSection"), { loading: SectionSkeleton });
 const ProcessSection = dynamic(() => import("./ProcessSection"), { loading: SectionSkeleton });
 const FaqSection = dynamic(() => import("./FaqSection"), { loading: SectionSkeleton });
-const WhatsAppCtaSection = dynamic(() => import("./WhatsAppCtaSection"), {
-  loading: SectionSkeleton,
-});
 
 interface LazyHomeSectionsProps {
   instagramPosts: InstagramPost[];
@@ -45,9 +42,6 @@ export default function LazyHomeSections({ instagramPosts }: LazyHomeSectionsPro
       </Reveal>
       <Reveal>
         <FaqSection />
-      </Reveal>
-      <Reveal>
-        <WhatsAppCtaSection />
       </Reveal>
     </>
   );

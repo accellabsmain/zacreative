@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ArrowUpRight, Mail } from "lucide-react";
 import { InstagramIcon, WhatsAppIcon } from "@/components/ui/BrandIcons";
 import { CONTACT, buildWhatsAppLink } from "@/lib/constants";
+import { FOOTER_COPY } from "@/lib/copywriting";
 
 export default function Footer() {
   return (
@@ -18,7 +19,7 @@ export default function Footer() {
             <Link href="/" className="inline-flex items-center gap-3 group">
               <Image
                 src="/images/logocolor.webp"
-                alt="Zacreative Studio"
+                alt={FOOTER_COPY.logoAlt}
                 width={160}
                 height={40}
                 className="h-9 w-auto object-contain"
@@ -26,66 +27,36 @@ export default function Footer() {
               />
             </Link>
             <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 max-w-sm leading-relaxed">
-              Studio desain visual spesialis perancangan editorial buku komersial, pitch deck eksekutif investor, dan sistem komunikasi visual berstandar presisi tinggi.
+              {FOOTER_COPY.brandDescription}
             </p>
           </div>
 
           {/* Navigation Links */}
           <div className="sm:col-span-1 md:col-span-3 space-y-3">
             <span className="font-mono text-xs uppercase tracking-wider text-zinc-900 dark:text-zinc-100 font-semibold block">
-              Navigasi
+              {FOOTER_COPY.navigationTitle}
             </span>
             <ul className="space-y-2.5 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">
-              <li>
-                <Link
-                  className="hover:text-zinc-900 dark:hover:text-white transition-colors"
-                  href="/#paket"
-                >
-                  Paket &amp; Harga
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="hover:text-zinc-900 dark:hover:text-white transition-colors"
-                  href="/#portofolio"
-                >
-                  Portofolio Instagram
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="hover:text-zinc-900 dark:hover:text-white transition-colors"
-                  href="/#cara-kerja"
-                >
-                  Alur Kerja Sama
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="hover:text-zinc-900 dark:hover:text-white transition-colors"
-                  href="/#faq"
-                >
-                  Tanya Jawab (FAQ)
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="hover:text-zinc-900 dark:hover:text-white transition-colors"
-                  href="/#kontak"
-                >
-                  Kontak &amp; WhatsApp
-                </Link>
-              </li>
+              {FOOTER_COPY.navigationLinks.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    className="hover:text-zinc-900 dark:hover:text-white transition-colors"
+                    href={link.href}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Contact & Social */}
           <div className="sm:col-span-1 md:col-span-4 space-y-3">
             <span className="font-mono text-xs uppercase tracking-wider text-zinc-900 dark:text-zinc-100 font-semibold block">
-              Kontak &amp; Konsultasi
+              {FOOTER_COPY.contactTitle}
             </span>
             <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
-              Siap mewujudkan narasi visual yang berbobot untuk brand Anda? Diskusikan brief proyek kapan saja bersama tim kami.
+              {FOOTER_COPY.contactDescription}
             </p>
             <div className="pt-1 space-y-2.5">
               <div>
@@ -96,7 +67,7 @@ export default function Footer() {
                   className="inline-flex items-center gap-2 text-xs sm:text-sm text-leaf-strong dark:text-leaf hover:underline font-semibold"
                 >
                   <WhatsAppIcon className="w-4 h-4 shrink-0" />
-                  <span>Chat Konsultasi Cepat via WhatsApp</span>
+                  <span>{FOOTER_COPY.whatsappCtaLabel}</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
                 </a>
               </div>
@@ -126,21 +97,18 @@ export default function Footer() {
 
         {/* Bottom Section: Legal and Copyright metadata */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500 dark:text-zinc-400 text-center sm:text-left">
-          <div>© 2025 ZaCreative Studio. All rights reserved.</div>
+          <div>{FOOTER_COPY.copyright}</div>
           <div className="flex items-center gap-6 font-mono text-xs flex-wrap justify-center">
-            <span className="text-zinc-400 dark:text-zinc-600">[Jakarta, ID]</span>
-            <a
-              className="hover:text-zinc-900 dark:hover:text-white transition-colors"
-              href="#faq"
-            >
-              [Privacy Policy]
-            </a>
-            <a
-              className="hover:text-zinc-900 dark:hover:text-white transition-colors"
-              href="#faq"
-            >
-              [Terms of Service]
-            </a>
+            <span className="text-zinc-400 dark:text-zinc-600">{FOOTER_COPY.locationTag}</span>
+            {FOOTER_COPY.legalLinks.map((legal) => (
+              <a
+                key={legal.label}
+                className="hover:text-zinc-900 dark:hover:text-white transition-colors"
+                href={legal.href}
+              >
+                {legal.label}
+              </a>
+            ))}
           </div>
         </div>
       </div>
