@@ -16,6 +16,7 @@ export interface InstagramPost {
   permalink: string;
   timestamp: string;
   categoryTag?: string;
+  footnote?: string;
   slides?: InstagramSlide[];
 }
 

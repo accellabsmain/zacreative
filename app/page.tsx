@@ -4,11 +4,10 @@ import HeroSection from "@/components/sections/HeroSection";
 import LazyHomeSections from "@/components/sections/LazyHomeSections";
 import FloatingWhatsApp from "@/components/ui/FloatingWhatsApp";
 import Reveal from "@/components/motion/Reveal";
-import { getInstagramFeed } from "@/lib/instagram";
-import { PORTFOLIO_COPY } from "@/lib/copywriting";
+import { getPublicPortfolioPosts } from "@/lib/portfolio-store";
 
 export default async function Home() {
-  const { posts } = await getInstagramFeed(PORTFOLIO_COPY.maxItems);
+  const posts = await getPublicPortfolioPosts();
 
   return (
     <div className="flex flex-col min-h-screen">

@@ -374,12 +374,13 @@ export const PORTFOLIO_COPY = {
     {
       id: "ig-fallback-01",
       caption:
-        "PT ANTAM Tbk × Pusat Studi Energi UGM — Penyusunan 2 volume Buku Putih Kebijakan Strategis (487 halaman) dalam sprint 7 hari kerja, siap cetak offset standar FOGRA39.",
+        "Penyusunan 2 volume Buku Putih Kebijakan Strategis (487 hal) siap cetak offset standar FOGRA39.",
       mediaType: "CAROUSEL_ALBUM",
       imageUrl: "/images/assets/asset_7.webp",
       permalink: SITE_COPY.contact.instagramUrl,
       timestamp: "2026-10-18T09:00:00Z",
-      categoryTag: "Layout Buku",
+      categoryTag: "Desain Layout Buku",
+      footnote: "PT ANTAM Tbk × UGM • 487 Hal",
       slides: [
         { id: "s-01-1", type: "IMAGE", url: "/images/assets/asset_7.webp" },
         { id: "s-01-2", type: "IMAGE", url: "/images/assets/asset_8.webp" },
@@ -389,12 +390,13 @@ export const PORTFOLIO_COPY = {
     {
       id: "ig-fallback-02",
       caption:
-        "Sistem grid editorial 12-kolom dan hierarki tipografi bab pembuka untuk publikasi riset energi dan hilirisasi mineral nasional.",
+        "Sistem grid editorial 12-kolom & hierarki tipografi publikasi riset energi nasional.",
       mediaType: "CAROUSEL_ALBUM",
       imageUrl: "/images/assets/asset_8.webp",
       permalink: SITE_COPY.contact.instagramUrl,
       timestamp: "2026-10-12T11:30:00Z",
-      categoryTag: "Editorial Grid",
+      categoryTag: "Desain Layout Buku",
+      footnote: "Publikasi Riset Nasional • 2026",
       slides: [
         { id: "s-02-1", type: "IMAGE", url: "/images/assets/asset_8.webp" },
         { id: "s-02-2", type: "IMAGE", url: "/images/assets/asset_9.webp" },
@@ -403,12 +405,13 @@ export const PORTFOLIO_COPY = {
     {
       id: "ig-fallback-03",
       caption:
-        "Kementerian PUPR — Memori Akhir Tugas & Profil Sekretariat Jenderal (343 halaman). Dokumentasi 10 tahun infrastruktur nasional dengan infografis data spasial.",
+        "Memori Akhir Tugas & Profil Sekretariat Jenderal (343 hal) dengan infografis data spasial.",
       mediaType: "CAROUSEL_ALBUM",
       imageUrl: "/images/assets/asset_6.webp",
       permalink: SITE_COPY.contact.instagramUrl,
       timestamp: "2026-10-04T08:15:00Z",
-      categoryTag: "Publikasi Instansi",
+      categoryTag: "Desain Layout Buku",
+      footnote: "Kementerian PUPR • 343 Hal",
       slides: [
         { id: "s-03-1", type: "IMAGE", url: "/images/assets/asset_6.webp" },
         { id: "s-03-2", type: "IMAGE", url: "/images/assets/asset_5.webp" },
@@ -418,12 +421,13 @@ export const PORTFOLIO_COPY = {
     {
       id: "ig-fallback-04",
       caption:
-        "Pitch Deck & Financial Model Series A — Visualisasi unit economics, peta pasar TAM/SAM/SOM, dan alur cerita eksekutif berformat 16:9 widescreen.",
+        "Pitch Deck & Financial Model Series A — visualisasi unit economics dan peta pasar 16:9 widescreen.",
       mediaType: "CAROUSEL_ALBUM",
       imageUrl: "/images/assets/asset_3.webp",
       permalink: SITE_COPY.contact.instagramUrl,
       timestamp: "2026-09-27T14:00:00Z",
-      categoryTag: "Pitch Deck",
+      categoryTag: "Desain PPT",
+      footnote: "Series A Pitch Deck • 32 Slide",
       slides: [
         { id: "s-04-1", type: "IMAGE", url: "/images/assets/asset_3.webp" },
         { id: "s-04-2", type: "IMAGE", url: "/images/assets/asset_4.webp" },
@@ -432,23 +436,25 @@ export const PORTFOLIO_COPY = {
     {
       id: "ig-fallback-05",
       caption:
-        "Antologi Arsitektur & Budaya Nusantara — Tata letak dwibahasa (ID/EN) hardcover dengan kurasi 180 fotografi dokumenter dan indeks teknis.",
+        "Key Visual & Poster Kampanye Pameran Arsitektur Nusantara format cetak A1 dan adaptasi media sosial.",
       mediaType: "IMAGE",
       imageUrl: "/images/assets/asset_2.webp",
       permalink: SITE_COPY.contact.instagramUrl,
       timestamp: "2026-09-19T10:20:00Z",
-      categoryTag: "Coffee Table Book",
+      categoryTag: "Desain Poster",
+      footnote: "Kampanye Pameran • Print & IG",
       slides: [{ id: "s-05-1", type: "IMAGE", url: "/images/assets/asset_2.webp" }],
     },
     {
       id: "ig-fallback-06",
       caption:
-        "Sustainability & ESG Governance Report — Integrasi 45 matriks materialitas, bagan tata kelola, dan pelaporan keberlanjutan berstandar GRI & OJK.",
+        "Executive Presentation & ESG Highlights Deck berstandar GRI & OJK untuk paparan RUPS tahunan.",
       mediaType: "CAROUSEL_ALBUM",
       imageUrl: "/images/assets/asset_5.webp",
       permalink: SITE_COPY.contact.instagramUrl,
       timestamp: "2026-09-10T13:45:00Z",
-      categoryTag: "Annual Report",
+      categoryTag: "Desain PPT",
+      footnote: "RUPS & ESG Deck • 45 Slide",
       slides: [
         { id: "s-06-1", type: "IMAGE", url: "/images/assets/asset_5.webp" },
         { id: "s-06-2", type: "IMAGE", url: "/images/assets/asset_6.webp" },
