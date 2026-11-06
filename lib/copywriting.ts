@@ -1,25 +1,4 @@
-/**
- * ============================================================================
- * PUSAT COPYWRITING ZACREATIVE STUDIO
- * ============================================================================
- * File ini berisi seluruh teks (copywriting) yang tampil di halaman website,
- * disusun berurutan dari bagian paling atas hingga paling bawah:
- *
- *   1. SITE_COPY      — Metadata SEO, Judul Tab Browser & Kontak Utama
- *   2. NAVBAR_COPY    — Navigasi Header Atas & Tombol Chat
- *   3. HERO_COPY      — Bagian Utama Atas (Headline, Subheadline, CTA & Statistik)
- *   4. TRUST_COPY     — Daftar Instansi & Klien Kepercayaan (Marquee)
- *   5. PACKAGES_COPY  — Katalog Layanan & Paket Harga (Bronze, Silver, Gold)
- *   6. PORTFOLIO_COPY — Bagian Portofolio Instagram & Data Karya Cadangan
- *   7. PROCESS_COPY   — Bagian 5 Tahap Alur Kerja Studio
- *   8. FAQ_COPY       — Bagian Tanya Jawab (QnA) & Kartu Konsultasi WhatsApp
- *   9. FOOTER_COPY    — Bagian Kaki Halaman (Deskripsi, Navigasi, Kontak & Hak Cipta)
- *
- * Cara mengubah teks:
- * Cukup ubah teks di dalam tanda kutip ("...") pada bagian yang diinginkan,
- * lalu simpan file ini. Tampilan website akan otomatis menyesuaikan.
- * ============================================================================
- */
+
 
 import type { PackageTier, ServicePackage } from "@/lib/data/packages";
 import type { InstagramPost } from "@/lib/data/instagram-fallback";
@@ -28,35 +7,40 @@ import type { InstagramPost } from "@/lib/data/instagram-fallback";
  * 1. METADATA SEO & KONTAK UTAMA
  * ============================================================================ */
 export const SITE_COPY = {
-  name: "ZaCreative Studio",
+  name: "Zacreative Studio",
   shortName: "Zacreative",
-  titleDefault: "Zacreative — Editorial & Technical Design Studio",
-  titleTemplate: "%s | Zacreative Studio",
+  titleDefault: "Zacreative - Jasa Desain Layout Buku & Presentasi",
+  titleTemplate: "%s | Zacreative",
   description:
-    "Visual solutions for high-impact publications, corporate whitepapers, investor pitch decks, and data-dense annual reports with architectural precision.",
+    "Jasa desain layout buku, laporan, presentasi, poster infografis, dan kebutuhan desain layout lainnya.",
   twitterDescription:
-    "Visual solutions for high-impact publications, corporate whitepapers, investor pitch decks, and data-dense annual reports.",
+    "Jasa desain layout buku, laporan, presentasi, poster infografis, dan kebutuhan desain layout lainnya.",
   schemaDescription:
-    "Studio desain visual spesialis layout buku, presentasi strategis pitch deck, dan materi visual kampanye dengan standar editorial profesional.",
+    "Zacreative adalah jasa desain layout buku, laporan, presentasi, poster infografis, dan kebutuhan desain layout lainnya.",
   keywords: [
     "Zacreative",
-    "Studio Desain Editorial",
-    "Layout Buku",
-    "Pitch Deck Eksekutif",
-    "Desain Laporan Tahunan",
-    "Buku Putih Kebijakan",
-    "Modern Editorial Tech",
-    "Annual Report Design Jakarta",
+    "jasa layout buku",
+    "layout buku",
+    "desain buku",
+    "layout laporan",
+    "desain laporan tahunan",
+    "annual report design",
+    "desain presentasi",
+    "desain PowerPoint",
+    "desain poster",
+    "desain infografis",
+    "editorial design",
+    "visual communication",
   ],
   contact: {
     whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "6282128919491",
     instagramHandle: "zacreative.id",
     instagramUrl: "https://www.instagram.com/zacreative.id",
-    linkedinUrl: "https://www.linkedin.com/company/zacreative",
+    linkedinUrl: "",
     email: "hello@zacreative.com",
   },
   defaultWhatsAppMessage:
-    "Halo ZaCreative, saya ingin konsultasi dan pemesanan layanan desain. Boleh dibantu?",
+    "Halo Zacreative, saya ingin berkonsultasi mengenai layanan desain. Boleh dibantu?",
   floatingWhatsApp: {
     label: "Chat WhatsApp",
     ariaLabel: "Chat konsultasi via WhatsApp",
@@ -71,7 +55,7 @@ export const NAVBAR_COPY = {
   links: [
     { label: "Paket", href: "/#paket" },
     { label: "Portofolio", href: "/#portofolio" },
-    { label: "Cara Kerja", href: "/#cara-kerja" },
+    { label: "Cara Order", href: "/#cara-kerja" },
     { label: "FAQ", href: "/#faq" },
     { label: "Kontak", href: "/#kontak" },
   ],
@@ -84,19 +68,17 @@ export const NAVBAR_COPY = {
  * 3. HERO SECTION (BAGIAN PEMBUKA UTAMA)
  * ============================================================================ */
 export const HERO_COPY = {
-  heading:
-    "Publikasi dan presentasi yang dirancang untuk dibaca, dipahami, dan dipercaya.",
+  heading: "Shaping words into visual works.",
   description:
-    "Kami mentransformasi laporan korporat, pitch deck investor, dan visual poster menjadi aset strategis berstandar dunia.",
+    "Zacreative adalah jasa desain layout buku, laporan, presentasi, poster infografis, dan kebutuhan desain layout lainnya.",
   primaryCtaLabel: "Konsultasi & Pemesanan",
   secondaryPaketLabel: "Lihat Paket",
   secondaryPortfolioLabel: "Lihat Portofolio",
-  onlineStatus:
-    "Online via WhatsApp — konsultasi gratis, respon cepat di jam kerja",
+  onlineStatus: "",
   stats: [
-    { value: "50+", label: "Publikasi" },
-    { value: "100%", label: "Tepat Waktu" },
-    { value: "4.9/5", label: "Kepuasan Klien" },
+    { value: "50+", label: "Klien Terpuaskan" },
+    { value: "150+", label: "Layout Dibuat" },
+    { value: "5+", label: "Tahun Berkarya" },
   ],
   /** Teks ilustrasi kartu portofolio di sisi kanan Hero (tampil di layar desktop) */
   showcase: {
@@ -128,107 +110,123 @@ export const HERO_COPY = {
 /* ============================================================================
  * 4. TRUST INDICATORS (DAFTAR KLIEN & INSTANSI)
  * ============================================================================ */
+export interface TrustClient {
+  name: string;
+  desc: string;
+  logo?: string;
+}
+
 export const TRUST_COPY = {
-  heading: "DIPERCAYA OLEH KEMENTERIAN, BUMN, DAN INSTITUSI RISET STRATEGIS",
+  heading:
+    "DIPERCAYA OLEH KEMENTERIAN, LEMBAGA, BUMN, HINGGA PERUSAHAAN SWASTA",
   clients: [
-    { name: "Kementerian PUPR", desc: "Instansi Pemerintah RI" },
-    { name: "PT ANTAM Tbk", desc: "BUMN Pertambangan" },
-    { name: "KBRI Damaskus", desc: "Korps Diplomatik RI" },
-    { name: "PT JAKPRO", desc: "BUMD DKI Jakarta" },
-    { name: "Kemendikbudristek RI", desc: "Ditjen Vokasi" },
-    { name: "LPDP Kemenkeu", desc: "Lembaga Riset Beasiswa" },
-    { name: "UGM PSE", desc: "Pusat Studi Energi" },
-    { name: "Entalphy Consulting", desc: "Konsultan Energi" },
-    { name: "Ayo Tumbuh", desc: "Edupreneur Consultancy" },
-    { name: "AI-RECHT", desc: "Riset Teknologi AI" },
-  ],
+    { name: "Kementerian PUPR", desc: "Instansi Pemerintah RI", logo: "" },
+    { name: "PT ANTAM Tbk", desc: "BUMN Pertambangan", logo: "" },
+    { name: "KBRI Damaskus", desc: "Korps Diplomatik RI", logo: "" },
+    { name: "PT JAKPRO", desc: "BUMD DKI Jakarta", logo: "" },
+    { name: "Kemendikbudristek RI", desc: "Ditjen Vokasi", logo: "" },
+    { name: "LPDP Kemenkeu", desc: "Lembaga Riset Beasiswa", logo: "" },
+    { name: "UGM PSE", desc: "Pusat Studi Energi", logo: "" },
+    { name: "Entalphy Consulting", desc: "Konsultan Energi", logo: "" },
+    { name: "Ayo Tumbuh", desc: "Edupreneur Consultancy", logo: "" },
+    { name: "AI-RECHT", desc: "Riset Teknologi AI", logo: "" },
+  ] as TrustClient[],
 } as const;
 
 /* ============================================================================
  * 5. PACKAGES SECTION (LAYANAN & TINGKATAN PAKET)
  * ============================================================================ */
 export const PACKAGES_COPY = {
-  badge: "[KATALOG & PAKET LAYANAN]",
-  heading: "Layanan & Tingkatan Paket",
-  description:
-    "Pilih layanan, lalu bandingkan opsi tier Bronze, Silver, dan Gold sesuai kebutuhan proyek Anda.",
+  badge: "",
+  heading: "Layanan & Pilihan Paket",
+  description: "Pilih layanan dan paket sesuai kebutuhan proyek Anda.",
   mobileCategoryNames: {
-    "layout-buku": "Desain Buku",
-    presentasi: "Pitch Deck",
-    poster: "Poster Visual",
+    "layout-buku": "Layout Buku",
+    presentasi: "Presentasi",
+    poster: "Poster Infografis",
   } as Record<string, string>,
   labels: {
-    formatPrefix: "Format:",
+    formatPrefix: "",
     popularBadge: "★ Paling Populer",
     selectedBadge: "Paket Terpilih",
-    tierHeadingPrefix: "Tier",
+    tierHeadingPrefix: "",
     priceStartFrom: "Mulai dari",
     chooseTierPrefix: "Pilih",
     prevServiceAria: "Layanan sebelumnya",
     nextServiceAria: "Layanan berikutnya",
   },
-  footnote:
-    "* Harga final menyesuaikan jumlah halaman/slide, kompleksitas, dan tenggat waktu.",
+  footnote: "",
   customPackageCta: {
-    label: "Butuh paket custom? Diskusikan via WhatsApp",
-    whatsappMessage:
-      "Halo ZaCreative, saya butuh paket custom di luar pilihan yang tersedia. Boleh diskusi?",
+    label: "",
+    whatsappMessage: "",
   },
   buildTierWhatsAppMessage: (pkg: ServicePackage, tier: PackageTier) =>
-    `Halo ZaCreative, saya tertarik dengan paket *${pkg.title} – ${tier.name}* (mulai ${tier.priceRange}${pkg.unit}). Boleh info lebih lanjut untuk proyek saya?`,
+    `Halo Zacreative, saya tertarik dengan paket *${pkg.title} – ${tier.name}*. Saya ingin berkonsultasi lebih lanjut mengenai kebutuhan proyek saya.`,
   services: [
     {
       id: "layout-buku",
       number: "01",
-      tabLabel: "Layout & Tata Letak Buku",
-      title: "Layout & Tata Letak Buku",
-      summary:
-        "Perancangan tipografi, grid hierarki editorial komersial, buku ajar, novel & monograf.",
-      formatChip: "InDesign / PDF Print Ready",
-      unit: "/hal",
+      tabLabel: "Layout Buku",
+      title: "Layout Buku",
+      summary: "",
+      formatChip: "",
+      unit: "/halaman",
       unitLabel: "per halaman",
       tiers: [
         {
           id: "bronze",
-          label: "Paket Standar",
-          name: "Tier Bronze",
-          priceRange: "Rp 15k-25k",
+          label: "",
+          name: "Paket Bronze",
+          priceRange: "Rp5.000",
           description:
-            "Cocok untuk naskah teks dominan, novel sastra, kumpulan puisi, atau buku saku.",
+            "Desain layout sederhana yang didominasi teks, cocok untuk buku biografi dan kumpulan cerita.",
           features: [
-            "1 Konsep Master Grid",
-            "2x Revisi Editorial",
-            "Pengerjaan: 5–7 Hari Kerja",
-            "Output: PDF High-Res Cetak",
+            "1x revisi",
+            "Pengerjaan 7-10 hari",
+            "Plus desain cover buku Rp300.000",
           ],
         },
         {
           id: "silver",
-          label: "Paket Editorial",
-          name: "Tier Silver",
-          priceRange: "Rp 30k-50k",
+          label: "",
+          name: "Paket Silver",
+          priceRange: "Rp15.000",
           description:
-            "Ideal untuk buku non-fiksi berilustrasi, modul pelatihan, handbook korporasi, dan biografi.",
+            "Desain layout dengan elemen visual dan teks yang seimbang, cocok untuk modul pelatihan, laporan instansi, dan laporan penelitian.",
           features: [
-            "2 Opsi Sample Layout Bab",
-            "3x Revisi Mayor + Typo Check",
-            "Pengerjaan: 7–12 Hari Kerja",
-            "Output: PDF Cetak + ePub + Master ID",
+            "3x revisi",
+            "Pengerjaan 7-10 hari",
+            "Plus desain cover buku Rp300.000",
+          ],
+        },
+        {
+          id: "gold",
+          label: "",
+          name: "Paket Gold",
+          priceRange: "Rp25.000",
+          description:
+            "Desain layout dengan elemen visual dan teks yang seimbang, cocok untuk modul pelatihan, laporan instansi, dan laporan penelitian.",
+          features: [
+            "Revisi sepuasnya",
+            "Pengerjaan 4-7 hari",
+            "Custom grafik dan tabel",
+            "Plus desain cover buku Rp300.000",
           ],
           popular: true,
         },
         {
-          id: "gold",
-          label: "Paket Premium",
-          name: "Tier Gold",
-          priceRange: "Rp 65k-100k",
+          id: "platinum",
+          label: "",
+          name: "Paket Platinum",
+          priceRange: "Rp35.000",
+          showPriceStartFrom: true,
           description:
-            "Untuk buku tahunan korporasi, coffee table book seni, katalog produk mewah & monograf.",
+            "Desain layout dinamis dengan elemen visual dan tata letak bervariasi, cocok untuk portofolio, company profile, dan buku yang membutuhkan variasi layout lainnya.",
           features: [
-            "Custom Grid Modular Khusus",
-            "Revisi Fleksibel Hingga Acc Percetakan",
-            "Supervisi Format Warna CMYK Percetakan",
-            "Output: Master InDesign Komplit + Interactive PDF",
+            "Revisi sepuasnya",
+            "Pengerjaan 4-7 hari",
+            "Custom grafik dan tabel",
+            "Plus desain cover buku Rp300.000",
           ],
         },
       ],
@@ -236,112 +234,110 @@ export const PACKAGES_COPY = {
     {
       id: "presentasi",
       number: "02",
-      tabLabel: "Presentasi & Pitch Deck",
-      title: "Presentasi & Pitch Deck",
-      summary:
-        "Dek presentasi untuk pitch investor, laporan manajemen, seminar, dan materi pelatihan korporat.",
-      formatChip: "PowerPoint / Keynote / Google Slides",
-      unit: "/slide",
-      unitLabel: "per slide",
+      tabLabel: "Presentasi",
+      title: "Presentasi",
+      summary: "",
+      formatChip: "",
+      unit: "/20 slide",
+      unitLabel: "per 20 slide",
       tiers: [
         {
           id: "bronze",
-          label: "Paket Standar",
-          name: "Tier Bronze",
-          priceRange: "Rp 35k-60k",
+          label: "",
+          name: "Paket Bronze",
+          priceRange: "Rp300.000",
           description:
-            "Merapikan materi yang sudah ada menjadi dek yang konsisten, bersih, dan mudah dibaca.",
+            "Desain presentasi sederhana berbasis teks dengan sedikit elemen visual.",
           features: [
-            "1 Master Template Slide",
-            "2x Revisi Visual",
-            "Pengerjaan: 2–4 Hari Kerja",
-            "Output: PPTX Editable + PDF",
+            "1x revisi",
+            "Pengerjaan 7-10 hari",
+            "Mengubah teks Word ke format PPT+5k/slide",
           ],
         },
         {
           id: "silver",
-          label: "Paket Bisnis",
-          name: "Tier Silver",
-          priceRange: "Rp 75k-120k",
+          label: "",
+          name: "Paket Silver",
+          priceRange: "Rp500.000",
           description:
-            "Untuk pitch deck, company profile, dan laporan manajemen dengan grafik & infografis.",
+            "Desain presentasi standar dengan elemen visual dan teks yang seimbang.",
           features: [
-            "2 Opsi Konsep Visual",
-            "3x Revisi + Penyelarasan Narasi",
-            "Pengerjaan: 4–7 Hari Kerja",
-            "Output: PPTX / Keynote + Ikon & Chart Custom",
+            "3x revisi",
+            "Pengerjaan 5-7 hari",
+            "Custom grafik dan tabel",
+            "Mengubah teks Word ke format PPT+5k/slide",
           ],
-          popular: true,
         },
         {
           id: "gold",
-          label: "Paket Premium",
-          name: "Tier Gold",
-          priceRange: "Rp 150k-250k",
+          label: "",
+          name: "Paket Gold",
+          priceRange: "Rp700.000",
+          showPriceStartFrom: true,
           description:
-            "Dek investor & keynote eksekutif dengan storytelling, visualisasi data kompleks, dan animasi.",
+            "Desain dinamis dengan elemen visual dan tata letak yang bervariasi.",
           features: [
-            "Struktur Storyline & Copy Polish",
-            "Revisi Fleksibel Hingga Final",
-            "Animasi Transisi & Speaker Notes",
-            "Output: Master Template + Brand Kit Slide",
+            "Revisi sepuasnya",
+            "Pengerjaan 3-5 hari",
+            "Custom grafik dan tabel",
+            "Mengubah teks Word ke format PPT+5k/slide",
           ],
+          popular: true,
         },
       ],
     },
     {
       id: "poster",
       number: "03",
-      tabLabel: "Poster & Kampanye Visual",
-      title: "Poster & Kampanye Visual",
-      summary:
-        "Poster acara, key visual kampanye, infografis kebijakan, dan konten media sosial.",
-      formatChip: "Illustrator / Photoshop / Print & Digital",
+      tabLabel: "Poster Infografis",
+      title: "Poster Infografis",
+      summary: "",
+      formatChip: "",
       unit: "/desain",
       unitLabel: "per desain",
       tiers: [
         {
           id: "bronze",
-          label: "Paket Standar",
-          name: "Tier Bronze",
-          priceRange: "Rp 150k-300k",
+          label: "",
+          name: "Paket Bronze",
+          priceRange: "Rp300.000",
           description:
-            "Poster tunggal untuk acara, pengumuman, atau feed media sosial dengan materi yang sudah siap.",
+            "Desain sederhana untuk poster promosi dan poster kegiatan.",
           features: [
-            "1 Konsep Desain",
-            "2x Revisi Minor",
-            "Pengerjaan: 1–3 Hari Kerja",
-            "Output: PNG/JPG + PDF Cetak",
+            "Materi singkat (<50 kata)",
+            "1x revisi",
+            "Pengerjaan 7-10 hari",
           ],
         },
         {
           id: "silver",
-          label: "Paket Kampanye",
-          name: "Tier Silver",
-          priceRange: "Rp 350k-600k",
+          label: "",
+          name: "Paket Silver",
+          priceRange: "Rp500.000",
           description:
-            "Key visual dengan adaptasi multi-format untuk kampanye cetak dan digital yang konsisten.",
+            "Desain standar untuk poster promosi produk dan poster kampanye instansi.",
           features: [
-            "2 Opsi Konsep Key Visual",
-            "3x Revisi Mayor",
-            "Adaptasi 3 Format (Feed, Story, A3)",
-            "Output: File Cetak + Digital + Source",
+            "Materi standar (<100 kata)",
+            "3x revisi",
+            "Pengerjaan 5-7 hari",
+            "Custom ilustrasi",
           ],
-          popular: true,
         },
         {
           id: "gold",
-          label: "Paket Premium",
-          name: "Tier Gold",
-          priceRange: "Rp 750k-1,5jt",
+          label: "",
+          name: "Paket Gold",
+          priceRange: "Rp700.000",
+          showPriceStartFrom: true,
           description:
-            "Sistem visual kampanye lengkap: seri poster, infografis data, dan aset format besar.",
+            "Desain dinamis untuk poster penelitian, infografis, dan poster perlombaan.",
           features: [
-            "Art Direction & Moodboard Kampanye",
-            "Revisi Fleksibel Hingga Final",
-            "Adaptasi Format Besar (Banner, Roll-Up, Billboard)",
-            "Output: Master Vector + Campaign Guideline",
+            "Materi padat (<250 kata)",
+            "Revisi sepuasnya",
+            "Pengerjaan 3-5 hari",
+            "Custom ilustrasi",
           ],
+          popular: true,
         },
       ],
     },
@@ -354,7 +350,7 @@ export const PACKAGES_COPY = {
 export const PORTFOLIO_COPY = {
   maxItems: 6,
   badge: "[PORTOFOLIO]",
-  heading: "Karya Terbaru dari Instagram",
+  heading: "Karya Terbaru Zacreative",
   description:
     "Cuplikan publikasi buku, pitch deck, dan kampanye visual terbaru yang kami sinkronkan langsung dari Instagram resmi ZaCreative.",
   followButtonPrefix: "Follow",
@@ -467,51 +463,55 @@ export const PORTFOLIO_COPY = {
  * 7. PROCESS SECTION (CARA KERJA STUDIO)
  * ============================================================================ */
 export const PROCESS_COPY = {
-  badge: "[ALUR KERJA STUDIO]",
-  heading: "Proses Kolaborasi Terstruktur Tanpa Friksi",
+  badge: "",
+  heading: "Cara Order di Zacreative",
   description:
-    "Dari naskah mentah hingga dokumen siap cetak dan rilis digital, setiap fase dikelola dengan milestone transparan dan kepatuhan tenggat waktu ketat.",
-  deliverablePrefix: "Output Milestone:",
+    "Mulai dari konsultasi melalui WhatsApp hingga desain final diterima, berikut tahapan pemesanan layanan Zacreative.",
+  deliverablePrefix: "",
   steps: [
     {
       num: "01",
       title: "Konsultasi & Pemilihan Paket",
-      summary: "Eksplorasi kebutuhan naskah, volume halaman, dan penetapan format output.",
+      summary:
+        "Hubungi kami melalui WhatsApp, konsultasikan kebutuhan desain, lalu pilih layanan dan paket yang sesuai.",
       details:
-        "Menelaah tujuan proyek, jenis naskah mentah, estimasi ketebalan halaman, dan jadwal rilis yang Anda targetkan. Kami memberikan rekomendasi paket paling efisien.",
-      deliverable: "Rekomendasi Paket & Estimasi Biaya",
+        "Diskusikan jenis pekerjaan, jumlah halaman/slide/desain, serta kebutuhan proyek. Zacreative membantu mengarahkan pilihan layanan dan paket sesuai kebutuhan.",
+      deliverable: "",
     },
     {
       num: "02",
-      title: "Pengisian Formulir Brief Naskah",
-      summary: "Pengiriman materi konten, dokumen teks final, dan panduan identitas.",
+      title: "Isi Formulir Pemesanan",
+      summary: "Lengkapi formulir pemesanan setelah layanan dan paket disepakati.",
       details:
-        "Pengiriman manuskrip final, materi grafis pendukung, pedoman merek (brand guidelines), dan referensi visual yang diinginkan melalui formulir brief terstruktur.",
-      deliverable: "Brief Dokumen Terkonfirmasi",
+        "Isi formulir pemesanan dengan informasi kebutuhan proyek dan materi yang diperlukan agar pekerjaan dapat dimulai sesuai brief.",
+      deliverable: "",
     },
     {
       num: "03",
-      title: "Pembayaran DP & Penjadwalan Milestone",
-      summary: "Aktivasi proyek dan penguncian jadwal sprint tim desainer.",
+      title: "Pembayaran DP & Pembuatan Sample",
+      summary:
+        "Lakukan pembayaran uang muka (DP) dan kami akan membuatkan sample desain.",
       details:
-        "Pembayaran uang muka komitmen kerja (50%) dan penerbitan jadwal kerja resmi (work breakdown schedule) dengan tanggal review dan tenggat serah terima pasti.",
-      deliverable: "Project Roadmap & Timeline Lock",
+        "Proses pembuatan sample dimulai setelah pembayaran DP dikonfirmasi. Pembuatan sample estimasi 3 hari di luar durasi pengerjaan proyek.",
+      deliverable: "",
     },
     {
       num: "04",
-      title: "Proses Desain & Putaran Revisi",
-      summary: "Penyusunan tata letak dalam kisi modular dan evaluasi berkala.",
+      title: "Proses Desain, Review, & Revisi",
+      summary:
+        "Kami mulai mengerjakan desain, kemudian Anda dapat melakukan review dan revisi.",
       details:
-        "Penataan layout dalam master grid, penyerahan preview draft parsial (bab kunci / sampel slide), dan pelaksanaan revisi terstruktur sesuai batas paket yang disepakati.",
-      deliverable: "Draft Review & Feedback Iteration",
+        "Proses desain mengikuti sample yang disepakati. Klien dapat memberikan masukan dan revisi sesuai ketentuan paket. Periode review dan revisi berlangsung hingga 30 hari.",
+      deliverable: "",
     },
     {
       num: "05",
-      title: "Finalisasi & Serah Terima Master File",
-      summary: "Pemeriksaan pre-flight percetakan dan pengiriman berkas lengkap.",
+      title: "Pengiriman Desain Final & Pelunasan",
+      summary:
+        "Desain final dikirimkan, kemudian klien melakukan pelunasan pembayaran.",
       details:
-        "Pelunasan pembayaran sisa, pengecekan akhir pre-flight percetakan (overprint, bleed, color profile), dan pengiriman berkas master (.INDD, PDF cetak offset, arsip aset).",
-      deliverable: "Production-Ready Package + InDesign Master",
+        "Setelah proses review dan revisi selesai, Zacreative mengirimkan desain final. Pelunasan pembayaran dilakukan setelah pengiriman desain final.",
+      deliverable: "",
     },
   ],
 } as const;
@@ -536,23 +536,23 @@ export const FAQ_COPY = {
   items: [
     {
       q: "Berapa lama waktu pengerjaan standar untuk satu buku?",
-      a: "Waktu pengerjaan standar berkisar antara 2 hingga 4 minggu untuk buku tebal (200-400 halaman). Namun untuk naskah mendesak (seperti buku putih kebijakan kementerian atau laporan tahunan RUPS), kami menyediakan alur Sprint Turnaround 7-10 hari kerja dengan penugasan 2 lead desainer khusus.",
+      a: "Waktu pengerjaan standar berkisar antara 1–4 minggu, mulai dari pemesanan hingga finalisasi. Durasi pengerjaan dapat menyesuaikan jumlah halaman, kompleksitas materi, dan kebutuhan proyek. Timeline juga dapat didiskusikan dan disepakati pada konsultasi awal.",
     },
     {
       q: "Apakah Zacreative bersedia menandatangani NDA kerahasiaan sebelum proyek dimulai?",
-      a: "Ya, tentu saja. Sebagian besar klien kami adalah instansi kementerian, BUMN, dan firma modal ventura yang menangani data rahasia pra-rilis. Kami siap menandatangani Non-Disclosure Agreement (NDA) sebelum dokumen atau draft naskah dibagikan.",
+      a: "Ya, tentu saja. Kami memahami pentingnya menjaga kerahasiaan dokumen dan informasi klien, terutama untuk proyek yang melibatkan materi belum dipublikasikan. Zacreative bersedia menandatangani perjanjian kerahasiaan (NDA) sebelum dokumen atau draft naskah dibagikan.",
     },
     {
-      q: "Bagaimana jika ada revisi data atau naskah di tengah jalan?",
-      a: "Setiap paket mencakup putaran revisi terstruktur (2-3 putaran evaluasi). Kami juga memahami bahwa naskah laporan seringkali mengalami perubahan angka audit di menit-menit akhir, sehingga penyesuaian minor tabel dan angka tetap kami layani tanpa biaya tambahan selama periode draft review.",
+      q: "Bagaimana ketentuan revisi untuk setiap paket?",
+      a: "Setiap paket memiliki ketentuan revisi yang berbeda. Paket Platinum dan Gold mendapatkan revisi tanpa batas, paket Silver mendapatkan 3 kali revisi, sedangkan paket Bronze mendapatkan 1 kali revisi. Periode review dan revisi berlaku maksimal 30 hari.",
     },
     {
-      q: "Apakah saya mendapatkan file master InDesign dan font?",
-      a: "Ya. Setelah pelunasan, seluruh paket berkas master Adobe InDesign (.INDD), format pertukaran (.IDML), font terpaket rapi, dan aset vektor diagram diserahkan penuh menjadi hak milik instansi Anda.",
+      q: "Apakah ada biaya tambahan untuk layanan tertentu?",
+      a: "Ya, beberapa layanan memiliki biaya tambahan sesuai kebutuhan proyek. Untuk layanan layout buku, desain cover dikenakan biaya Rp300.000. Sementara itu, untuk presentasi yang materinya masih berupa dokumen Word dan perlu dikonversi ke format PowerPoint, terdapat biaya tambahan sebesar Rp5.000 per slide. Kebutuhan lain di luar cakupan paket dapat dikonsultasikan terlebih dahulu sebelum proyek dimulai.",
     },
     {
-      q: "Bagaimana jika proyek kami membutuhkan koordinasi langsung dengan pihak percetakan?",
-      a: "Tim kami siap berkoordinasi secara teknis langsung dengan vendor percetakan offset pilihan Anda. Kami melakukan proofing pra-cetak (pre-flight FOGRA39, bleed, crop mark, dan overprint) guna memastikan hasil cetak fisik presisi tanpa kendala.",
+      q: "Apakah draft harus sudah final sebelum proses layout dimulai?",
+      a: "Tidak harus. Kami tetap dapat menerima draft yang belum final untuk keperluan konsultasi dan pembuatan sample desain. Namun, sebelum proses pengerjaan keseluruhan draft dimulai, kami menyarankan agar draft sudah final untuk menghindari perubahan substansial selama proses layout berlangsung. Perubahan materi setelah proses desain berjalan dapat memengaruhi durasi pengerjaan dan kebutuhan revisi.",
     },
   ],
 } as const;
@@ -561,25 +561,23 @@ export const FAQ_COPY = {
  * 9. FOOTER (BAGIAN BAWAH HALAMAN)
  * ============================================================================ */
 export const FOOTER_COPY = {
-  logoAlt: "Zacreative Studio",
+  logoAlt: "Zacreative",
   brandDescription:
-    "Studio desain visual spesialis perancangan editorial buku komersial, pitch deck eksekutif investor, dan sistem komunikasi visual berstandar presisi tinggi.",
+    "Jasa desain layout buku, laporan, presentasi, poster infografis, dan kebutuhan desain layout lainnya.",
   navigationTitle: "Navigasi",
   navigationLinks: [
     { label: "Paket & Harga", href: "/#paket" },
-    { label: "Portofolio Instagram", href: "/#portofolio" },
-    { label: "Alur Kerja Sama", href: "/#cara-kerja" },
-    { label: "Tanya Jawab (FAQ)", href: "/#faq" },
-    { label: "Kontak & WhatsApp", href: "/#kontak" },
+    { label: "Portofolio", href: "/#portofolio" },
+    { label: "Cara Order", href: "/#cara-kerja" },
+    { label: "FAQ", href: "/#faq" },
   ],
-  contactTitle: "Kontak & Konsultasi",
-  contactDescription:
-    "Siap mewujudkan narasi visual yang berbobot untuk brand Anda? Diskusikan brief proyek kapan saja bersama tim kami.",
-  whatsappCtaLabel: "Chat Konsultasi Cepat via WhatsApp",
-  copyright: "© 2025 ZaCreative Studio. All rights reserved.",
+  contactTitle: "Hubungi Kami",
+  contactDescription: "",
+  whatsappCtaLabel: "Konsultasi via WhatsApp",
+  copyright: "© 2026 Zacreative. All rights reserved.",
   locationTag: "[Jakarta, ID]",
   legalLinks: [
-    { label: "[Privacy Policy]", href: "#faq" },
-    { label: "[Terms of Service]", href: "#faq" },
+    { label: "Privacy Policy", href: "/privacy-policy" },
+    { label: "Terms of Service", href: "/terms-of-service" },
   ],
 } as const;

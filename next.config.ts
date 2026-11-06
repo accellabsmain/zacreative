@@ -49,7 +49,15 @@ const nextConfig: NextConfig = {
     ],
   },
 
-  // 3. Security Headers & CSP
+  // 3. Convenience rewrites for legal pages
+  async rewrites() {
+    return [
+      { source: "/privacy", destination: "/privacy-policy" },
+      { source: "/terms", destination: "/terms-of-service" },
+    ];
+  },
+
+  // 4. Security Headers & CSP
   async headers() {
     return [
       {

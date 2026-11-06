@@ -10,8 +10,8 @@ export default function JsonLd() {
     name: SITE_COPY.name,
     alternateName: "Zacreative Editorial & Presentation Design",
     url: baseUrl,
-    logo: `${baseUrl}/favicon.ico`,
-    image: `${baseUrl}/og-image.jpg`,
+    logo: `${baseUrl}/images/logocolor.webp`,
+    image: `${baseUrl}/images/stitch/home.png`,
     description: SITE_COPY.schemaDescription,
     email: SITE_COPY.contact.email,
     priceRange: "$$",
@@ -34,7 +34,9 @@ export default function JsonLd() {
         closes: "18:00",
       },
     ],
-    sameAs: [SITE_COPY.contact.instagramUrl, SITE_COPY.contact.linkedinUrl],
+    sameAs: [SITE_COPY.contact.instagramUrl, SITE_COPY.contact.linkedinUrl].filter(
+      Boolean
+    ),
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Layanan Desain Visual Zacreative",

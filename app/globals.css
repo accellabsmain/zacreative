@@ -10,8 +10,8 @@
   /* Palette: navy base, white surfaces, light-blue accents */
   --color-navy: #0b1c30;
   --color-navy-soft: #1e3352;
-  --color-brand: #1a54a4;        /* primary blue: links, active states */
-  --color-brand-hover: #134282;
+  --color-brand: #134282;        /* primary blue: links, active states */
+  --color-brand-hover: #1a54a4;
   --color-sky: #4ba3f5;          /* light-blue accent: highlights, lines */
   --color-sky-soft: #8cc5ff;     /* accent on dark backgrounds */
   --color-tint: #eef5ff;         /* light-blue fill for icons, chips */

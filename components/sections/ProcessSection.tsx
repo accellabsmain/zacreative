@@ -16,9 +16,11 @@ export default function ProcessSection() {
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
         {/* Header */}
         <div className="space-y-2 lg:col-span-5 lg:sticky lg:top-28">
-          <span className="font-mono text-xs uppercase tracking-wider text-[#1A54A4] dark:text-[#38BDF8] font-semibold">
-            {PROCESS_COPY.badge}
-          </span>
+          {PROCESS_COPY.badge && (
+            <span className="font-mono text-xs uppercase tracking-wider text-[#1A54A4] dark:text-[#38BDF8] font-semibold">
+              {PROCESS_COPY.badge}
+            </span>
+          )}
           <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-[#0F172A] dark:text-white">
             {PROCESS_COPY.heading}
           </h2>
@@ -78,12 +80,14 @@ export default function ProcessSection() {
                     <p className="text-xs sm:text-sm text-[#424751] dark:text-zinc-300 leading-relaxed pl-14 sm:pl-16">
                       {st.details}
                     </p>
-                    <div className="pl-14 sm:pl-16 flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                      <span className="font-mono text-xs text-[#0F172A] dark:text-zinc-200 font-semibold">
-                        {PROCESS_COPY.deliverablePrefix} {st.deliverable}
-                      </span>
-                    </div>
+                    {st.deliverable && (
+                      <div className="pl-14 sm:pl-16 flex items-center gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                        <span className="font-mono text-xs text-[#0F172A] dark:text-zinc-200 font-semibold">
+                          {PROCESS_COPY.deliverablePrefix} {st.deliverable}
+                        </span>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>

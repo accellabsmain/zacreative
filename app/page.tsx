@@ -13,10 +13,8 @@ export default async function Home() {
     <div className="flex flex-col min-h-screen">
       <Navbar />
       <main className="flex-grow">
-        {/* Hero is above the fold: loaded eagerly for best LCP */}
-        <Reveal distance={20}>
-          <HeroSection />
-        </Reveal>
+        {/* Hero is above the fold: rendered eagerly without opacity delay for optimal LCP & FCP */}
+        <HeroSection />
         <LazyHomeSections instagramPosts={posts} />
       </main>
       <Reveal>

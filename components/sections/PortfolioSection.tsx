@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { InstagramIcon } from "@/components/ui/BrandIcons";
 import { CONTACT } from "@/lib/constants";
@@ -28,6 +28,40 @@ export default function PortfolioSection({
     "ALL" | PortfolioCategory
   >("ALL");
 
+  const scrollTrackRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+
+  const checkScroll = useCallback(() => {
+    const el = scrollTrackRef.current;
+    if (!el) return;
+    const hasOverflow = el.scrollWidth > el.clientWidth + 2;
+    setCanScrollLeft(el.scrollLeft > 4);
+    setCanScrollRight(
+      hasOverflow && el.scrollLeft < el.scrollWidth - el.clientWidth - 4
+    );
+  }, []);
+
+  useEffect(() => {
+    checkScroll();
+    window.addEventListener("resize", checkScroll);
+    return () => window.removeEventListener("resize", checkScroll);
+  }, [checkScroll]);
+
+  const handleCategorySelect = (
+    category: "ALL" | PortfolioCategory,
+    e?: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    setSelectedCategory(category);
+    if (e?.currentTarget) {
+      e.currentTarget.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "center",
+      });
+    }
+  };
+
   const sourcePosts = useMemo(
     () => (posts && posts.length > 0 ? posts : INSTAGRAM_FALLBACK_POSTS),
     [posts]
@@ -52,9 +86,6 @@ export default function PortfolioSection({
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div className="space-y-2 max-w-2xl min-w-0">
-            <span className="font-mono text-xs uppercase tracking-wider text-brand dark:text-sky-soft font-semibold block">
-              {PORTFOLIO_COPY.badge}
-            </span>
             <h2
               id="portofolio-heading"
               className="text-2xl sm:text-4xl font-bold tracking-tight text-navy dark:text-white leading-tight"
@@ -71,9 +102,9 @@ export default function PortfolioSection({
             href={CONTACT.instagramUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex min-h-[44px] self-start sm:self-auto items-center justify-center gap-2 rounded-xl border border-navy/15 dark:border-white/15 bg-white dark:bg-zinc-900 px-4 sm:px-5 py-2.5 text-xs sm:text-sm font-semibold text-navy dark:text-white hover:border-brand hover:text-brand dark:hover:border-sky-soft dark:hover:text-sky-soft shadow-xs transition-colors shrink-0"
+            className="group inline-flex min-h-[44px] self-start sm:self-auto items-center justify-center gap-2 rounded-xl border border-navy/15 dark:border-white/15 bg-white dark:bg-zinc-900 px-4 sm:px-5 py-2.5 text-xs sm:text-sm font-semibold text-navy dark:text-white hover:border-[#134282] hover:text-[#134282] dark:hover:border-sky-soft dark:hover:text-sky-soft shadow-xs transition-colors shrink-0"
           >
-            <InstagramIcon className="h-4 w-4 text-brand dark:text-sky-soft shrink-0" />
+            <InstagramIcon className="h-4 w-4 text-[#134282] dark:text-sky-soft shrink-0" />
             <span className="truncate">
               {PORTFOLIO_COPY.followButtonPrefix} @{CONTACT.instagramHandle}
             </span>
@@ -81,45 +112,65 @@ export default function PortfolioSection({
           </a>
         </div>
 
-        {/* Mobile-friendly Category Filter Pills */}
-        <div
-          role="tablist"
-          aria-label="Filter kategori portofolio"
-          className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap"
-        >
-          <button
-            type="button"
-            role="tab"
-            aria-selected={selectedCategory === "ALL"}
-            onClick={() => setSelectedCategory("ALL")}
-            className={`min-h-[40px] shrink-0 rounded-full px-4 py-2 text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
-              selectedCategory === "ALL"
-                ? "bg-brand text-white dark:bg-sky-soft dark:text-navy shadow-xs"
-                : "bg-white dark:bg-zinc-900 border border-[#E2E8F0] dark:border-zinc-800 text-navy-soft dark:text-zinc-300 hover:border-brand dark:hover:border-sky-soft"
+        {/* Single Frame Category Slider (Framed Track dengan Smooth Slide UX pada Mobile) */}
+        <div className="relative w-full rounded-2xl bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 p-1.5 shadow-xs overflow-hidden">
+          {/* Left subtle fade gradient for sliding hint */}
+          <div
+            aria-hidden="true"
+            className={`pointer-events-none absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white dark:from-zinc-900 to-transparent transition-opacity duration-200 z-10 ${
+              canScrollLeft ? "opacity-100" : "opacity-0"
             }`}
-          >
-            Semua Karya
-          </button>
+          />
 
-          {PORTFOLIO_CATEGORIES.map((cat) => {
-            const isActive = selectedCategory === cat;
-            return (
-              <button
-                key={cat}
-                type="button"
-                role="tab"
-                aria-selected={isActive}
-                onClick={() => setSelectedCategory(cat)}
-                className={`min-h-[40px] shrink-0 rounded-full px-4 py-2 text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
-                  isActive
-                    ? "bg-brand text-white dark:bg-sky-soft dark:text-navy shadow-xs"
-                    : "bg-white dark:bg-zinc-900 border border-[#E2E8F0] dark:border-zinc-800 text-navy-soft dark:text-zinc-300 hover:border-brand dark:hover:border-sky-soft"
-                }`}
-              >
-                {cat}
-              </button>
-            );
-          })}
+          {/* Right subtle fade gradient for sliding hint */}
+          <div
+            aria-hidden="true"
+            className={`pointer-events-none absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white dark:from-zinc-900 to-transparent transition-opacity duration-200 z-10 ${
+              canScrollRight ? "opacity-100" : "opacity-0"
+            }`}
+          />
+
+          <div
+            ref={scrollTrackRef}
+            onScroll={checkScroll}
+            role="tablist"
+            aria-label="Filter kategori portofolio"
+            className="flex items-center gap-1.5 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory touch-pan-x px-1 py-0.5"
+          >
+            <button
+              type="button"
+              role="tab"
+              aria-selected={selectedCategory === "ALL"}
+              onClick={(e) => handleCategorySelect("ALL", e)}
+              className={`min-h-[42px] snap-center shrink-0 rounded-xl px-4 py-2 text-xs sm:text-sm font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer ${
+                selectedCategory === "ALL"
+                  ? "bg-[#134282] text-white shadow-xs font-bold"
+                  : "text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-zinc-300 dark:hover:text-white dark:hover:bg-zinc-800"
+              }`}
+            >
+              Semua Karya
+            </button>
+
+            {PORTFOLIO_CATEGORIES.map((cat) => {
+              const isActive = selectedCategory === cat;
+              return (
+                <button
+                  key={cat}
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  onClick={(e) => handleCategorySelect(cat, e)}
+                  className={`min-h-[42px] snap-center shrink-0 rounded-xl px-4 py-2 text-xs sm:text-sm font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer ${
+                    isActive
+                      ? "bg-[#134282] text-white shadow-xs font-bold"
+                      : "text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-zinc-300 dark:hover:text-white dark:hover:bg-zinc-800"
+                  }`}
+                >
+                  {cat}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {/* Responsive Feed Grid (3 cols desktop, 1-2 cols mobile, max 6 items) */}

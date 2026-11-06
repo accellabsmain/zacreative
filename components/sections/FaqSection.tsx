@@ -20,9 +20,7 @@ export default function FaqSection() {
           {/* Left Column: FAQ Context & Green Gradient WhatsApp Box */}
           <div className="lg:col-span-5 space-y-6">
             <div className="space-y-2">
-              <span className="font-mono text-xs uppercase tracking-wider text-[#1A54A4] dark:text-[#38BDF8] font-semibold">
-                {FAQ_COPY.badge}
-              </span>
+
               <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-[#0F172A] dark:text-white">
                 {FAQ_COPY.heading}
               </h2>
@@ -83,11 +81,10 @@ export default function FaqSection() {
               return (
                 <div
                   key={idx}
-                  className={`rounded-2xl border transition-all ${
-                    isOpen
+                  className={`rounded-2xl border transition-all ${isOpen
                       ? "border-[#1A54A4] dark:border-[#38BDF8] bg-white dark:bg-zinc-900 shadow-xs"
                       : "border-[#E2E8F0] dark:border-zinc-800 bg-white dark:bg-zinc-900/60 hover:border-zinc-300 dark:hover:border-zinc-700"
-                  }`}
+                    }`}
                 >
                   <button
                     type="button"
@@ -99,11 +96,10 @@ export default function FaqSection() {
                       {faq.q}
                     </span>
                     <span
-                      className={`w-7 h-7 rounded-lg border flex items-center justify-center shrink-0 transition-colors ${
-                        isOpen
+                      className={`w-7 h-7 rounded-lg border flex items-center justify-center shrink-0 transition-colors ${isOpen
                           ? "bg-[#1A54A4] text-white dark:bg-[#38BDF8] dark:text-[#0F172A] border-[#1A54A4]"
                           : "border-zinc-200 dark:border-zinc-700 text-zinc-500"
-                      }`}
+                        }`}
                     >
                       {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
                     </span>

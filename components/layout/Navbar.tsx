@@ -27,11 +27,12 @@ export default function Navbar() {
           <Image
             src="/images/logocolor.webp"
             alt={NAVBAR_COPY.logoAlt}
-            width={160}
+            width={158}
             height={40}
             priority
+            fetchPriority="high"
             className="h-10 w-auto object-contain"
-            style={{ width: "auto" }}
+            style={{ width: "auto", height: "auto" }}
           />
         </Link>
 

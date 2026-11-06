@@ -205,13 +205,15 @@ export default function HeroSection() {
               </Link>
             </div>
 
-            <p className="mt-4 flex items-center gap-2 text-xs text-navy-soft/80 dark:text-zinc-400">
-              <span className="relative flex h-2 w-2" aria-hidden="true">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-leaf opacity-70" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-leaf" />
-              </span>
-              {HERO_COPY.onlineStatus}
-            </p>
+            {HERO_COPY.onlineStatus && (
+              <p className="mt-4 flex items-center gap-2 text-xs text-navy-soft/80 dark:text-zinc-400">
+                <span className="relative flex h-2 w-2" aria-hidden="true">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-leaf opacity-70" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-leaf" />
+                </span>
+                {HERO_COPY.onlineStatus}
+              </p>
+            )}
 
             <dl className="mt-12 grid max-w-md grid-cols-3 divide-x divide-tint-border dark:divide-white/10">
               {HERO_COPY.stats.map((s, i) => (

@@ -4,7 +4,7 @@ import { PACKAGES_COPY } from "@/lib/copywriting";
  * Service packages types & data (texts centralized in lib/copywriting.ts).
  */
 
-export type TierId = "bronze" | "silver" | "gold";
+export type TierId = "bronze" | "silver" | "gold" | "platinum";
 
 export interface PackageTier {
   id: TierId;
@@ -14,6 +14,7 @@ export interface PackageTier {
   description: string;
   features: string[];
   popular?: boolean;
+  showPriceStartFrom?: boolean;
 }
 
 export interface ServicePackage {

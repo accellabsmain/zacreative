@@ -20,10 +20,11 @@ export default function Footer() {
               <Image
                 src="/images/logocolor.webp"
                 alt={FOOTER_COPY.logoAlt}
-                width={160}
-                height={40}
+                width={142}
+                height={36}
+                loading="lazy"
                 className="h-9 w-auto object-contain"
-                style={{ width: "auto" }}
+                style={{ width: "auto", height: "auto" }}
               />
             </Link>
             <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 max-w-sm leading-relaxed">
@@ -55,9 +56,11 @@ export default function Footer() {
             <span className="font-mono text-xs uppercase tracking-wider text-zinc-900 dark:text-zinc-100 font-semibold block">
               {FOOTER_COPY.contactTitle}
             </span>
-            <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
-              {FOOTER_COPY.contactDescription}
-            </p>
+            {FOOTER_COPY.contactDescription && (
+              <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                {FOOTER_COPY.contactDescription}
+              </p>
+            )}
             <div className="pt-1 space-y-2.5">
               <div>
                 <a

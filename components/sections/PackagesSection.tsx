@@ -7,10 +7,6 @@ import {
   Check,
   ChevronLeft,
   ChevronRight,
-  Crown,
-  Gem,
-  Medal,
-  type LucideIcon,
 } from "lucide-react";
 import {
   SERVICE_PACKAGES,
@@ -51,13 +47,11 @@ function renderDescriptionWithTierHighlights(text: string) {
 
 interface TierStyleConfig {
   shortTitle: string;
-  Icon: LucideIcon;
   topBar: string;
   dot: string;
   // Selected state (following tier color with high-readability gradient / solid accents)
   selectedCard: string;
   selectedBadge: string;
-  selectedEmblem: string;
   selectedPriceBox: string;
   selectedPriceLabel: string;
   selectedPriceValue: string;
@@ -68,7 +62,6 @@ interface TierStyleConfig {
   // Unselected state (clean, modern solid)
   unselectedCard: string;
   unselectedBadge: string;
-  unselectedEmblem: string;
   unselectedPriceBox: string;
   unselectedPriceLabel: string;
   unselectedPriceValue: string;
@@ -80,7 +73,6 @@ interface TierStyleConfig {
 const TIER_STYLES: Record<TierId, TierStyleConfig> = {
   bronze: {
     shortTitle: "Bronze",
-    Icon: Medal,
     topBar: "bg-[#B45309]",
     dot: "bg-[#B45309]",
 
@@ -89,8 +81,6 @@ const TIER_STYLES: Record<TierId, TierStyleConfig> = {
       "border-2 border-[#B45309] bg-gradient-to-b from-[#FFF7ED] via-white to-white dark:border-amber-600 dark:from-amber-950/30 dark:via-zinc-900 dark:to-zinc-900",
     selectedBadge:
       "border-[#FDBA74] bg-[#FFEDD5] text-[#9A3412] dark:border-amber-700/60 dark:bg-amber-950/60 dark:text-amber-300",
-    selectedEmblem:
-      "border-[#FDBA74] bg-[#FFEDD5] text-[#B45309] dark:border-amber-700 dark:bg-amber-950 dark:text-amber-300",
     selectedPriceBox:
       "border border-[#FDBA74] bg-[#FFEDD5]/70 dark:border-amber-700/60 dark:bg-amber-950/50",
     selectedPriceLabel: "text-[#9A3412] dark:text-amber-400",
@@ -107,8 +97,6 @@ const TIER_STYLES: Record<TierId, TierStyleConfig> = {
       "border border-slate-200 bg-white hover:border-[#B45309] dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-amber-600",
     unselectedBadge:
       "border-slate-200 bg-slate-100 text-slate-700 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300",
-    unselectedEmblem:
-      "border-slate-200 bg-slate-50 text-[#B45309] dark:border-zinc-700 dark:bg-zinc-800/80 dark:text-amber-400",
     unselectedPriceBox:
       "border border-slate-200 bg-slate-50 dark:border-zinc-800 dark:bg-zinc-800/50",
     unselectedPriceLabel: "text-slate-500 dark:text-zinc-400",
@@ -122,7 +110,6 @@ const TIER_STYLES: Record<TierId, TierStyleConfig> = {
 
   silver: {
     shortTitle: "Silver",
-    Icon: Gem,
     topBar: "bg-[#475569]",
     dot: "bg-[#64748B]",
 
@@ -131,8 +118,6 @@ const TIER_STYLES: Record<TierId, TierStyleConfig> = {
       "border-2 border-[#334155] bg-gradient-to-b from-[#F1F5F9] via-white to-white dark:border-slate-400 dark:from-slate-900/40 dark:via-zinc-900 dark:to-zinc-900",
     selectedBadge:
       "border-[#CBD5E1] bg-[#E2E8F0] text-[#1E293B] dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200",
-    selectedEmblem:
-      "border-[#CBD5E1] bg-[#E2E8F0] text-[#334155] dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200",
     selectedPriceBox:
       "border border-[#CBD5E1] bg-[#E2E8F0]/70 dark:border-slate-700 dark:bg-slate-800/50",
     selectedPriceLabel: "text-[#334155] dark:text-slate-400",
@@ -149,8 +134,6 @@ const TIER_STYLES: Record<TierId, TierStyleConfig> = {
       "border border-slate-200 bg-white hover:border-[#334155] dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-slate-400",
     unselectedBadge:
       "border-slate-200 bg-slate-100 text-slate-700 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300",
-    unselectedEmblem:
-      "border-slate-200 bg-slate-50 text-[#475569] dark:border-zinc-700 dark:bg-zinc-800/80 dark:text-slate-300",
     unselectedPriceBox:
       "border border-slate-200 bg-slate-50 dark:border-zinc-800 dark:bg-zinc-800/50",
     unselectedPriceLabel: "text-slate-500 dark:text-zinc-400",
@@ -164,7 +147,6 @@ const TIER_STYLES: Record<TierId, TierStyleConfig> = {
 
   gold: {
     shortTitle: "Gold",
-    Icon: Crown,
     topBar: "bg-[#D97706]",
     dot: "bg-[#D97706]",
 
@@ -173,8 +155,6 @@ const TIER_STYLES: Record<TierId, TierStyleConfig> = {
       "border-2 border-[#D97706] bg-gradient-to-b from-[#FEFCE8] via-white to-white dark:border-amber-500 dark:from-yellow-950/30 dark:via-zinc-900 dark:to-zinc-900",
     selectedBadge:
       "border-[#FDE047] bg-[#FEF08A]/70 text-[#713F12] dark:border-yellow-600/60 dark:bg-yellow-950/60 dark:text-yellow-300",
-    selectedEmblem:
-      "border-[#FDE047] bg-[#FEF08A]/70 text-[#854D0E] dark:border-yellow-600 dark:bg-yellow-950 dark:text-yellow-300",
     selectedPriceBox:
       "border border-[#FDE047] bg-[#FEF08A]/50 dark:border-yellow-600/60 dark:bg-yellow-950/50",
     selectedPriceLabel: "text-[#854D0E] dark:text-yellow-400",
@@ -191,8 +171,6 @@ const TIER_STYLES: Record<TierId, TierStyleConfig> = {
       "border border-slate-200 bg-white hover:border-[#D97706] dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-amber-500",
     unselectedBadge:
       "border-slate-200 bg-slate-100 text-slate-700 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300",
-    unselectedEmblem:
-      "border-slate-200 bg-slate-50 text-[#D97706] dark:border-zinc-700 dark:bg-zinc-800/80 dark:text-yellow-400",
     unselectedPriceBox:
       "border border-slate-200 bg-slate-50 dark:border-zinc-800 dark:bg-zinc-800/50",
     unselectedPriceLabel: "text-slate-500 dark:text-zinc-400",
@@ -203,16 +181,59 @@ const TIER_STYLES: Record<TierId, TierStyleConfig> = {
     unselectedCta:
       "border border-slate-300 bg-white text-slate-800 hover:border-[#D97706] hover:text-[#D97706] dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-200 dark:hover:border-amber-500 dark:hover:text-amber-400",
   },
+
+  platinum: {
+    shortTitle: "Platinum",
+    topBar: "bg-[#4F46E5]",
+    dot: "bg-[#6366F1]",
+
+    // Selected: Platinum theme
+    selectedCard:
+      "border-2 border-[#4F46E5] bg-gradient-to-b from-[#EEF2FF] via-white to-white dark:border-indigo-500 dark:from-indigo-950/35 dark:via-zinc-900 dark:to-zinc-900",
+    selectedBadge:
+      "border-[#C7D2FE] bg-[#E0E7FF] text-[#3730A3] dark:border-indigo-600/60 dark:bg-indigo-950/60 dark:text-indigo-300",
+    selectedPriceBox:
+      "border border-[#C7D2FE] bg-[#E0E7FF]/60 dark:border-indigo-700/60 dark:bg-indigo-950/50",
+    selectedPriceLabel: "text-[#3730A3] dark:text-indigo-400",
+    selectedPriceValue: "text-[#312E81] dark:text-indigo-200",
+    selectedUnitPill: "bg-[#C7D2FE]/70 text-[#312E81] dark:bg-indigo-900/50 dark:text-indigo-200",
+    selectedCheck: "bg-[#4F46E5] text-white dark:bg-indigo-500 dark:text-white",
+    selectedCta:
+      "border-2 border-[#4F46E5] bg-[#4F46E5] hover:bg-[#4338CA] text-white dark:border-indigo-500 dark:bg-indigo-500 dark:hover:bg-indigo-400",
+    selectedFloatingPill:
+      "border border-[#3730A3] bg-[#4F46E5] text-white dark:border-indigo-400 dark:bg-indigo-600 dark:text-white",
+
+    // Unselected: Neutral solid with platinum hover
+    unselectedCard:
+      "border border-slate-200 bg-white hover:border-[#4F46E5] dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-indigo-500",
+    unselectedBadge:
+      "border-slate-200 bg-slate-100 text-slate-700 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300",
+    unselectedPriceBox:
+      "border border-slate-200 bg-slate-50 dark:border-zinc-800 dark:bg-zinc-800/50",
+    unselectedPriceLabel: "text-slate-500 dark:text-zinc-400",
+    unselectedPriceValue: "text-slate-900 dark:text-white",
+    unselectedUnitPill: "bg-slate-200/80 text-slate-700 dark:bg-zinc-700 dark:text-zinc-300",
+    unselectedCheck:
+      "border border-slate-300 bg-slate-100 text-slate-600 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-400",
+    unselectedCta:
+      "border border-slate-300 bg-white text-slate-800 hover:border-[#4F46E5] hover:text-[#4F46E5] dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-200 dark:hover:border-indigo-500 dark:hover:text-indigo-400",
+  },
 };
 
 export default function PackagesSection() {
   const [active, setActive] = useState(0);
-  const [activeTier, setActiveTier] = useState(1); // default to Silver (popular)
+  const [activeTier, setActiveTier] = useState(() =>
+    Math.max(
+      0,
+      SERVICE_PACKAGES[0].tiers.findIndex((t) => t.popular)
+    )
+  );
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const railRef = useRef<HTMLDivElement>(null);
 
   const pkg = SERVICE_PACKAGES[active];
   const total = SERVICE_PACKAGES.length;
+  const isFourTiers = pkg.tiers.length === 4;
 
   const goTo = useCallback(
     (index: number, focus = false) => {
@@ -309,9 +330,13 @@ export default function PackagesSection() {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 sm:mb-8">
           <div>
             <div className="flex items-center justify-between mb-2">
-              <span className="inline-flex items-center gap-1.5 rounded-md border border-slate-200 bg-slate-100 px-2.5 py-1 text-[11px] font-mono font-bold tracking-wider text-slate-700 uppercase dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">
-                {PACKAGES_COPY.badge}
-              </span>
+              {PACKAGES_COPY.badge ? (
+                <span className="inline-flex items-center gap-1.5 rounded-md border border-slate-200 bg-slate-100 px-2.5 py-1 text-[11px] font-mono font-bold tracking-wider text-slate-700 uppercase dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">
+                  {PACKAGES_COPY.badge}
+                </span>
+              ) : (
+                <span />
+              )}
 
               {/* Mobile Counter and Nav controls */}
               <div className="flex sm:hidden items-center gap-1.5">
@@ -398,9 +423,9 @@ export default function PackagesSection() {
                 aria-controls={`paket-panel-${p.id}`}
                 tabIndex={selected ? 0 : -1}
                 onClick={() => goTo(i)}
-                className={`group relative flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-1 sm:gap-2.5 rounded-xl p-2.5 sm:px-4 sm:py-3.5 text-center sm:text-left transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0284C7] ${
+                className={`group relative flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-1 sm:gap-2.5 rounded-xl p-2.5 sm:px-4 sm:py-3.5 text-center sm:text-left transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#134282] ${
                   selected
-                    ? "border-2 border-[#0284C7] bg-[#0284C7] text-white dark:border-[#38BDF8] dark:bg-[#0284C7] dark:text-white"
+                    ? "border-2 border-[#134282] bg-[#134282] text-white dark:border-[#134282] dark:bg-[#134282] dark:text-white"
                     : "border border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-200 dark:hover:border-zinc-700 dark:hover:bg-zinc-850"
                 }`}
               >
@@ -433,31 +458,37 @@ export default function PackagesSection() {
           className="animate-panel-in rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 sm:p-7 lg:p-9 transition-all"
         >
           {/* Container Header */}
-          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-4 pb-5 sm:pb-6 border-b border-slate-200 dark:border-zinc-800">
-            <div className="flex items-start gap-3 sm:gap-4">
-              <span className="inline-flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-xl border border-slate-300 bg-white text-[#0284C7] dark:border-zinc-700 dark:bg-zinc-800 dark:text-[#38BDF8] text-sm sm:text-base font-bold font-mono">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 pb-5 sm:pb-6 border-b border-slate-200 dark:border-zinc-800">
+            <div className="flex items-center gap-3 sm:gap-4">
+              <span className="inline-flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-xl border border-slate-300 bg-white text-[#134282] dark:border-zinc-700 dark:bg-zinc-800 dark:text-sky-400 text-sm sm:text-base font-bold font-mono">
                 {pkg.number}
               </span>
               <div className="min-w-0">
                 <h3 className="text-lg sm:text-2xl lg:text-[1.65rem] font-bold tracking-tight text-navy dark:text-white truncate sm:whitespace-normal">
                   {pkg.title}
                 </h3>
-                <p className="mt-1 text-xs sm:text-sm text-slate-600 dark:text-zinc-300 leading-relaxed max-w-2xl">
-                  {pkg.summary}
-                </p>
+                {pkg.summary && (
+                  <p className="mt-1 text-xs sm:text-sm text-slate-600 dark:text-zinc-300 leading-relaxed max-w-2xl">
+                    {pkg.summary}
+                  </p>
+                )}
               </div>
             </div>
 
-            <div className="flex items-center flex-wrap gap-2 pt-1 sm:pt-0 shrink-0">
-              <span className="rounded-lg border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-2.5 py-1 text-[11px] sm:text-xs font-mono font-medium text-slate-600 dark:text-zinc-300">
-                {PACKAGES_COPY.labels.formatPrefix} {pkg.formatChip}
-              </span>
-            </div>
+            {pkg.formatChip && (
+              <div className="flex items-center flex-wrap gap-2 pt-1 sm:pt-0 shrink-0">
+                <span className="rounded-lg border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-2.5 py-1 text-[11px] sm:text-xs font-mono font-medium text-slate-600 dark:text-zinc-300">
+                  {PACKAGES_COPY.labels.formatPrefix} {pkg.formatChip}
+                </span>
+              </div>
+            )}
           </div>
 
           {/* Mobile Tier Segmented Switcher (Visible only on mobile screens < md) */}
           <div
-            className="grid grid-cols-3 gap-1 bg-slate-200/70 dark:bg-zinc-800 p-1 rounded-xl mt-5 mb-1 border border-slate-300/80 dark:border-zinc-700 md:hidden"
+            className={`grid ${
+              isFourTiers ? "grid-cols-4" : "grid-cols-3"
+            } gap-1 bg-slate-200/70 dark:bg-zinc-800 p-1 rounded-xl mt-5 mb-1 border border-slate-300/80 dark:border-zinc-700 md:hidden`}
             role="tablist"
             aria-label="Pilih tier paket"
           >
@@ -469,14 +500,14 @@ export default function PackagesSection() {
                   key={t.id}
                   type="button"
                   onClick={() => scrollToTier(idx)}
-                  className={`inline-flex items-center justify-center gap-1.5 py-2 px-1 text-xs font-semibold rounded-lg transition-colors text-center cursor-pointer ${
+                  className={`inline-flex items-center justify-center gap-1 py-2 px-1 text-xs font-semibold rounded-lg transition-colors text-center cursor-pointer ${
                     isSelected
                       ? "bg-white text-slate-900 border border-slate-300 font-bold dark:bg-zinc-900 dark:text-white dark:border-zinc-600"
                       : "text-slate-600 dark:text-zinc-300 hover:text-slate-900 dark:hover:text-white"
                   }`}
                 >
                   <span className={`h-2 w-2 rounded-full shrink-0 ${theme.dot}`} />
-                  <span>{theme.shortTitle}</span>
+                  <span className="truncate">{theme.shortTitle}</span>
                   {t.popular && (
                     <span className="text-[10px] text-amber-500 dark:text-amber-300">★</span>
                   )}
@@ -485,11 +516,13 @@ export default function PackagesSection() {
             })}
           </div>
 
-          {/* 3 Tier Cards (Horizontal snap rail on mobile, 3-col grid on desktop) */}
+          {/* Tier Cards (Horizontal snap rail on mobile, grid on desktop) */}
           <div
             ref={railRef}
             onScroll={onRailScroll}
-            className="no-scrollbar -mx-4 sm:-mx-7 md:mx-0 flex snap-x snap-mandatory gap-3 sm:gap-4 overflow-x-auto px-4 sm:px-7 md:px-0 pt-7 pb-3 md:grid md:grid-cols-3 md:gap-5 md:overflow-visible lg:gap-6"
+            className={`no-scrollbar -mx-4 sm:-mx-7 md:mx-0 flex snap-x snap-mandatory gap-3 sm:gap-4 overflow-x-auto px-4 sm:px-7 md:px-0 pt-7 pb-3 md:grid md:gap-5 md:overflow-visible ${
+              isFourTiers ? "md:grid-cols-2 lg:grid-cols-4 lg:gap-5" : "md:grid-cols-3 lg:gap-6"
+            }`}
           >
             {pkg.tiers.map((tier, idx) => (
               <TierCard
@@ -538,7 +571,7 @@ export default function PackagesSection() {
               <span
                 className={`block h-2 rounded-full transition-all duration-200 ${
                   active === i
-                    ? "w-7 bg-[#0284C7] dark:bg-[#38BDF8]"
+                    ? "w-7 bg-[#134282] dark:bg-[#134282]"
                     : "w-2 bg-slate-300 dark:bg-zinc-700 hover:bg-slate-400 dark:hover:bg-zinc-600"
                 }`}
               />
@@ -547,18 +580,22 @@ export default function PackagesSection() {
         </div>
 
         {/* Footnote */}
-        <div className="mt-5 sm:mt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs sm:text-sm text-slate-500 dark:text-zinc-400">
-          <p>{PACKAGES_COPY.footnote}</p>
-          <a
-            href={buildWhatsAppLink(PACKAGES_COPY.customPackageCta.whatsappMessage)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-center gap-1 font-semibold text-[#0284C7] hover:underline dark:text-[#38BDF8]"
-          >
-            <span>{PACKAGES_COPY.customPackageCta.label}</span>
-            <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </a>
-        </div>
+        {(PACKAGES_COPY.footnote || PACKAGES_COPY.customPackageCta.label) && (
+          <div className="mt-5 sm:mt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs sm:text-sm text-slate-500 dark:text-zinc-400">
+            {PACKAGES_COPY.footnote ? <p>{PACKAGES_COPY.footnote}</p> : <span />}
+            {PACKAGES_COPY.customPackageCta.label && (
+              <a
+                href={buildWhatsAppLink(PACKAGES_COPY.customPackageCta.whatsappMessage)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-1 font-semibold text-[#134282] hover:underline dark:text-sky-400"
+              >
+                <span>{PACKAGES_COPY.customPackageCta.label}</span>
+                <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+            )}
+          </div>
+        )}
       </div>
     </section>
   );
@@ -577,7 +614,6 @@ function TierCard({
 }) {
   const popular = !!tier.popular;
   const theme = TIER_STYLES[tier.id];
-  const TierIcon = theme.Icon;
 
   return (
     <article
@@ -608,33 +644,24 @@ function TierCard({
       )}
 
       <div>
-        {/* Tier Category Badge & Tier Emblem */}
-        <div className="flex items-center justify-between gap-2">
-          <span
-            className={`inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider ${
-              selected ? theme.selectedBadge : theme.unselectedBadge
-            }`}
-          >
-            <span className={`h-1.5 w-1.5 rounded-full ${theme.dot}`} />
-            {tier.label}
-          </span>
+        {/* Tier Label (jika ada) */}
+        {tier.label && (
+          <div className="mb-2">
+            <span
+              className={`inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider ${
+                selected ? theme.selectedBadge : theme.unselectedBadge
+              }`}
+            >
+              <span className={`h-1.5 w-1.5 rounded-full ${theme.dot}`} />
+              {tier.label}
+            </span>
+          </div>
+        )}
 
-          <span
-            className={`inline-flex items-center gap-1 rounded-lg border px-2 py-1 text-[11px] font-bold ${
-              selected ? theme.selectedEmblem : theme.unselectedEmblem
-            }`}
-          >
-            <TierIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-            <span>{theme.shortTitle}</span>
-          </span>
-        </div>
-
-        {/* Tier Name */}
-        <div className="mt-3 flex items-baseline justify-between gap-2">
-          <h4 className="text-lg sm:text-xl font-bold tracking-tight text-navy dark:text-white">
-            {tier.name}
-          </h4>
-        </div>
+        {/* Clean Tulisan Paket Saja */}
+        <h4 className="text-lg sm:text-xl font-bold tracking-tight text-navy dark:text-white">
+          {tier.name}
+        </h4>
 
         {/* Highlighted Price Callout Box */}
         <div
@@ -642,14 +669,16 @@ function TierCard({
             selected ? theme.selectedPriceBox : theme.unselectedPriceBox
           }`}
         >
-          <span
-            className={`block text-[10px] font-bold uppercase tracking-wider leading-none ${
-              selected ? theme.selectedPriceLabel : theme.unselectedPriceLabel
-            }`}
-          >
-            {PACKAGES_COPY.labels.priceStartFrom}
-          </span>
-          <div className="mt-1.5 flex items-baseline flex-wrap gap-1.5">
+          {tier.showPriceStartFrom && (
+            <span
+              className={`block mb-1.5 text-[10px] font-bold uppercase tracking-wider leading-none ${
+                selected ? theme.selectedPriceLabel : theme.unselectedPriceLabel
+              }`}
+            >
+              {PACKAGES_COPY.labels.priceStartFrom}
+            </span>
+          )}
+          <div className="flex items-baseline flex-wrap gap-1.5">
             <span
               className={`text-xl sm:text-2xl font-extrabold tracking-tight leading-none ${
                 selected ? theme.selectedPriceValue : theme.unselectedPriceValue
