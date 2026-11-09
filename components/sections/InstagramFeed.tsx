@@ -13,6 +13,7 @@ import type {
 interface InstagramFeedProps {
   posts?: InstagramPost[];
   isLoading?: boolean;
+  columns?: 3 | 4;
 }
 
 function MediaTypeBadge({ type }: { type: InstagramMediaType }) {
@@ -52,14 +53,25 @@ function summarizeCaption(caption?: string): string {
 /**
  * Skeleton loader state for feed
  */
-export function InstagramFeedSkeleton() {
+export function InstagramFeedSkeleton({
+  count = 4,
+  columns = 4,
+}: {
+  count?: number;
+  columns?: 3 | 4;
+} = {}) {
+  const gridColsClass =
+    columns === 4
+      ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
+      : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3";
+
   return (
     <div
       role="status"
       aria-label="Memuat feed Instagram..."
-      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6"
+      className={`grid ${gridColsClass} gap-5 sm:gap-6`}
     >
-      {Array.from({ length: 6 }).map((_, i) => (
+      {Array.from({ length: count }).map((_, i) => (
         <div
           key={i}
           className="flex flex-col overflow-hidden rounded-2xl border border-black/5 dark:border-white/10 bg-zinc-100 dark:bg-zinc-900/50 p-3 space-y-3 animate-pulse"
@@ -111,17 +123,26 @@ export function InstagramFeedEmpty() {
  * - Strictly contained graphic area with zero offside/overflowing text on artwork
  * - Direct click through to the original Instagram post
  */
-export default function InstagramFeed({ posts, isLoading }: InstagramFeedProps) {
+export default function InstagramFeed({
+  posts,
+  isLoading,
+  columns = 4,
+}: InstagramFeedProps) {
   if (isLoading) {
-    return <InstagramFeedSkeleton />;
+    return <InstagramFeedSkeleton count={columns} columns={columns} />;
   }
 
   if (!posts || posts.length === 0) {
     return <InstagramFeedEmpty />;
   }
 
+  const gridColsClass =
+    columns === 4
+      ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
+      : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3";
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+    <div className={`grid ${gridColsClass} gap-5 sm:gap-6`}>
       {posts.map((post, index) => {
         const summary = summarizeCaption(post.caption);
         const footnoteText =
@@ -142,8 +163,12 @@ export default function InstagramFeed({ posts, isLoading }: InstagramFeedProps) 
                 src={post.imageUrl}
                 alt={summary.slice(0, 100)}
                 fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                priority={index < 3}
+                sizes={
+                  columns === 4
+                    ? "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                }
+                priority={index < 4}
                 className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
               />
 

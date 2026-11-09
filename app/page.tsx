@@ -2,7 +2,6 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/sections/HeroSection";
 import LazyHomeSections from "@/components/sections/LazyHomeSections";
-import FloatingWhatsApp from "@/components/ui/FloatingWhatsApp";
 import Reveal from "@/components/motion/Reveal";
 import { getPublicPortfolioPosts } from "@/lib/portfolio-store";
 
@@ -20,7 +19,6 @@ export default async function Home() {
       <Reveal>
         <Footer />
       </Reveal>
-      <FloatingWhatsApp />
     </div>
   );
 }

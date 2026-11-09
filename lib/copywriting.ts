@@ -345,15 +345,17 @@ export const PACKAGES_COPY = {
 };
 
 /* ============================================================================
- * 6. PORTFOLIO SECTION (PORTOFOLIO INSTAGRAM — MAKSIMAL 6 KARYA)
+ * 6. PORTFOLIO SECTION (PORTOFOLIO INSTAGRAM — MAKSIMAL 4 KARYA DI BERANDA)
  * ============================================================================ */
 export const PORTFOLIO_COPY = {
-  maxItems: 6,
+  maxItems: 4,
   badge: "[PORTOFOLIO]",
   heading: "Karya Terbaru Zacreative",
   description:
     "Cuplikan publikasi buku, pitch deck, dan kampanye visual terbaru yang kami sinkronkan langsung dari Instagram resmi ZaCreative.",
   followButtonPrefix: "Follow",
+  viewMoreLabel: "Lihat Selengkapnya",
+  viewMoreHref: "/portofolio",
   feedUi: {
     singlePostLabel: "Single Post",
     instagramLinkLabel: "Instagram",

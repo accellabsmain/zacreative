@@ -64,6 +64,7 @@ export function revalidatePortfolioCache(): void {
   try {
     revalidateTag(PORTFOLIO_CACHE_TAG, "max");
     revalidatePath("/");
+    revalidatePath("/portofolio");
   } catch (err) {
     console.warn("[PortfolioStore] Revalidate warning:", err);
   }

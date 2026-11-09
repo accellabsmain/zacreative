@@ -1,7 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { InstagramIcon } from "@/components/ui/BrandIcons";
 import { CONTACT } from "@/lib/constants";
 import { PORTFOLIO_COPY } from "@/lib/copywriting";
@@ -18,11 +19,13 @@ import InstagramFeed from "./InstagramFeed";
 interface PortfolioSectionProps {
   posts?: InstagramPost[];
   isLoading?: boolean;
+  showAll?: boolean;
 }
 
 export default function PortfolioSection({
   posts,
   isLoading,
+  showAll = false,
 }: PortfolioSectionProps) {
   const [selectedCategory, setSelectedCategory] = useState<
     "ALL" | PortfolioCategory
@@ -72,8 +75,8 @@ export default function PortfolioSection({
       selectedCategory === "ALL"
         ? sourcePosts
         : sourcePosts.filter((p) => p.categoryTag === selectedCategory);
-    return filtered.slice(0, PORTFOLIO_COPY.maxItems);
-  }, [sourcePosts, selectedCategory]);
+    return showAll ? filtered : filtered.slice(0, PORTFOLIO_COPY.maxItems);
+  }, [sourcePosts, selectedCategory, showAll]);
 
   return (
     <section
@@ -173,8 +176,22 @@ export default function PortfolioSection({
           </div>
         </div>
 
-        {/* Responsive Feed Grid (3 cols desktop, 1-2 cols mobile, max 6 items) */}
-        <InstagramFeed posts={feed} isLoading={isLoading} />
+        {/* Responsive Feed Grid (4 cols desktop, 2 cols tablet, 1 col mobile) */}
+        <InstagramFeed posts={feed} isLoading={isLoading} columns={4} />
+
+        {/* View More CTA -> Direct to /portofolio page */}
+        {!showAll && (
+          <div className="pt-2 sm:pt-4 flex justify-center">
+            <Link
+              id="portofolio-lihat-selengkapnya"
+              href={PORTFOLIO_COPY.viewMoreHref}
+              className="group inline-flex min-h-[48px] items-center justify-center gap-2.5 rounded-xl bg-[#134282] hover:bg-[#0e3263] text-white px-6 sm:px-8 py-3 text-xs sm:text-sm font-bold shadow-xs transition-all duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#134282]"
+            >
+              <span>{PORTFOLIO_COPY.viewMoreLabel}</span>
+              <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );

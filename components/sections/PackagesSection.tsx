@@ -468,7 +468,7 @@ export default function PackagesSection() {
                   {pkg.title}
                 </h3>
                 {pkg.summary && (
-                  <p className="mt-1 text-xs sm:text-sm text-slate-600 dark:text-zinc-300 leading-relaxed max-w-2xl">
+                  <p className="mt-1 text-xs sm:text-sm font-semibold text-black dark:text-white leading-relaxed max-w-2xl">
                     {pkg.summary}
                   </p>
                 )}
@@ -697,7 +697,7 @@ function TierCard({
         </div>
 
         {/* Description */}
-        <p className="mt-3 text-xs sm:text-sm leading-relaxed text-slate-600 dark:text-zinc-300">
+        <p className="mt-3 text-xs sm:text-sm font-semibold leading-relaxed text-black dark:text-white">
           {tier.description}
         </p>
 

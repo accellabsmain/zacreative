@@ -3,10 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import ThemeToggle from "@/components/ui/ThemeToggle";
-import { WhatsAppIcon } from "@/components/ui/BrandIcons";
-import { buildWhatsAppLink } from "@/lib/constants";
 import { NAVBAR_COPY } from "@/lib/copywriting";
 
 export default function Navbar() {
@@ -52,19 +50,9 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Primary Action CTA & Theme Toggle (Desktop) */}
+        {/* Theme Toggle (Desktop) */}
         <div className="hidden md:flex items-center gap-3" data-purpose="header-cta">
           <ThemeToggle />
-          <a
-            href={buildWhatsAppLink()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-leaf-strong hover:bg-leaf-hover text-white text-sm font-semibold transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-leaf"
-          >
-            <WhatsAppIcon className="w-4 h-4 shrink-0" />
-            <span>{NAVBAR_COPY.ctaLabel}</span>
-            <ArrowUpRight className="w-4 h-4" />
-          </a>
         </div>
 
         {/* Mobile Action Buttons */}
@@ -106,19 +94,6 @@ export default function Navbar() {
               </Link>
             ))}
           </nav>
-          <div className="pt-4 border-t border-zinc-200 dark:border-zinc-800">
-            <a
-              href={buildWhatsAppLink()}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setMobileMenuOpen(false)}
-              className="w-full flex items-center justify-center gap-2 px-5 py-3.5 rounded-lg bg-leaf-strong hover:bg-leaf-hover text-white text-sm font-semibold transition-colors shadow-sm"
-            >
-              <WhatsAppIcon className="w-4 h-4 shrink-0" />
-              <span>{NAVBAR_COPY.ctaLabel}</span>
-              <ArrowUpRight className="w-4 h-4" />
-            </a>
-          </div>
         </div>
       )}
     </header>

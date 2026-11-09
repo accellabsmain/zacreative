@@ -1,8 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowUpRight, Mail } from "lucide-react";
-import { InstagramIcon, WhatsAppIcon } from "@/components/ui/BrandIcons";
-import { CONTACT, buildWhatsAppLink } from "@/lib/constants";
+import { Mail } from "lucide-react";
+import { InstagramIcon } from "@/components/ui/BrandIcons";
+import { CONTACT } from "@/lib/constants";
 import { FOOTER_COPY } from "@/lib/copywriting";
 
 export default function Footer() {
@@ -52,7 +52,7 @@ export default function Footer() {
           </div>
 
           {/* Contact & Social */}
-          <div className="sm:col-span-1 md:col-span-4 space-y-3">
+          <div id="kontak" className="sm:col-span-1 md:col-span-4 space-y-3 scroll-mt-28">
             <span className="font-mono text-xs uppercase tracking-wider text-zinc-900 dark:text-zinc-100 font-semibold block">
               {FOOTER_COPY.contactTitle}
             </span>
@@ -62,18 +62,6 @@ export default function Footer() {
               </p>
             )}
             <div className="pt-1 space-y-2.5">
-              <div>
-                <a
-                  href={buildWhatsAppLink()}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-xs sm:text-sm text-leaf-strong dark:text-leaf hover:underline font-semibold"
-                >
-                  <WhatsAppIcon className="w-4 h-4 shrink-0" />
-                  <span>{FOOTER_COPY.whatsappCtaLabel}</span>
-                  <ArrowUpRight className="w-3.5 h-3.5" />
-                </a>
-              </div>
               <div>
                 <a
                   href={CONTACT.instagramUrl}

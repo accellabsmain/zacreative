@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, Shield, Lock, CheckCircle2, Mail, MessageSquare } from "lucide-react";
+import { ArrowLeft, Shield, Lock, CheckCircle2, Mail } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import FloatingWhatsApp from "@/components/ui/FloatingWhatsApp";
-import { CONTACT, buildWhatsAppLink } from "@/lib/constants";
+import { CONTACT } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Kebijakan Privasi (Privacy Policy)",
@@ -191,15 +190,6 @@ export default function PrivacyPolicyPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-3 pt-2">
                 <a
-                  href={buildWhatsAppLink("Halo Zacreative, saya ingin menanyakan perihal kebijakan privasi / NDA untuk proyek desain.")}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#134282] hover:bg-[#0e2c56] text-white px-5 py-3 text-sm font-semibold transition-colors shadow-xs"
-                >
-                  <MessageSquare className="w-4 h-4" />
-                  <span>Konsultasi via WhatsApp</span>
-                </a>
-                <a
                   href={`mailto:${CONTACT.email}`}
                   className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 dark:border-zinc-700 dark:bg-zinc-800 dark:hover:bg-zinc-750 text-slate-800 dark:text-white px-5 py-3 text-sm font-semibold transition-colors shadow-xs"
                 >
@@ -213,7 +203,6 @@ export default function PrivacyPolicyPage() {
       </main>
 
       <Footer />
-      <FloatingWhatsApp />
     </div>
   );
 }
