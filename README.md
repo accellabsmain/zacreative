@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ZaCreative — Platform Layanan Desain Kreatif & Portofolio
 
-## Getting Started
+Platform web modern untuk **ZaCreative**, penyedia layanan desain kreatif profesional yang berfokus pada:
+- **Desain Layout Buku & Majalah** (Editorial design, e-book, layout cetak)
+- **Desain Poster & Promosi** (Flyer, brosur, banner media sosial)
+- **Desain Presentasi & Pitch Deck** (Slide bisnis korporat, edukasi, proposal)
 
-First, run the development server:
+Dibangun menggunakan stack modern dengan performa tinggi, UI/UX responsif, dan dashboard admin terintegrasi untuk manajemen portofolio secara real-time.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Runtime & Package Manager**: [Bun](https://bun.sh) (v1.3+)
+- **Framework**: [Next.js 16 (App Router + Turbopack)](https://nextjs.org/)
+- **Library UI**: [React 19](https://react.dev/), [Tailwind CSS v4](https://tailwindcss.com/)
+- **Animasi & Interaksi**: [Framer Motion](https://www.framer.com/motion/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Data & Validasi**: [Zod v4](https://zod.dev/)
+- **Penyimpanan Portofolio**: [Vercel Blob](https://vercel.com/docs/storage/vercel-blob) (Production) & Local FS Fallback (`.local-blob` untuk development)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## ✨ Fitur Utama
 
-To learn more about Next.js, take a look at the following resources:
+- **Landing Page Interaktif**:
+  - Showcase paket layanan dengan filter kategori terpadu.
+  - Galeri portofolio responsive (tampilan 2 kolom di mobile view).
+  - Testimoni, trust indicators, dan estimasi waktu pengerjaan real-time.
+  - Direct WhatsApp CTA generator dengan preset pesan dinamis.
+- **Admin Dashboard (`/admin`)**:
+  - Akses terproteksi session 5 jam dengan auto-logout.
+  - CRUD item portofolio (kategori, catatan/caption, footnote, dan URL).
+  - Sinkronisasi real-time ke halaman utama tanpa perlu build ulang.
+  - Manajemen kredensial akun & password admin langsung dari dashboard.
+- **SEO & Performa**:
+  - Struktur JSON-LD (LocalBusiness, Organization, Services).
+  - Sitemap dinamis (`/sitemap.xml`) & `robots.txt`.
+  - Mode Gelap/Terang (Dark/Light mode toggle) dengan transisi mulus.
+  - Gambar teroptimasi WebP dengan rasio responsif untuk skor LCP maksimal.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { InstagramIcon } from "@/components/ui/BrandIcons";
@@ -23,52 +23,55 @@ interface PortfolioSectionProps {
 }
 
 export default function PortfolioSection({
-  posts,
+  posts: initialPosts,
   isLoading,
   showAll = false,
 }: PortfolioSectionProps) {
+  const [livePosts, setLivePosts] = useState<InstagramPost[] | null>(null);
+  const posts = livePosts ?? initialPosts;
+
   const [selectedCategory, setSelectedCategory] = useState<
     "ALL" | PortfolioCategory
   >("ALL");
 
-  const scrollTrackRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(false);
-
-  const checkScroll = useCallback(() => {
-    const el = scrollTrackRef.current;
-    if (!el) return;
-    const hasOverflow = el.scrollWidth > el.clientWidth + 2;
-    setCanScrollLeft(el.scrollLeft > 4);
-    setCanScrollRight(
-      hasOverflow && el.scrollLeft < el.scrollWidth - el.clientWidth - 4
-    );
-  }, []);
-
+  // Fast live-sync with admin data
   useEffect(() => {
-    checkScroll();
-    window.addEventListener("resize", checkScroll);
-    return () => window.removeEventListener("resize", checkScroll);
-  }, [checkScroll]);
+    let active = true;
+    const syncWithAdmin = async () => {
+      try {
+        const res = await fetch("/api/portfolio", { cache: "no-store" });
+        if (!res.ok) return;
+        const data = (await res.json()) as { ok?: boolean; posts?: InstagramPost[] };
+        if (active && data.ok && Array.isArray(data.posts) && data.posts.length > 0) {
+          setLivePosts(data.posts);
+        }
+      } catch {
+        // Keep current posts
+      }
+    };
 
-  const handleCategorySelect = (
-    category: "ALL" | PortfolioCategory,
-    e?: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    setSelectedCategory(category);
-    if (e?.currentTarget) {
-      e.currentTarget.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
-        inline: "center",
-      });
-    }
-  };
+    void syncWithAdmin();
+    window.addEventListener("focus", syncWithAdmin);
+    return () => {
+      active = false;
+      window.removeEventListener("focus", syncWithAdmin);
+    };
+  }, []);
 
   const sourcePosts = useMemo(
     () => (posts && posts.length > 0 ? posts : INSTAGRAM_FALLBACK_POSTS),
     [posts]
   );
+
+  const categoryCounts = useMemo(() => {
+    const counts: Record<string, number> = {
+      ALL: sourcePosts.length,
+    };
+    PORTFOLIO_CATEGORIES.forEach((cat) => {
+      counts[cat] = sourcePosts.filter((p) => p.categoryTag === cat).length;
+    });
+    return counts;
+  }, [sourcePosts]);
 
   const feed = useMemo(() => {
     const filtered =
@@ -95,9 +98,6 @@ export default function PortfolioSection({
             >
               {PORTFOLIO_COPY.heading}
             </h2>
-            <p className="text-xs sm:text-sm md:text-base text-navy-soft dark:text-zinc-400 leading-relaxed">
-              {PORTFOLIO_COPY.description}
-            </p>
           </div>
 
           <a
@@ -115,64 +115,67 @@ export default function PortfolioSection({
           </a>
         </div>
 
-        {/* Single Frame Category Slider (Framed Track dengan Smooth Slide UX pada Mobile) */}
-        <div className="relative w-full rounded-2xl bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 p-1.5 shadow-xs overflow-hidden">
-          {/* Left subtle fade gradient for sliding hint */}
-          <div
-            aria-hidden="true"
-            className={`pointer-events-none absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white dark:from-zinc-900 to-transparent transition-opacity duration-200 z-10 ${
-              canScrollLeft ? "opacity-100" : "opacity-0"
-            }`}
-          />
-
-          {/* Right subtle fade gradient for sliding hint */}
-          <div
-            aria-hidden="true"
-            className={`pointer-events-none absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white dark:from-zinc-900 to-transparent transition-opacity duration-200 z-10 ${
-              canScrollRight ? "opacity-100" : "opacity-0"
-            }`}
-          />
-
-          <div
-            ref={scrollTrackRef}
-            onScroll={checkScroll}
-            role="tablist"
-            aria-label="Filter kategori portofolio"
-            className="flex items-center gap-1.5 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory touch-pan-x px-1 py-0.5"
-          >
-            <button
-              type="button"
-              role="tab"
-              aria-selected={selectedCategory === "ALL"}
-              onClick={(e) => handleCategorySelect("ALL", e)}
-              className={`min-h-[42px] snap-center shrink-0 rounded-xl px-4 py-2 text-xs sm:text-sm font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer ${
-                selectedCategory === "ALL"
-                  ? "bg-[#134282] text-white shadow-xs font-bold"
-                  : "text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-zinc-300 dark:hover:text-white dark:hover:bg-zinc-800"
-              }`}
+        {/* Category Filter Bar (2x2 grid di mobile agar pas tanpa scroll horizontal, single-row di desktop) */}
+        <div className="w-full flex items-center justify-start">
+          <div className="w-full sm:w-auto rounded-xl sm:rounded-2xl bg-slate-100 dark:bg-zinc-900 border border-slate-200/90 dark:border-zinc-800 p-1 sm:p-1.5 shadow-2xs">
+            <div
+              role="tablist"
+              aria-label="Filter kategori portofolio"
+              className="grid grid-cols-2 sm:flex sm:items-center gap-1.5 sm:gap-2 w-full sm:w-auto"
             >
-              Semua Karya
-            </button>
-
-            {PORTFOLIO_CATEGORIES.map((cat) => {
-              const isActive = selectedCategory === cat;
-              return (
-                <button
-                  key={cat}
-                  type="button"
-                  role="tab"
-                  aria-selected={isActive}
-                  onClick={(e) => handleCategorySelect(cat, e)}
-                  className={`min-h-[42px] snap-center shrink-0 rounded-xl px-4 py-2 text-xs sm:text-sm font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer ${
-                    isActive
-                      ? "bg-[#134282] text-white shadow-xs font-bold"
-                      : "text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-zinc-300 dark:hover:text-white dark:hover:bg-zinc-800"
+              <button
+                type="button"
+                role="tab"
+                aria-selected={selectedCategory === "ALL"}
+                onClick={() => setSelectedCategory("ALL")}
+                className={`min-h-[38px] sm:min-h-[40px] w-full sm:w-auto rounded-lg sm:rounded-xl px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer flex items-center justify-center sm:justify-start gap-1.5 sm:gap-2 ${
+                  selectedCategory === "ALL"
+                    ? "bg-[#134282] text-white shadow-xs font-bold"
+                    : "text-slate-600 hover:text-slate-900 hover:bg-white/80 dark:text-zinc-300 dark:hover:text-white dark:hover:bg-zinc-800"
+                }`}
+              >
+                <span>Semua Karya</span>
+                <span
+                  className={`inline-flex items-center justify-center rounded-full px-1.5 py-0.5 text-[10px] sm:text-[11px] font-mono font-bold tabular-nums ${
+                    selectedCategory === "ALL"
+                      ? "bg-white/20 text-white"
+                      : "bg-slate-200/90 dark:bg-zinc-800 text-slate-600 dark:text-zinc-400"
                   }`}
                 >
-                  {cat}
-                </button>
-              );
-            })}
+                  {categoryCounts.ALL}
+                </span>
+              </button>
+
+              {PORTFOLIO_CATEGORIES.map((cat) => {
+                const isActive = selectedCategory === cat;
+                const count = categoryCounts[cat] ?? 0;
+                return (
+                  <button
+                    key={cat}
+                    type="button"
+                    role="tab"
+                    aria-selected={isActive}
+                    onClick={() => setSelectedCategory(cat)}
+                    className={`min-h-[38px] sm:min-h-[40px] w-full sm:w-auto rounded-lg sm:rounded-xl px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer flex items-center justify-center sm:justify-start gap-1.5 sm:gap-2 ${
+                      isActive
+                        ? "bg-[#134282] text-white shadow-xs font-bold"
+                        : "text-slate-600 hover:text-slate-900 hover:bg-white/80 dark:text-zinc-300 dark:hover:text-white dark:hover:bg-zinc-800"
+                    }`}
+                  >
+                    <span className="truncate">{cat}</span>
+                    <span
+                      className={`inline-flex items-center justify-center rounded-full px-1.5 py-0.5 text-[10px] sm:text-[11px] font-mono font-bold tabular-nums ${
+                        isActive
+                          ? "bg-white/20 text-white"
+                          : "bg-slate-200/90 dark:bg-zinc-800 text-slate-600 dark:text-zinc-400"
+                      }`}
+                    >
+                      {count}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
 

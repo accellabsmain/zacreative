@@ -1,16 +1,19 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
   AlertCircle,
   ArrowUpRight,
+  Check,
   CheckCircle2,
+  ChevronDown,
   KeyRound,
   Loader2,
   LogOut,
+  Menu,
   Pencil,
   Plus,
   RefreshCw,
@@ -40,6 +43,7 @@ export default function AdminDashboardClient({
   const [activeFilter, setActiveFilter] = useState<"ALL" | PortfolioCategory>(
     "ALL"
   );
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Form state (Create / Edit)
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -47,6 +51,8 @@ export default function AdminDashboardClient({
   const [category, setCategory] = useState<PortfolioCategory>(
     PORTFOLIO_CATEGORIES[0]
   );
+  const [isCategoryDropdownOpen, setIsCategoryDropdownOpen] = useState(false);
+  const categoryDropdownRef = useRef<HTMLDivElement>(null);
   const [note, setNote] = useState("");
   const [footnote, setFootnote] = useState("");
   const [formError, setFormError] = useState<string | null>(null);
@@ -92,6 +98,30 @@ export default function AdminDashboardClient({
     }, 2500);
     return () => clearInterval(interval);
   }, [hasSyncingItems, fetchLatestItems]);
+
+  // Close category custom dropdown on outside click or escape
+  useEffect(() => {
+    if (!isCategoryDropdownOpen) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        categoryDropdownRef.current &&
+        !categoryDropdownRef.current.contains(e.target as Node)
+      ) {
+        setIsCategoryDropdownOpen(false);
+      }
+    };
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsCategoryDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isCategoryDropdownOpen]);
 
   const filteredItems = useMemo(() => {
     if (activeFilter === "ALL") return items;
@@ -274,7 +304,7 @@ export default function AdminDashboardClient({
     <div className="min-h-screen flex flex-col">
       {/* Sticky Top Header */}
       <header className="sticky top-0 z-30 border-b border-[#E2E8F0] dark:border-zinc-800 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-3">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-3">
           <div className="min-w-0">
             <span className="block font-mono text-[10px] uppercase tracking-wider text-brand dark:text-sky-soft font-semibold">
               ZaCreative Admin
@@ -284,7 +314,8 @@ export default function AdminDashboardClient({
             </h1>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2">
+          {/* Desktop Nav Actions */}
+          <div className="hidden md:flex items-center gap-2">
             <Link
               href="/#portofolio"
               target="_blank"
@@ -314,10 +345,68 @@ export default function AdminDashboardClient({
               className="inline-flex min-h-[38px] items-center gap-1.5 rounded-xl bg-zinc-100 dark:bg-zinc-800 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/50 dark:hover:text-red-300 px-3 py-1.5 text-xs font-semibold text-navy-soft dark:text-zinc-300 transition-colors cursor-pointer"
             >
               <LogOut className="h-3.5 w-3.5 shrink-0" />
-              <span className="hidden sm:inline">Keluar</span>
+              <span>Keluar</span>
+            </button>
+          </div>
+
+          {/* Mobile Hamburger Button */}
+          <div className="flex md:hidden items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen((prev) => !prev)}
+              aria-label={mobileMenuOpen ? "Tutup menu navigasi" : "Buka menu navigasi"}
+              className="w-10 h-10 flex items-center justify-center rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-950 text-navy dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer"
+            >
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
+
+        {/* Mobile Dropdown Menu (Hamburg) */}
+        {mobileMenuOpen && (
+          <div className="md:hidden border-t border-[#E2E8F0] dark:border-zinc-800 bg-white dark:bg-zinc-900 px-4 py-3 space-y-2 animate-in slide-in-from-top-1 duration-150">
+            <Link
+              href="/#portofolio"
+              target="_blank"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex w-full items-center justify-between rounded-xl border border-[#CBD5E1] dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-950 px-3.5 py-2.5 text-xs font-semibold text-navy dark:text-zinc-200"
+            >
+              <span>Lihat Website</span>
+              <ArrowUpRight className="h-4 w-4" />
+            </Link>
+
+            <button
+              type="button"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                setNewUsername(currentUsername);
+                setCredError(null);
+                setCredSuccess(null);
+                setIsCredModalOpen(true);
+              }}
+              className="flex w-full items-center justify-between rounded-xl border border-[#CBD5E1] dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-950 px-3.5 py-2.5 text-xs font-semibold text-navy dark:text-zinc-200 cursor-pointer"
+            >
+              <span className="flex items-center gap-2">
+                <KeyRound className="h-4 w-4 text-brand dark:text-sky-soft" />
+                <span>Akun & Password ({currentUsername})</span>
+              </span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                void handleLogout();
+              }}
+              className="flex w-full items-center justify-between rounded-xl bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900/60 px-3.5 py-2.5 text-xs font-semibold text-red-600 dark:text-red-300 cursor-pointer"
+            >
+              <span className="flex items-center gap-2">
+                <LogOut className="h-4 w-4" />
+                <span>Keluar dari Admin</span>
+              </span>
+            </button>
+          </div>
+        )}
       </header>
 
       {/* Main Content */}
@@ -384,36 +473,65 @@ export default function AdminDashboardClient({
                 />
               </div>
 
-              {/* Category Pills */}
-              <div className="space-y-1.5">
-                <span className="block text-xs font-semibold text-navy dark:text-zinc-200">
+              {/* Custom Category Dropdown with Animated Chevron & Card Popup */}
+              <div className="space-y-1.5" ref={categoryDropdownRef}>
+                <label
+                  id="portfolio-category-label"
+                  className="block text-xs font-semibold text-navy dark:text-zinc-200"
+                >
                   Kategori Layanan
-                </span>
-                <div className="grid grid-cols-1 gap-2">
-                  {PORTFOLIO_CATEGORIES.map((cat) => {
-                    const isSelected = category === cat;
-                    return (
-                      <button
-                        key={cat}
-                        type="button"
-                        onClick={() => setCategory(cat)}
-                        className={`min-h-[42px] w-full flex items-center justify-between rounded-xl border px-3.5 py-2 text-xs sm:text-sm font-semibold text-left transition-all cursor-pointer ${
-                          isSelected
-                            ? "border-brand bg-tint dark:border-sky-soft dark:bg-sky-soft/15 text-brand dark:text-sky-soft"
-                            : "border-[#E2E8F0] dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-950 text-navy-soft dark:text-zinc-300 hover:border-brand/40"
-                        }`}
-                      >
-                        <span className="truncate">{cat}</span>
-                        <span
-                          className={`h-2.5 w-2.5 rounded-full shrink-0 ${
-                            isSelected
-                              ? "bg-brand dark:bg-sky-soft"
-                              : "bg-zinc-300 dark:bg-zinc-700"
-                          }`}
-                        />
-                      </button>
-                    );
-                  })}
+                </label>
+                <div className="relative">
+                  <button
+                    type="button"
+                    aria-haspopup="listbox"
+                    aria-expanded={isCategoryDropdownOpen}
+                    aria-labelledby="portfolio-category-label"
+                    onClick={() => setIsCategoryDropdownOpen((prev) => !prev)}
+                    className="w-full min-h-[44px] flex items-center justify-between rounded-xl border border-[#CBD5E1] dark:border-zinc-700 bg-white dark:bg-zinc-950 px-3.5 py-2.5 text-xs sm:text-sm font-semibold text-navy dark:text-white hover:border-brand dark:hover:border-sky-soft focus:border-brand dark:focus:border-sky-soft focus:outline-none focus:ring-2 focus:ring-brand/20 transition-all cursor-pointer shadow-2xs"
+                  >
+                    <span className="truncate">{category}</span>
+                    <ChevronDown
+                      className={`h-4 w-4 text-zinc-500 dark:text-zinc-400 transition-transform duration-200 shrink-0 ${
+                        isCategoryDropdownOpen ? "rotate-180 text-brand dark:text-sky-soft" : ""
+                      }`}
+                    />
+                  </button>
+
+                  {/* Dropdown Popup Menu */}
+                  {isCategoryDropdownOpen && (
+                    <div
+                      role="listbox"
+                      aria-labelledby="portfolio-category-label"
+                      className="absolute z-50 left-0 right-0 top-full mt-1.5 rounded-xl border border-slate-200 dark:border-zinc-750 bg-white dark:bg-zinc-900 shadow-xl p-1.5 space-y-1 animate-in fade-in-0 zoom-in-95 duration-150 backdrop-blur-md"
+                    >
+                      {PORTFOLIO_CATEGORIES.map((cat) => {
+                        const isSelected = category === cat;
+                        return (
+                          <button
+                            key={cat}
+                            type="button"
+                            role="option"
+                            aria-selected={isSelected}
+                            onClick={() => {
+                              setCategory(cat);
+                              setIsCategoryDropdownOpen(false);
+                            }}
+                            className={`flex items-center justify-between w-full px-3 py-2.5 rounded-lg text-xs sm:text-sm font-semibold transition-colors cursor-pointer text-left ${
+                              isSelected
+                                ? "bg-brand/10 dark:bg-sky-500/20 text-brand dark:text-sky-300 font-bold"
+                                : "text-navy dark:text-zinc-200 hover:bg-slate-100 dark:hover:bg-zinc-800"
+                            }`}
+                          >
+                            <span>{cat}</span>
+                            {isSelected && (
+                              <Check className="h-4 w-4 text-brand dark:text-sky-400 shrink-0 ml-2" />
+                            )}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -501,19 +619,20 @@ export default function AdminDashboardClient({
 
           {/* Right Column: Portfolio List */}
           <section className="lg:col-span-7 xl:col-span-8 space-y-5 min-w-0">
-            {/* Filter Bar */}
+            {/* Filter Bar: 2x2 grid di mobile agar pas tanpa perlu scroll horizontal */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 -mx-1 px-1">
+              <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-1.5 sm:gap-2 w-full sm:w-auto">
                 <button
                   type="button"
                   onClick={() => setActiveFilter("ALL")}
-                  className={`min-h-[38px] shrink-0 rounded-full px-3.5 py-1.5 text-xs font-semibold transition-colors cursor-pointer ${
+                  className={`min-h-[38px] w-full sm:w-auto flex items-center justify-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-semibold transition-colors cursor-pointer ${
                     activeFilter === "ALL"
-                      ? "bg-navy text-white dark:bg-white dark:text-navy"
+                      ? "bg-navy text-white dark:bg-white dark:text-navy shadow-xs font-bold"
                       : "bg-white dark:bg-zinc-900 border border-[#E2E8F0] dark:border-zinc-800 text-navy-soft dark:text-zinc-300 hover:border-brand"
                   }`}
                 >
-                  Semua ({items.length})
+                  <span>Semua</span>
+                  <span className="font-mono text-[11px] opacity-80">({items.length})</span>
                 </button>
                 {PORTFOLIO_CATEGORIES.map((cat) => {
                   const count = items.filter((i) => i.category === cat).length;
@@ -523,13 +642,14 @@ export default function AdminDashboardClient({
                       key={cat}
                       type="button"
                       onClick={() => setActiveFilter(cat)}
-                      className={`min-h-[38px] shrink-0 rounded-full px-3.5 py-1.5 text-xs font-semibold transition-colors cursor-pointer ${
+                      className={`min-h-[38px] w-full sm:w-auto flex items-center justify-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-semibold transition-colors cursor-pointer ${
                         active
-                          ? "bg-brand text-white dark:bg-sky-soft dark:text-navy"
+                          ? "bg-brand text-white dark:bg-sky-soft dark:text-navy shadow-xs font-bold"
                           : "bg-white dark:bg-zinc-900 border border-[#E2E8F0] dark:border-zinc-800 text-navy-soft dark:text-zinc-300 hover:border-brand"
                       }`}
                     >
-                      {cat} ({count})
+                      <span className="truncate">{cat}</span>
+                      <span className="font-mono text-[11px] opacity-80">({count})</span>
                     </button>
                   );
                 })}
@@ -538,7 +658,7 @@ export default function AdminDashboardClient({
               <button
                 type="button"
                 onClick={() => void fetchLatestItems()}
-                className="self-start sm:self-auto inline-flex min-h-[36px] items-center gap-1.5 rounded-xl border border-[#E2E8F0] dark:border-zinc-800 bg-white dark:bg-zinc-900 px-3 py-1.5 text-xs font-semibold text-navy-soft dark:text-zinc-300 hover:border-brand transition-colors cursor-pointer shrink-0"
+                className="self-center sm:self-auto w-full sm:w-auto inline-flex min-h-[36px] items-center justify-center gap-1.5 rounded-xl border border-[#E2E8F0] dark:border-zinc-800 bg-white dark:bg-zinc-900 px-3.5 py-1.5 text-xs font-semibold text-navy-soft dark:text-zinc-300 hover:border-brand transition-colors cursor-pointer shrink-0"
               >
                 <RefreshCw
                   className={`h-3.5 w-3.5 ${hasSyncingItems ? "animate-spin text-brand" : ""}`}
@@ -715,10 +835,6 @@ export default function AdminDashboardClient({
                 <X className="h-5 w-5" />
               </button>
             </div>
-
-            <p className="text-xs text-navy-soft dark:text-zinc-400 leading-relaxed">
-              Kredensial di-hash (`scrypt`) dan dienkripsi (`AES-256-GCM`) sebelum disimpan ke Vercel Blob.
-            </p>
 
             {credError && (
               <div className="rounded-xl border border-red-200 dark:border-red-900/60 bg-red-50 dark:bg-red-950/40 px-3.5 py-2.5 text-xs text-red-700 dark:text-red-300">

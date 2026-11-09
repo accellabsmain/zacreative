@@ -54,10 +54,9 @@ export const NAVBAR_COPY = {
   logoAlt: "Zacreative",
   links: [
     { label: "Paket", href: "/#paket" },
-    { label: "Portofolio", href: "/#portofolio" },
+    { label: "Portofolio", href: "/portofolio" },
     { label: "Cara Order", href: "/#cara-kerja" },
     { label: "FAQ", href: "/#faq" },
-    { label: "Kontak", href: "/#kontak" },
   ],
   ctaLabel: "Chat WhatsApp",
   mobileMenuOpenAria: "Buka Menu",

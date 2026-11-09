@@ -12,6 +12,7 @@ import {
 import { fetchAndUploadInstagramThumbnail } from "@/lib/ig-scraper";
 import {
   normalizeInstagramPermalink,
+  type PortfolioCategory,
   type PortfolioCreateInput,
   type PortfolioItem,
   type PortfolioUpdateInput,
@@ -26,24 +27,51 @@ interface PortfolioBlobDocument {
   items: PortfolioItem[];
 }
 
+function getInitialSeedItems(): PortfolioItem[] {
+  return INSTAGRAM_FALLBACK_POSTS.map((post, idx) => ({
+    id: post.id,
+    instagramUrl: post.permalink,
+    shortcode: post.id,
+    category: (post.categoryTag as PortfolioCategory) || "Desain Layout Buku",
+    note: post.caption,
+    footnote: post.footnote || "",
+    thumbnailUrl: post.imageUrl,
+    mediaType: post.mediaType,
+    syncStatus: "ready" as const,
+    createdAt: post.timestamp || new Date(Date.now() - idx * 3600000).toISOString(),
+    updatedAt: post.timestamp || new Date(Date.now() - idx * 3600000).toISOString(),
+  }));
+}
+
 async function readPortfolioDoc(): Promise<PortfolioBlobDocument> {
   const bytes = await readBlobBytes(PORTFOLIO_BLOB_PATH);
   if (!bytes) {
-    return {
+    const seed = getInitialSeedItems();
+    const doc: PortfolioBlobDocument = {
       version: 1,
       updatedAt: new Date().toISOString(),
-      items: [],
+      items: seed,
     };
+    writePortfolioDoc(seed).catch(() => {});
+    return doc;
   }
 
   try {
     const parsed = JSON.parse(bytes.toString("utf8")) as PortfolioBlobDocument;
-    if (!Array.isArray(parsed.items)) {
-      return { version: 1, updatedAt: new Date().toISOString(), items: [] };
+    if (!Array.isArray(parsed.items) || parsed.items.length === 0) {
+      const seed = getInitialSeedItems();
+      const doc: PortfolioBlobDocument = {
+        version: 1,
+        updatedAt: new Date().toISOString(),
+        items: seed,
+      };
+      writePortfolioDoc(seed).catch(() => {});
+      return doc;
     }
     return parsed;
   } catch {
-    return { version: 1, updatedAt: new Date().toISOString(), items: [] };
+    const seed = getInitialSeedItems();
+    return { version: 1, updatedAt: new Date().toISOString(), items: seed };
   }
 }
 
@@ -84,24 +112,20 @@ export async function getAllPortfolioItems(): Promise<PortfolioItem[]> {
 export async function getPublicPortfolioPosts(): Promise<InstagramPost[]> {
   try {
     const items = await getAllPortfolioItems();
-    const readyItems = items.filter(
-      (item) => item.syncStatus === "ready" && Boolean(item.thumbnailUrl)
-    );
-
-    if (readyItems.length === 0) {
-      return INSTAGRAM_FALLBACK_POSTS;
+    if (items.length > 0) {
+      return items.map((item) => ({
+        id: item.id,
+        caption: item.note,
+        mediaType: item.mediaType,
+        imageUrl: item.thumbnailUrl || "/images/assets/asset_7.webp",
+        permalink: item.instagramUrl,
+        timestamp: item.createdAt,
+        categoryTag: item.category,
+        footnote: item.footnote || undefined,
+      }));
     }
 
-    return readyItems.map((item) => ({
-      id: item.id,
-      caption: item.note,
-      mediaType: item.mediaType,
-      imageUrl: item.thumbnailUrl,
-      permalink: item.instagramUrl,
-      timestamp: item.createdAt,
-      categoryTag: item.category,
-      footnote: item.footnote || undefined,
-    }));
+    return INSTAGRAM_FALLBACK_POSTS;
   } catch (err) {
     console.error("[PortfolioStore] Failed loading public posts:", err);
     return INSTAGRAM_FALLBACK_POSTS;
@@ -126,7 +150,7 @@ export async function createPortfolioEntry(
     category: input.category,
     note: input.note.trim(),
     footnote: (input.footnote ?? "").trim(),
-    thumbnailUrl: "",
+    thumbnailUrl: "/images/assets/asset_7.webp",
     mediaType: normalized.inferredType,
     syncStatus: "syncing",
     createdAt: now,
@@ -135,6 +159,7 @@ export async function createPortfolioEntry(
 
   const nextItems = [newItem, ...doc.items];
   await writePortfolioDoc(nextItems);
+  revalidatePortfolioCache();
   return newItem;
 }
 

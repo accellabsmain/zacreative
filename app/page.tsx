@@ -5,6 +5,9 @@ import LazyHomeSections from "@/components/sections/LazyHomeSections";
 import Reveal from "@/components/motion/Reveal";
 import { getPublicPortfolioPosts } from "@/lib/portfolio-store";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function Home() {
   const posts = await getPublicPortfolioPosts();
 

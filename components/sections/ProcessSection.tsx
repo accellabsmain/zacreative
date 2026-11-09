@@ -5,7 +5,6 @@ import { CheckCircle2, ChevronDown, ChevronsUpDown } from "lucide-react";
 import { PROCESS_COPY } from "@/lib/copywriting";
 
 export default function ProcessSection() {
-  const [isSectionExpanded, setIsSectionExpanded] = useState<boolean>(true);
   const [openSteps, setOpenSteps] = useState<number[]>([0]);
 
   const allStepsOpen = openSteps.length === PROCESS_COPY.steps.length;
@@ -42,58 +41,34 @@ export default function ProcessSection() {
             <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-[#0F172A] dark:text-white">
               {PROCESS_COPY.heading}
             </h2>
-            <p className="text-xs sm:text-sm md:text-base text-[#64748B] dark:text-zinc-400 leading-relaxed">
-              {PROCESS_COPY.description}
-            </p>
           </div>
 
           <div className="flex flex-wrap items-center gap-2.5 shrink-0">
-            {isSectionExpanded && (
-              <button
-                type="button"
-                onClick={toggleAllSteps}
-                className="inline-flex min-h-[42px] items-center justify-center gap-2 rounded-xl border border-slate-200 dark:border-zinc-700 bg-slate-50 dark:bg-zinc-900 px-4 py-2 text-xs sm:text-sm font-semibold text-slate-700 dark:text-zinc-200 hover:border-[#134282] hover:text-[#134282] dark:hover:border-sky-400 dark:hover:text-sky-400 transition-colors cursor-pointer"
-              >
-                <ChevronsUpDown className="w-4 h-4 shrink-0" />
-                <span>{allStepsOpen ? "Tutup Semua Detail" : "Buka Semua Detail"}</span>
-              </button>
-            )}
-
             <button
               type="button"
-              onClick={() => setIsSectionExpanded((prev) => !prev)}
-              aria-expanded={isSectionExpanded}
-              aria-controls="cara-kerja-list"
-              className="inline-flex min-h-[42px] items-center justify-center gap-2 rounded-xl bg-[#134282] hover:bg-[#0e3263] text-white px-4 sm:px-5 py-2.5 text-xs sm:text-sm font-bold shadow-xs transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#134282]"
+              onClick={toggleAllSteps}
+              className="inline-flex min-h-[42px] items-center justify-center gap-2 rounded-xl border border-slate-200 dark:border-zinc-700 bg-slate-50 dark:bg-zinc-900 px-4 py-2 text-xs sm:text-sm font-semibold text-slate-700 dark:text-zinc-200 hover:border-[#134282] hover:text-[#134282] dark:hover:border-sky-400 dark:hover:text-sky-400 transition-colors cursor-pointer"
             >
-              <span>
-                {isSectionExpanded ? "Sembunyikan Cara Order" : "Tampilkan Cara Order"}
-              </span>
-              <ChevronDown
-                className={`w-4 h-4 shrink-0 transition-transform duration-200 ${
-                  isSectionExpanded ? "rotate-180" : ""
-                }`}
-              />
+              <ChevronsUpDown className="w-4 h-4 shrink-0" />
+              <span>{allStepsOpen ? "Tutup Semua Detail" : "Buka Semua Detail"}</span>
             </button>
           </div>
         </div>
 
-        {/* 5-Step Accordion List (Collapsible Section) */}
-        {isSectionExpanded && (
-          <div
-            id="cara-kerja-list"
-            className="space-y-3 w-full animate-in fade-in slide-in-from-top-2 duration-200"
-          >
+        {/* 5-Step Accordion List */}
+        <div
+          id="cara-kerja-list"
+          className="space-y-3 w-full animate-in fade-in slide-in-from-top-2 duration-200"
+        >
             {PROCESS_COPY.steps.map((st, idx) => {
               const isOpen = openSteps.includes(idx);
               return (
                 <div
                   key={st.num}
-                  className={`rounded-2xl border-2 transition-all overflow-hidden ${
-                    isOpen
-                      ? "border-[#1A54A4] dark:border-[#38BDF8] bg-[#F8FAFC] dark:bg-zinc-900 shadow-xs"
-                      : "border-[#E2E8F0] dark:border-zinc-800 bg-white dark:bg-zinc-900/60 hover:border-zinc-300 dark:hover:border-zinc-700"
-                  }`}
+                  className={`rounded-2xl border-2 transition-all overflow-hidden ${isOpen
+                    ? "border-[#1A54A4] dark:border-[#38BDF8] bg-[#F8FAFC] dark:bg-zinc-900 shadow-xs"
+                    : "border-[#E2E8F0] dark:border-zinc-800 bg-white dark:bg-zinc-900/60 hover:border-zinc-300 dark:hover:border-zinc-700"
+                    }`}
                 >
                   <button
                     type="button"
@@ -103,11 +78,10 @@ export default function ProcessSection() {
                   >
                     <div className="flex items-center gap-4 sm:gap-6">
                       <span
-                        className={`w-10 h-10 rounded-xl flex items-center justify-center font-mono font-bold text-sm shrink-0 transition-colors ${
-                          isOpen
-                            ? "bg-[#1A54A4] text-white dark:bg-[#38BDF8] dark:text-[#0F172A]"
-                            : "bg-[#EBF2FA] dark:bg-zinc-800 text-[#1A54A4] dark:text-zinc-300"
-                        }`}
+                        className={`w-10 h-10 rounded-xl flex items-center justify-center font-mono font-bold text-sm shrink-0 transition-colors ${isOpen
+                          ? "bg-[#1A54A4] text-white dark:bg-[#38BDF8] dark:text-[#0F172A]"
+                          : "bg-[#EBF2FA] dark:bg-zinc-800 text-[#1A54A4] dark:text-zinc-300"
+                          }`}
                       >
                         {st.num}
                       </span>
@@ -122,19 +96,17 @@ export default function ProcessSection() {
                     </div>
 
                     <span
-                      className={`inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs font-semibold shrink-0 transition-colors ${
-                        isOpen
-                          ? "bg-[#1A54A4] text-white border-[#1A54A4] dark:bg-[#38BDF8] dark:text-[#0F172A] dark:border-[#38BDF8]"
-                          : "border-slate-200 dark:border-zinc-700 text-slate-600 dark:text-zinc-300"
-                      }`}
+                      className={`inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs font-semibold shrink-0 transition-colors ${isOpen
+                        ? "bg-[#1A54A4] text-white border-[#1A54A4] dark:bg-[#38BDF8] dark:text-[#0F172A] dark:border-[#38BDF8]"
+                        : "border-slate-200 dark:border-zinc-700 text-slate-600 dark:text-zinc-300"
+                        }`}
                     >
                       <span className="hidden sm:inline">
                         {isOpen ? "Tutup" : "Detail"}
                       </span>
                       <ChevronDown
-                        className={`w-4 h-4 transition-transform duration-200 ${
-                          isOpen ? "rotate-180" : ""
-                        }`}
+                        className={`w-4 h-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""
+                          }`}
                       />
                     </span>
                   </button>
@@ -158,7 +130,6 @@ export default function ProcessSection() {
               );
             })}
           </div>
-        )}
       </div>
     </section>
   );

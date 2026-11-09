@@ -1,5 +1,5 @@
 export const ADMIN_SESSION_COOKIE = "za_admin_session";
-const SESSION_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
+const SESSION_TTL_MS = 5 * 60 * 60 * 1000;
 
 export interface SessionPayload {
   sub: string;
